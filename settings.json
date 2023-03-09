@@ -1,0 +1,43 @@
+{
+    "window.zoomLevel": 0,
+    "editor.minimap.enabled": false,
+    "editor.formatOnSave": false,
+    "editor.formatOnPaste": false,
+    "editor.renderWhitespace": "trailing",
+    "editor.linkedEditing": true,
+    "editor.occurrencesHighlight": false,
+    "editor.suggest.insertMode": "replace",
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "files.autoSave": "onFocusChange",
+    "files.defaultLanguage": "python",
+    "explorer.autoReveal": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "workbench.tree.indent": 15,
+    "workbench.tree.renderIndentGuides": "always",
+    // "workbench.editor.enablePreview": false,
+    "emmet.triggerExpansionOnTab" : true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "workbench.colorTheme": "Tokyo Night",
+    "editor.fontFamily": "JetBrains Mono', Consolas, 'Courier New, Monoto'",
+    "editor.fontLigatures": true,
+    "editor.lineHeight": 26,
+    "editor.fontSize": 16,
+    "editor.letterSpacing": 0,
+    "workbench.iconTheme": "material-icon-theme",
+    "material-icon-theme.hidesExplorerArrows": true,
+    "workbench.colorCustomizations": {
+        "[Tokyo Night]": {
+            "editor.selectionBackground": "#3D59A1",
+            "editor.selectionHighlightBackground": "#3D59A1",
+        },
+    },
+    "gitlens.currentLine.enabled": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.codeLens.enabled": false,
+    "terminal.integrated.fontFamily": "monospace"
+
+
+
+}
