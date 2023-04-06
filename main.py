@@ -12,7 +12,7 @@ if __name__ == '__main__':
     screen = pygame.display.set_mode(resolution)
     clock = pygame.time.Clock()
     
-    inventaire = Inventaire(resolution)
+    inventaire = Inventaire(resolution, screen)
     inventaire.draw_inventory()
     
     previous_time = time.time()

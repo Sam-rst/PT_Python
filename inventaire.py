@@ -3,7 +3,7 @@ import pygame
 class Inventaire:
     """inventaire = Inventaire()
     inventaire.draw()"""
-    def __init__(self, resolution):
+    def __init__(self, resolution, screen):
         # Définition des dimensions de l'écran
         self.resolution = resolution
 
@@ -16,8 +16,7 @@ class Inventaire:
         self.font = pygame.font.Font(None, 24)  # Utiliser la police Arial avec une taille de caractère de 24
 
         # Création de l'écran Pygame
-        self.screen = pygame.display.set_mode(self.resolution)
-
+        self.screen = screen
         # Définir le titre de la fenêtre Pygame
         pygame.display.set_caption("Inventaire")
 
