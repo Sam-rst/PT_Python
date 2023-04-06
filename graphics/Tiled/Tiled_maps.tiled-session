@@ -1,0 +1,53 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "data/tmx/map_Overworld.tmx",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "data/tmx/map_Overworld.tmx": {
+            "scale": 2,
+            "selectedLayer": 8,
+            "viewCenter": {
+                "x": 119.75,
+                "y": 271.5
+            }
+        },
+        "data/tmx/test1.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "data/tsx/Overworld.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 5.5
+        },
+        "data/tsx/Overworld_tiled.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "data/tsx/Tiled_Overworld.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 4
+        }
+    },
+    "last.imagePath": "C:/Users/samue/Desktop/GitHub/PT_Python/graphics/Tiled/data/tmx",
+    "map.height": 40,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 50,
+    "openFiles": [
+        "data/tmx/map_Overworld.tmx",
+        "data/tsx/Overworld.tsx"
+    ],
+    "project": "Tiled_maps.tiled-project",
+    "recentFiles": [
+        "data/tmx/test1.tsx",
+        "data/tmx/map_Overworld.tmx",
+        "data/tsx/Overworld_tiled.tsx",
+        "data/tsx/Overworld.tsx",
+        "data/tsx/Tiled_Overworld.tsx"
+    ]
+}

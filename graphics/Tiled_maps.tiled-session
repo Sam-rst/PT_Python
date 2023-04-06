@@ -1,0 +1,36 @@
+{
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "Tiled/data/tmx/Overworld.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 3,
+            "scaleInEditor": 5.5
+        },
+        "Tiled/data/tsx/Overworld.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tiled/data/tsx/Tiled_Overworld.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        }
+    },
+    "last.imagePath": "C:/Users/samue/Desktop/GitHub/PT_Python/graphics/world",
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+    ],
+    "project": "Tiled_maps.tiled-project",
+    "recentFiles": [
+        "Tiled/data/tsx/Tiled_Overworld.tsx",
+        "Tiled/data/tmx/Overworld.tsx",
+        "Tiled/data/tsx/Overworld.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
