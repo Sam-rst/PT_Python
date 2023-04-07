@@ -1,15 +1,20 @@
 from dice import Dice, RiggedDice
 from rich import print
+from math import sqrt 
+from weapon import Weapon
 
+
+    
 class Caracter:
     type = "caracter"
 
-    def __init__(self, name, max_health, attack, defense, dice):
+    def __init__(self, name, max_health, attack, defense, weapon, dice):
         self.name = name
         self.max_health = max_health
         self.health = self.max_health
         self.attack_value = attack
         self.defense_value = defense
+        self.weapon = weapon
         self.dice = dice
 
     def __str__(self):
@@ -46,7 +51,10 @@ class Caracter:
 
     def attack(self, target):
         if self.is_alive():
+            if self.distance(target) > self.weapon.weapon_range():
+                    print("La cible est hors de portée²")
             roll = self.dice.roll()
+            distance  = self.distance_to(target)
             damages = self.compute_damages(roll, target)
             print(
                 f"⚔️ {self.get_type()} [red]{self.name}[/red] attack with {damages} damages (attack: {self.attack_value} + roll: {roll})")
@@ -56,13 +64,36 @@ class Caracter:
         return damages - roll - self.defense_value
 
     def defend(self, damages):
+
         roll = self.dice.roll()
         wounds = self.compute_defense(roll, damages)
         print(f"🛡️ {self.get_type()} [blue]{self.name}[/blue] defend against {damages} damages and take {wounds} wounds ({damages} damages - defense {self.defense_value} - roll {roll})")
         self.decrease_health(wounds)
         self.show_health()
 
+    def distance(self, target):
+        x_distance = abs(self.x - target.x)
+        y_distance = abs(self.y - target.y)
+        return sqrt(x_distance**2 + y_distance**2)
 
+    def switch_weapon(self, new_weapon):
+        print(f"Tu a trouvés {new_weapon.name} !")
+        print(f"Veux tu remplacer ta/ton {self.weapon.name} par celle-ci ? ")
+
+        reponse = input("Remplacer ? o/n ")
+
+        while reponse != "o" and reponse != "n":
+            print("Erreur, écrivez o/n")
+            reponse = input("Remplacer ? o/n ")
+
+        if reponse == "o":
+            self.weapon = new_weapon
+            print(f"Tu possèdes désormais {self.weapon.name}")
+        elif reponse == "n":
+            print(f"Tu choisis de garder {self.weapon.name}")
+
+             
+                
 class Warrior(Caracter):
     type = "Warrior"
     
@@ -89,13 +120,20 @@ class Thief(Caracter):
 
 if __name__ == "__main__":
     a_dice = Dice(6)
-
-    car1 = Warrior("Mike", 20, 8, 3, a_dice)
-    car2 = Mage("Helen", 20, 8, 3, a_dice)
-    car3 = Thief("Robin", 20, 8, 3, a_dice)
-    print(car1)
-    print(car3)
     
-    while (car1.is_alive() and car3.is_alive()):
-        car1.attack(car3)
-        car3.attack(car1)
+    sword0 = Weapon("Epée en bois", 1, 0, 1)
+    sword1 = Weapon("Epée commune", 2, 0, 1)
+    sword2 = Weapon("Epée rare", 4, 0, 1)
+    sword3 = Weapon("Epée épique", 6, 0, 1)
+    sword4 = Weapon("Epée légendaire", 8, 0, 1)
+    warrior1 = Warrior("Mike", 20, 8, 3, sword0, a_dice)
+    mage1 = Mage("Helen", 20, 8, 3,"Baton de soUrcier", a_dice)
+    thief1 = Thief("Robin", 20, 8, 3,"Dague en plastique", a_dice)
+    print(warrior1)
+    print(thief1)
+
+    while (warrior1.is_alive() and thief1.is_alive()):
+        warrior1.attack(thief1)
+        thief1.attack(warrior1)
+
+#faire une def pour changer d'armes
