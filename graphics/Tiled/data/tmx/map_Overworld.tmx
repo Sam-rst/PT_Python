@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="26" nextobjectid="12">
+<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="27" nextobjectid="12">
  <tileset firstgid="1" source="../tsx/Overworld_tiled.tsx"/>
  <group id="17" name="Ground">
   <layer id="1" name="Ground" width="50" height="40">
@@ -541,7 +541,7 @@
    <object id="6" name="Barriers1" x="229.636" y="20">
     <polygon points="-0.363636,2.72727 0.795455,107.58 4.54545,107.818 4.72727,9.45455 175.455,9.27273 175.636,115.636 160.182,115.455 160.182,121.818 181.636,121.818 180.909,2.80682"/>
    </object>
-   <object id="8" name="Border moutain2" x="92.7273" y="244.545">
+   <object id="8" name="BorderMoutain2" x="92.7273" y="244.545">
     <polygon points="-74,75.8182 -28.7273,76 -28.9091,91.6364 4.72727,91.4545 4.90909,-3.09091 -0.181818,-3.09091 -0.363636,0 -0.181818,39.0909 -25.0909,39.2727 -24.9091,-5.45455 -33.2727,-5.45455 -33.0909,23.4545 -74.1818,23.2727"/>
    </object>
    <object id="7" name="BorderMoutain1" x="232.182" y="127.818">
@@ -555,12 +555,12 @@
    </object>
   </objectgroup>
   <objectgroup id="10" name="Waypoints">
-   <object id="1" x="208.625" y="198" width="15" height="20.625"/>
-   <object id="3" x="249" y="296.667" width="44.6667" height="39.3333"/>
-   <object id="4" x="272" y="346.25">
+   <object id="1" name="HouseEntrance" x="208.625" y="198" width="15" height="20.625"/>
+   <object id="3" name="DungeonEntrance" x="249" y="296.667" width="44.6667" height="39.3333"/>
+   <object id="4" name="DungeonSpawn" x="272" y="346.25">
     <point/>
    </object>
-   <object id="5" x="215" y="233.5">
+   <object id="5" name="HouseSpawn" x="215" y="233.5">
     <point/>
    </object>
   </objectgroup>
