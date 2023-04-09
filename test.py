@@ -24,9 +24,23 @@ direction = 'droite'
 
 layers = tmxdata.layers
 # print(layers)
+# for layer in tmxdata.visible_layers:
+#     print(layer)
 
-waypoint = tmxdata.get_object_by_name('Barriers1')
-print(waypoint)
+# layernames = tmxdata.layernames
+# print(layernames['Waypoints'])
+# print(tmxdata.get_layer_by_name('Waypoints'))
+
+for object_layer in tmxdata.objectgroups:
+    if object_layer.name == 'Obstacles':
+        print("That's good !")
+        for obj in object_layer:
+            print(obj)
+# for obj in tmxdata.objects:
+#     if obj.name == 'BorderMoutain1':
+#         moutain_surf = obj.image
+#         print(moutain_surf)
+        # moutain_rect = moutain_surf.get_rect()
 
 clock = pygame.time.Clock()
 
@@ -35,6 +49,8 @@ compteur_animation = 0
 temps_animation = 1/15
 
 is_moving = False
+
+zoom_level = 1 # variable de zoom, initialisé à 1 (pas de zoom)
 
 while True:
     dt = clock.tick(60) / 1000.0
@@ -46,6 +62,10 @@ while True:
         elif event.type == pygame.KEYUP:
             if event.key in [pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT]:
                 is_moving = False
+            elif event.key == pygame.K_PLUS: # Touche "+" pour augmenter le zoom
+                zoom_level += 1
+            elif event.key == pygame.K_MINUS: # Touche "-" pour diminuer le zoom
+                zoom_level = max(1, zoom_level-1) # zoom minimum est 1 (pas de zoom)
     
     keys = pygame.key.get_pressed()
     

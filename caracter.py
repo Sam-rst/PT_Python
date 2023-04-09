@@ -92,9 +92,11 @@ class Caracter:
         elif reponse == "n":
             print(f"Tu choisis de garder {self.weapon.name}")
 
-             
-                
-class Warrior(Caracter):
+class Player(Caracter):
+    pass
+    
+    
+class Warrior(Player):
     type = "Warrior"
     
     def compute_damages(self, roll, target):
@@ -102,7 +104,7 @@ class Warrior(Caracter):
         return super().compute_damages(roll, target) + 3
 
 
-class Mage(Caracter):
+class Mage(Player):
     type = "Mage"
 
     def compute_defense(self, roll, damages):
@@ -110,7 +112,7 @@ class Mage(Caracter):
         return super().compute_defense(roll, damages) - 3
 
 
-class Thief(Caracter):
+class Thief(Player):
     type = "Thief"
     
     def compute_damages(self, roll, target):

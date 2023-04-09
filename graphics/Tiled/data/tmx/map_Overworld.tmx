@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="27" nextobjectid="12">
+<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="28" nextobjectid="19">
  <tileset firstgid="1" source="../tsx/Overworld_tiled.tsx"/>
+ <tileset firstgid="1441" source="../tsx/items_tiled.tsx"/>
+ <tileset firstgid="1505" source="../tsx/objects.tsx"/>
  <group id="17" name="Ground">
   <layer id="1" name="Ground" width="50" height="40">
    <data encoding="csv">
@@ -534,6 +536,13 @@
 </data>
  </layer>
  <group id="25" name="Objects">
+  <objectgroup id="27" name="Items">
+   <object id="14" name="Heart" gid="1604" x="556.5" y="368" width="16" height="16"/>
+   <object id="15" name="Piece" gid="1637" x="455.5" y="333" width="16" height="16"/>
+   <object id="16" name="Piece" gid="1637" x="515.5" y="313" width="16" height="16"/>
+   <object id="17" name="Piece" gid="1637" x="475.5" y="299.5" width="16" height="16"/>
+   <object id="18" name="Piece" gid="1637" x="410.5" y="348" width="16" height="16"/>
+  </objectgroup>
   <objectgroup id="20" name="Obstacles">
    <object id="9" name="Barriers2" x="320.75" y="141.875">
     <polygon points="-0.875,0 26.25,0 26.125,-7.125 -0.875,-7"/>
