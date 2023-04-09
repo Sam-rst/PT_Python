@@ -1,7 +1,9 @@
+import pygame, settings
 from dice import Dice, RiggedDice
 from rich import print
 from math import sqrt 
 from weapon import Weapon
+
 
 
     
@@ -92,10 +94,131 @@ class Caracter:
         elif reponse == "n":
             print(f"Tu choisis de garder {self.weapon.name}")
 
-class Player(Caracter):
-    pass
+class Player(pygame.sprite.Sprite):
     
+    def __init__(self, obstacles):
+        super().__init__()
+        self.player_bottom_walks = [pygame.image.load('graphics/player/walking/bottom/anim_1.png').convert_alpha(),
+                        pygame.image.load('graphics/player/walking/bottom/anim_2.png').convert_alpha(),
+                        pygame.image.load('graphics/player/walking/bottom/anim_3.png').convert_alpha(),
+                        pygame.image.load('graphics/player/walking/bottom/anim_4.png').convert_alpha()]
+        
+        self.player_left_walks = [pygame.image.load('graphics/player/walking/left/anim_1.png').convert_alpha(),
+                           pygame.image.load('graphics/player/walking/left/anim_2.png').convert_alpha(),
+                           pygame.image.load('graphics/player/walking/left/anim_3.png').convert_alpha(),
+                           pygame.image.load('graphics/player/walking/left/anim_4.png').convert_alpha()]
     
+        self.player_top_walks = [pygame.image.load('graphics/player/walking/top/anim_1.png').convert_alpha(),
+                          pygame.image.load('graphics/player/walking/top/anim_2.png').convert_alpha(),
+                          pygame.image.load('graphics/player/walking/top/anim_3.png').convert_alpha(),
+                          pygame.image.load('graphics/player/walking/top/anim_4.png').convert_alpha()]
+        
+        self.player_right_walks = [pygame.image.load('graphics/player/walking/right/anim_1.png').convert_alpha(),
+                            pygame.image.load('graphics/player/walking/right/anim_2.png').convert_alpha(),
+                            pygame.image.load('graphics/player/walking/right/anim_3.png').convert_alpha(),
+                            pygame.image.load('graphics/player/walking/right/anim_4.png').convert_alpha()]
+        
+        #Image and animations
+        self.player_index = 0
+        self.image = self.player_bottom_walks[self.player_index]
+        self.animation_speed = 0.1
+        
+        #Position
+        self.rect = self.image.get_rect(midbottom = (400, 300))
+        self.old_rect = self.rect.copy()
+        
+        #Movement
+        self.pos = pygame.math.Vector2(self.rect.x, self.rect.y)
+        self.direction = pygame.math.Vector2()
+        self.speed = 100
+        self.obstacles = obstacles
+        
+    def input(self):
+        keys = pygame.key.get_pressed()
+        
+        if keys[pygame.K_z]:
+            self.direction.y = -1
+        elif keys[pygame.K_s]:
+            self.direction.y = 1
+        else:
+            self.direction.y = 0
+        
+        if keys[pygame.K_d]:
+            self.direction.x = 1
+        elif keys[pygame.K_q]:
+            self.direction.x = -1
+        else:
+            self.direction.x = 0
+    
+    def collision(self, direction):
+        collision_sprites = pygame.sprite.spritecollide(self, self.obstacles, False)
+        if collision_sprites:
+            for sprite in collision_sprites:
+                if direction == 'horizontal':
+                    # Collision on the right
+                    if self.rect.right >= sprite.rect.left and self.old_rect.right <= sprite.old_rect.left:
+                        self.rect.right = sprite.rect.left
+                        self.pos.x = self.rect.x
+                    
+                    # Collision on the left
+                    if self.rect.left <= sprite.rect.right and self.old_rect.left >= sprite.old_rect.right:
+                        self.rect.left = sprite.rect.right
+                        self.pos.x = self.rect.x
+                        
+                if direction == 'vertical':
+                    # Collision on the top 
+                    if self.rect.top <= sprite.rect.bottom and self.old_rect.top >= sprite.old_rect.bottom:
+                        self.rect.top = sprite.rect.bottom
+                        self.pos.y = self.rect.y
+                        
+                    # Collisions on the bottom
+                    if self.rect.bottom >= sprite.rect.top and self.old_rect.bottom <= sprite.old_rect.top:
+                        self.rect.bottom = sprite.rect.top
+                        self.pos.y = self.rect.y
+                        
+    def window_collision(self, direction, resolution):
+        if direction == 'horizontal':
+            if self.rect.left < 0: #With the left side of the window
+                self.rect.left = 0
+                self.pos.x = self.rect.x
+                self.direction.x *= -1
+            if self.rect.right > resolution[0]:
+                self.rect.right = resolution[0]
+                self.pos.x = self.rect.x
+                self.direction.x *= -1
+                
+        if direction == 'vertical': #With the top side of the window
+            if self.rect.top < 0:
+                self.rect.top = 0
+                self.pos.y = self.rect.y
+                self.direction.y *= -1
+            if self.rect.bottom > resolution[1]:
+                self.rect.bottom = resolution[1]
+                self.pos.y = self.rect.y
+                self.direction.y *= -1
+                
+    def apply_collisions(self, dt, resolution):
+        self.pos.x += self.direction.x * self.speed * dt
+        self.rect.x = round(self.pos.x)
+        self.collision('horizontal')
+        self.window_collision('horizontal', resolution)
+        self.pos.y += self.direction.y * self.speed * dt
+        self.rect.y = round(self.pos.y)
+        self.collision('vertical')
+        self.window_collision('vertical', resolution)
+        
+    def update(self, dt, resolution):
+        self.old_rect = self.rect.copy()
+        self.apply_collisions(dt, resolution)
+        self.input()
+        if self.direction.magnitude() != 0:
+            self.direction = self.direction.normalize()
+        
+
+
+
+
+        
 class Warrior(Player):
     type = "Warrior"
     

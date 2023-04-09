@@ -1,18 +1,23 @@
 import pygame, pytmx
 from pytmx.util_pygame import load_pygame
+from obstacle import Obstacle
 
-# pygame.init()
-# screen = pygame.display.set_mode((800, 600))
 class Carte:
-    def __init__(self, screen):
-        
-        # tmxdata
-        self.tmxdata = load_pygame('graphics/Tiled/data/tmx/map_Overworld.tmx')
-        self.layers = self.tmxdata.visible_layers
-        self.collision_objects = [object_layer for object_layer in self.tmxdata.objectgroups if object_layer.name =='Obstacles']
-        
+    def __init__(self, screen, map_name):
         # screen and camera
         self.screen = screen
+        
+        # tmxdata
+        self.tmxdata = load_pygame(f'graphics/Tiled/data/tmx/{map_name}.tmx')
+        self.layers = self.tmxdata.visible_layers
+        
+        #obstacles
+        self.obstacles = pygame.sprite.Group()
+        for object_layer in self.tmxdata.objectgroups:
+            if object_layer.name == 'Obstacles':
+                for obj in object_layer:
+                    obstacle = Obstacle(obj)
+                    self.obstacles.add(obstacle)
         
     def calculate_cam(self, player_pos):
         cam_x = player_pos[0] - (self.screen.get_width() / 2)
