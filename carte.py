@@ -1,6 +1,5 @@
 import pygame, pytmx
 from pytmx.util_pygame import load_pygame
-from obstacle import Obstacle
 
 class Carte:
     def __init__(self, screen, map_name):
@@ -10,14 +9,6 @@ class Carte:
         # tmxdata
         self.tmxdata = load_pygame(f'graphics/Tiled/data/tmx/{map_name}.tmx')
         self.layers = self.tmxdata.visible_layers
-        
-        #obstacles
-        self.obstacles = pygame.sprite.Group()
-        for object_layer in self.tmxdata.objectgroups:
-            if object_layer.name == 'Obstacles':
-                for obj in object_layer:
-                    obstacle = Obstacle(obj)
-                    self.obstacles.add(obstacle)
         
     def calculate_cam(self, player_pos):
         cam_x = player_pos[0] - (self.screen.get_width() / 2)
@@ -32,3 +23,7 @@ class Carte:
             if isinstance(layer, pytmx.TiledTileLayer):
                 for x, y, image in layer.tiles():
                     self.screen.blit(image, (x * self.tmxdata.tilewidth - cam_coord[0], y * self.tmxdata.tileheight - cam_coord[1]))
+
+    def update(self, player_pos):
+        cam_coord = self.calculate_cam(player_pos)
+        self.draw(cam_coord)
