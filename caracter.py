@@ -3,11 +3,12 @@ from dice import Dice, RiggedDice
 from rich import print
 from math import sqrt 
 from weapon import Weapon
+from debug import debug
 
 
 
     
-class Caracter:
+class Caracter(pygame.sprite.Sprite):
     type = "caracter"
 
     def __init__(self, name, max_health, attack, defense, weapon, dice):
@@ -96,93 +97,120 @@ class Caracter:
 
 class Player(pygame.sprite.Sprite):
     
-    def __init__(self, obstacles):
-        super().__init__()
-        self.player_bottom_walks = [pygame.image.load('graphics/player/walking/bottom/anim_1.png').convert_alpha(),
+    def __init__(self, screen, groups, obstacles):
+        super().__init__(groups)
+        player_standing = [pygame.image.load('graphics/player/walking/bottom/anim_1.png').convert_alpha()]
+        
+        player_bottom_walks = [pygame.image.load('graphics/player/walking/bottom/anim_1.png').convert_alpha(),
                         pygame.image.load('graphics/player/walking/bottom/anim_2.png').convert_alpha(),
                         pygame.image.load('graphics/player/walking/bottom/anim_3.png').convert_alpha(),
                         pygame.image.load('graphics/player/walking/bottom/anim_4.png').convert_alpha()]
         
-        self.player_left_walks = [pygame.image.load('graphics/player/walking/left/anim_1.png').convert_alpha(),
+        player_left_walks = [pygame.image.load('graphics/player/walking/left/anim_1.png').convert_alpha(),
                            pygame.image.load('graphics/player/walking/left/anim_2.png').convert_alpha(),
                            pygame.image.load('graphics/player/walking/left/anim_3.png').convert_alpha(),
                            pygame.image.load('graphics/player/walking/left/anim_4.png').convert_alpha()]
     
-        self.player_top_walks = [pygame.image.load('graphics/player/walking/top/anim_1.png').convert_alpha(),
+        player_top_walks = [pygame.image.load('graphics/player/walking/top/anim_1.png').convert_alpha(),
                           pygame.image.load('graphics/player/walking/top/anim_2.png').convert_alpha(),
                           pygame.image.load('graphics/player/walking/top/anim_3.png').convert_alpha(),
                           pygame.image.load('graphics/player/walking/top/anim_4.png').convert_alpha()]
         
-        self.player_right_walks = [pygame.image.load('graphics/player/walking/right/anim_1.png').convert_alpha(),
+        player_right_walks = [pygame.image.load('graphics/player/walking/right/anim_1.png').convert_alpha(),
                             pygame.image.load('graphics/player/walking/right/anim_2.png').convert_alpha(),
                             pygame.image.load('graphics/player/walking/right/anim_3.png').convert_alpha(),
                             pygame.image.load('graphics/player/walking/right/anim_4.png').convert_alpha()]
+        self.frames = {
+            "Standing" : player_standing,
+            "Bottom" : player_bottom_walks,
+            "Top" : player_top_walks,
+            "Left" : player_left_walks,
+            "Right" : player_right_walks
+        }
         
         #Image and animations
-        self.player_index = 0
-        self.image = self.player_bottom_walks[self.player_index]
+        self.animation_index = 0
+        self.animation_direction = "Standing"
+        self.image = self.frames[self.animation_direction][self.animation_index]
         self.animation_speed = 0.1
+        self.screen = screen
         
         #Position
         self.rect = self.image.get_rect(midbottom = (400, 300))
         self.old_rect = self.rect.copy()
         
         #Movement
-        self.pos = pygame.math.Vector2(self.rect.x, self.rect.y)
+        self.pos = pygame.math.Vector2(self.rect.topleft)
         self.direction = pygame.math.Vector2()
-        self.speed = 100
+        self.speed = 200
+        self.is_moving = False
         self.obstacles = obstacles
+    
+    def change_pos(self, new_pos):
+        self.pos.x, self.pos.y = new_pos[0], new_pos[1]
         
     def input(self):
         keys = pygame.key.get_pressed()
         
         if keys[pygame.K_z]:
             self.direction.y = -1
+            self.animation_direction = 'Top'
+            self.is_moving = True
         elif keys[pygame.K_s]:
             self.direction.y = 1
+            self.animation_direction = 'Bottom'
+            self.is_moving = True
         else:
             self.direction.y = 0
+            # self.is_moving = False
+            # self.animation_direction = 'Standing'
         
         if keys[pygame.K_d]:
             self.direction.x = 1
+            self.animation_direction = 'Right'
+            self.is_moving = True
+            
         elif keys[pygame.K_q]:
             self.direction.x = -1
+            self.animation_direction = 'Left'
+            self.is_moving = True
         else:
             self.direction.x = 0
+            # self.is_moving = False
+            # self.animation_direction = 'Standing'
     
     def collision(self, direction):
         collision_sprites = pygame.sprite.spritecollide(self, self.obstacles, False)
         if collision_sprites:
             for sprite in collision_sprites:
-                if direction == 'horizontal':
-                    # Collision on the right
+                if  direction == 'horizontal':
+                    #Collision on the right
                     if self.rect.right >= sprite.rect.left and self.old_rect.right <= sprite.old_rect.left:
                         self.rect.right = sprite.rect.left
                         self.pos.x = self.rect.x
-                    
-                    # Collision on the left
+                        
+                    #Collision on the left
                     if self.rect.left <= sprite.rect.right and self.old_rect.left >= sprite.old_rect.right:
                         self.rect.left = sprite.rect.right
                         self.pos.x = self.rect.x
                         
                 if direction == 'vertical':
-                    # Collision on the top 
+                    #Collisions on the top
                     if self.rect.top <= sprite.rect.bottom and self.old_rect.top >= sprite.old_rect.bottom:
                         self.rect.top = sprite.rect.bottom
                         self.pos.y = self.rect.y
-                        
-                    # Collisions on the bottom
+                    #Collisions on the bottom
                     if self.rect.bottom >= sprite.rect.top and self.old_rect.bottom <= sprite.old_rect.top:
                         self.rect.bottom = sprite.rect.top
                         self.pos.y = self.rect.y
-                        
+
     def window_collision(self, direction, resolution):
         if direction == 'horizontal':
             if self.rect.left < 0: #With the left side of the window
                 self.rect.left = 0
                 self.pos.x = self.rect.x
                 self.direction.x *= -1
-            if self.rect.right > resolution[0]:
+            if self.rect.right > resolution[0]: #With the right side of the window
                 self.rect.right = resolution[0]
                 self.pos.x = self.rect.x
                 self.direction.x *= -1
@@ -196,7 +224,15 @@ class Player(pygame.sprite.Sprite):
                 self.rect.bottom = resolution[1]
                 self.pos.y = self.rect.y
                 self.direction.y *= -1
-                
+    
+    def animation_state(self):
+        if self.is_moving:
+            self.animation_index += self.animation_speed
+            if self.animation_index >= len(self.frames[self.animation_direction]):
+                self.animation_index = 0
+            self.image = self.frames[self.animation_direction][int(self.animation_index)]
+            # debug(self.animation_index)
+        
     def apply_collisions(self, dt, resolution):
         self.pos.x += self.direction.x * self.speed * dt
         self.rect.x = round(self.pos.x)
@@ -207,10 +243,16 @@ class Player(pygame.sprite.Sprite):
         self.collision('vertical')
         self.window_collision('vertical', resolution)
         
+    def draw(self):
+        self.screen.blit(self.image, self.rect)
+        
     def update(self, dt, resolution):
         self.old_rect = self.rect.copy()
         self.apply_collisions(dt, resolution)
         self.input()
+        self.animation_state()
+        # print(self.pos)
+        self.draw()
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
         

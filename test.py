@@ -2,14 +2,9 @@ import pygame, sys, pytmx, time
 from pytmx.util_pygame import load_pygame
 from carte import Carte
 from caracter import Player
+from obstacle import Obstacle
 
 pygame.init()
-
-# Chargez les images pour chaque animation
-animation_droite = [pygame.image.load("graphics/player/droite.png")]
-animation_gauche = [pygame.image.load("graphics/player/gauche.png")]
-animation_haut = [pygame.image.load("graphics/player/haut.png")]
-animation_bas = [pygame.image.load("graphics/player/bas.png"), pygame.image.load("graphics/player/bas2.png"), pygame.image.load("graphics/player/bas3.png"), pygame.image.load("graphics/player/bas4.png")]
 
 resolution = (800, 600)
 screen = pygame.display.set_mode(resolution)
@@ -36,15 +31,16 @@ layers = tmxdata.layers
 
 
 for object_layer in tmxdata.objectgroups:
-    if object_layer.name == 'Items':
-        # print(dir(object_layer))
+    if object_layer.name == 'Waypoints':
+        print("c bon")
         for obj in object_layer:
-            if obj.name == 'Heart':
-                # print(dir(obj))
-                obj_coord = (obj.x, obj.y)
-                # print(obj_coord)
+            if obj.name == 'Spawn':
+                obj_coord = (int(obj.x), int(obj.y))
+                print(obj_coord)
+
                 
 
+            
 # for obj in tmxdata.objects:
 #     if obj.name == 'BorderMoutain1':
 #         moutain_surf = obj.image
@@ -62,11 +58,22 @@ is_moving = False
 zoom_level = 1 # variable de zoom, initialisé à 1 (pas de zoom)
 
 carte = Carte(screen, 'map_Overworld')
-player = Player(carte.obstacles)
+carte.remove_object('Piece')
 
-previous_time = time.time()
+all_sprites = pygame.sprite.Group()
+collision_sprites = pygame.sprite.Group()
+
+for object_layer in tmxdata.objectgroups:
+    if object_layer.name == 'Obstacles':
+        for obj in object_layer:
+            obstacle = Obstacle(screen, collision_object = obj, groups = [all_sprites, collision_sprites])
+
+player = Player(screen, all_sprites, collision_sprites)
+
+last_time = time.time()
 while True:
-    dt = time.time()
+    dt = time.time() - last_time
+    last_time = time.time()
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -80,7 +87,6 @@ while True:
             elif event.key == pygame.K_MINUS: # Touche "-" pour diminuer le zoom
                 zoom_level = max(1, zoom_level-1) # zoom minimum est 1 (pas de zoom)
     
-    player.update(dt, resolution)
     # keys = pygame.key.get_pressed()
     
     # if keys[pygame.K_UP]:
@@ -104,34 +110,33 @@ while True:
     #     compteur_animation = 0   # Réinitialisez le compteur d'animation à zéro si le joueur ne bouge pas
         
     # Déterminez quelle animation du personnage doit être affichée en fonction de la direction de déplacement
-    if direction == "droite":
-        animation = animation_droite
-    elif direction == "gauche":
-        animation = animation_gauche
-    elif direction == "haut":
-        animation = animation_haut
-    elif direction == "bas":
-        animation = animation_bas
+    # if direction == "droite":
+    #     animation = animation_droite
+    # elif direction == "gauche":
+    #     animation = animation_gauche
+    # elif direction == "haut":
+    #     animation = animation_haut
+    # elif direction == "bas":
+    #     animation = animation_bas
     
     # Incrémentez le compteur d'animation pour passer à l'image suivante
-    compteur_animation += dt / temps_animation
+    # compteur_animation += dt / temps_animation
 
-    if compteur_animation >= len(animation):
-        compteur_animation = 0
+    # if compteur_animation >= len(animation):
+    #     compteur_animation = 0
     
     # Mettez à jour l'écran de jeu
-    pygame.display.update()
     
     # calculer les coordonnées de la caméra pour centrer sur le joueur
     # cam_x = player_pos[0] - (screen.get_width() / 2)
     # cam_y = player_pos[1] - (screen.get_height() / 2)
-    cam_coord = carte.calculate_cam(player_pos)
+    # cam_coord = carte.calculate_cam(player_pos)
     # limiter les coordonnées de la caméra pour ne pas sortir de la carte
     # cam_x = max(0, min(cam_x, tmxdata.width * tmxdata.tilewidth - screen.get_width()))
     # cam_y = max(0, min(cam_y, tmxdata.height * tmxdata.tileheight - screen.get_height()))
     
     # dessiner les tuiles de la carte à partir des coordonnées de la caméra
-    carte.draw(cam_coord)
+    # carte.draw(cam_coord)
     # screen.fill((0, 0, 0))
     # for layer in layers:
     #     if isinstance(layer, pytmx.TiledTileLayer):
@@ -143,11 +148,14 @@ while True:
         #     for obj in layer.objects():
         #         print(obj.name, obj.x, obj.y, obj.width, obj.height)
 
-    
     # dessiner le joueur par rapport aux coordonnées de la caméra
-    screen.blit(animation[int(compteur_animation)], (player_pos[0] - cam_coord[0], player_pos[1] - cam_coord[1]))
+    # screen.blit(animation[int(compteur_animation)], (player_pos[0] - cam_coord[0], player_pos[1] - cam_coord[1]))
     # screen.blit(animation[int(compteur_animation)], (player_pos[0] - cam_x, player_pos[1] - cam_y))
+    
+    # all_sprites.update(dt, resolution)
+    carte.update(player.pos)
+    player.update(dt, resolution)
+    # collision_sprites.draw()
     
     pygame.display.update()
     clock.tick(60)
-# ..

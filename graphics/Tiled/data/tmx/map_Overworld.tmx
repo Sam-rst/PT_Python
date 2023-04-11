@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="28" nextobjectid="19">
+<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="30" nextobjectid="51">
  <tileset firstgid="1" source="../tsx/Overworld_tiled.tsx"/>
  <tileset firstgid="1441" source="../tsx/items_tiled.tsx"/>
  <tileset firstgid="1505" source="../tsx/objects.tsx"/>
@@ -543,25 +543,37 @@
    <object id="17" name="Piece" gid="1637" x="475.5" y="299.5" width="16" height="16"/>
    <object id="18" name="Piece" gid="1637" x="410.5" y="348" width="16" height="16"/>
   </objectgroup>
-  <objectgroup id="20" name="Obstacles">
-   <object id="9" name="Barriers2" x="320.75" y="141.875">
-    <polygon points="-0.875,0 26.25,0 26.125,-7.125 -0.875,-7"/>
-   </object>
-   <object id="6" name="Barriers1" x="229.636" y="20">
-    <polygon points="-0.363636,2.72727 0.795455,107.58 4.54545,107.818 4.72727,9.45455 175.455,9.27273 175.636,115.636 160.182,115.455 160.182,121.818 181.636,121.818 180.909,2.80682"/>
-   </object>
-   <object id="8" name="BorderMoutain2" x="92.7273" y="244.545">
-    <polygon points="-74,75.8182 -28.7273,76 -28.9091,91.6364 4.72727,91.4545 4.90909,-3.09091 -0.181818,-3.09091 -0.363636,0 -0.181818,39.0909 -25.0909,39.2727 -24.9091,-5.45455 -33.2727,-5.45455 -33.0909,23.4545 -74.1818,23.2727"/>
-   </object>
-   <object id="7" name="BorderMoutain1" x="232.182" y="127.818">
-    <polygon points="87.6364,192.182 71.6364,192 71.4545,208.364 8.18182,208.545 7.45455,240.182 -40.7273,240 -40.7273,224.545 -56.3636,224.182 -72.7273,224.182 -72.5455,208.182 -88.3636,208.182 -88.5455,130.182 -84.1818,130.182 -84.3636,172.182 -42,172.545 -41.8182,163.455 -36,163.455 -36.1818,187.636 4.54545,188 4.90909,144 8.90909,144.182 8.90909,156.182 53.3977,156.284 53.5795,131.25 57.6108,131.125 57.642,141 85.0795,141 85.0909,2.36364 -1.72727,2 -1.72727,0 87.7273,0.272727"/>
-   </object>
-   <object id="10" name="House" x="183.5" y="218.75">
-    <polygon points="0,-48 64.5,-47.75 64.5,3.5 -0.25,3"/>
-   </object>
-   <object id="11" name="Cavement" x="277" y="160.091">
-    <polygon points="0,0 -2.54545,29.7273 25.6364,29.9091 21.8182,-0.363636"/>
-   </object>
+  <objectgroup id="29" name="Obstacles">
+   <object id="21" x="405.375" y="22.9091" width="5.17045" height="112.716"/>
+   <object id="22" x="229.273" y="22.7273" width="175.818" height="6.18182"/>
+   <object id="23" x="229.636" y="29.2727" width="4.90909" height="98.1818"/>
+   <object id="24" x="230.727" y="128.364" width="89.2727" height="1.27273"/>
+   <object id="25" x="317.699" y="130.563" width="1.875" height="188.071"/>
+   <object id="26" x="320" y="134.909" width="26.7273" height="6.90909"/>
+   <object id="27" x="389.75" y="135.625" width="21.25" height="5.75"/>
+   <object id="28" x="276.625" y="160" width="22" height="29.625"/>
+   <object id="29" x="183.375" y="170.875" width="64.625" height="50.75"/>
+   <object id="30" x="285.75" y="269.25" width="33.4375" height="49.375"/>
+   <object id="31" x="238.125" y="284.375" width="47.625" height="49.5"/>
+   <object id="32" x="285.813" y="318.563" width="17.75" height="15.25"/>
+   <object id="33" x="193.375" y="316.813" width="44.7989" height="46.0625"/>
+   <object id="34" x="143.906" y="300" width="49.2188" height="34.0795"/>
+   <object id="35" x="161.125" y="334.188" width="31.75" height="15.9375"/>
+   <object id="36" x="143.875" y="259.92" width="2.90909" height="40.1108"/>
+   <object id="37" x="193.188" y="291.5" width="1.6875" height="25.25"/>
+   <object id="38" x="238.25" y="274.125" width="2" height="10.125"/>
+   <object id="39" x="286.875" y="260.125" width="1.75" height="9.25"/>
+   <object id="40" x="64.125" y="284.25" width="31.625" height="49.875"/>
+   <object id="41" x="94" y="243.5" width="1.875" height="40.625"/>
+   <object id="42" x="17.625" y="268" width="46.375" height="52.25"/>
+   <object id="43" x="61.25" y="239.5" width="5.65217" height="28.4986"/>
+   <object id="44" x="64" y="268.004" width="2.90625" height="15.8708"/>
+   <object id="45" x="17.5455" y="210" width="2.45455" height="57.6364"/>
+   <object id="46" x="20.0625" y="210" width="64.9375" height="3"/>
+   <object id="47" x="81.8125" y="194" width="3.1875" height="15.8125"/>
+   <object id="48" x="85.0625" y="193.938" width="31.8125" height="3.0625"/>
+   <object id="49" x="114" y="170.938" width="2.8125" height="23"/>
+   <object id="50" x="98.0625" y="170.938" width="15.8125" height="3.875"/>
   </objectgroup>
   <objectgroup id="10" name="Waypoints">
    <object id="1" name="HouseEntrance" x="208.625" y="198" width="15" height="20.625"/>
@@ -570,6 +582,9 @@
     <point/>
    </object>
    <object id="5" name="HouseSpawn" x="215" y="233.5">
+    <point/>
+   </object>
+   <object id="19" name="Spawn" x="215.833" y="415.333">
     <point/>
    </object>
   </objectgroup>
