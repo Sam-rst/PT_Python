@@ -1,5 +1,1 @@
-import pygame
-
-
-
-#Touches de jeu
+resolution = (800, 600)

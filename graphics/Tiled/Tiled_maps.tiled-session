@@ -51,9 +51,11 @@
             "scaleInEditor": 1
         }
     },
+    "last.exportedFilePath": "C:/Users/samue/Desktop/GitHub/PT_Python/graphics/Tiled/data/export",
     "last.externalTilesetPath": "C:/Users/samue/Desktop/GitHub/PT_Python/graphics/Tiled/data/tsx",
     "last.imagePath": "C:/Users/samue/Desktop/GitHub/PT_Python/graphics/world",
     "map.height": 40,
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "map.width": 50,

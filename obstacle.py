@@ -9,9 +9,6 @@ class Obstacle(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft = (collision_object.x, collision_object.y))
         self.old_rect = self.rect.copy()
         
-    def draw(self):
-        self.image.fill((255, 0, 0))
-        self.screen.blit(self.image, self.rect)
-        
-    def update(self):
-        self.draw()
+    # def draw(self):
+    #     self.image.fill((255, 0, 0))
+    #     self.screen.blit(self.image, self.rect)
