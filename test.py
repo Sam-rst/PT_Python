@@ -1,49 +1,29 @@
-import pygame, sys, pytmx, time
-from carte import Carte
-from obstacle import Obstacle
-from caracter import Player
-from debug import debug
-from save import SaveData
-from inventaire import Inventaire
-from menu import Menu
-from dice import Dice
-from sprites import *
+import pygame, sys, time
 from settings import *
+from sprites import *
+from debug import debug
+from carte import Carte
+from player import *
+from ennemy import *
 
 # Initialisation de pygame
 pygame.init()
-screen = pygame.display.set_mode(resolution)
+
 clock = pygame.time.Clock()
 
 # Création de la map
-carte = Carte(screen, 'map_Overworld')
+OVERWORLD = Carte('map_Overworld')
+TEST_MAP = Carte('Test')
+camera_group = CameraGroup(OVERWORLD)
+# spawn_pos = carte.get_waypoint('Spawn')
 
-player = Player("Etienne", 20, 8, 3, collision_sprites)
-all_sprites.add(player)
-player_sprite.add(player)
-
-print(player)
-player.level_up()
-print(player)
+# player = Player("Etienne", 20, 8, 3, spawn_pos, collision_sprites, camera_group)
+player = Player("Etienne", 20, 8, 3, (500, 500), collision_sprites, [player_sprite, camera_group])
 # Création des sprites
-carte.create_obstacles('Obstacles', collision_sprites)
-
-# save_data = SaveData('save.json')
-# removed_objects = save_data.load_removed_objects()
-# items = save_data.load_inventory()
-# inventaire = Inventaire()
-# # menu = Menu()
-# # menu_ouvert = False
-# player_data = save_data.load_player_data()
-# if player_data is not None:
-#     position_data = player_data.get("player_position")
-#     if position_data is not None:
-#         new_pos = (position_data['x'], position_data['y'])
-#         player.change_pos(new_pos)
-# else:
-#     # player.change_pos(pos_spawn)
-#     pass
-back_buffer = pygame.Surface(resolution)
+# carte.create_obstacles('Obstacles', [collision_sprites, camera_group])
+# carte.create_obstacles('Obstacles', collision_sprites)
+ennemi = Ennemy("Gargantua", 100, 10, 10, (400, 500), collision_sprites, [camera_group, ennemi_group])
+ennemi1 = Ennemy("Etienne", 100, 10, 10, (800, 400), collision_sprites, [camera_group, ennemi_group])
 
 last_time = time.time()
 while True:
@@ -55,25 +35,38 @@ while True:
             pygame.quit()
             sys.exit()
         if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()
+                sys.exit()
+            
+        if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_c:
                 # menu.run()
                 print("Menu ouvert")
                 
             if event.key == pygame.K_e:
-                obj_pos, pickup_distance = carte.get_pickup_distance('Items')
-                player_x, player_y = player.get_position()
+                # obj_pos, pickup_distance = carte.get_pickup_distance('Items')
+                # player_x, player_y = player.get_position()
                 print("Objet pris")
-
-    screen.blit(carte.image, (0, 0))
-    # all_sprites.update(dt)
-    # all_sprites.draw(screen)
-    player_sprite.update(dt)
-    player_sprite.draw(screen)
-    projectile_sprites.update()
-    projectile_sprites.draw(screen)
-    # collision_sprites.draw(screen)
     
-    pygame.display.flip()
-    clock.tick(144)
+    screen.fill('#71ddee')
+
+    camera_group.update(dt)
+    camera_group.custom_draw(player, 'box')
+    # player.debug()
+
+    # ennemi.update()
+    
+
+    # ennemi_group.draw(screen)
+    # ennemi_group.update()
+    # ennemi_projectiles.update()
+    # ennemi_projectiles.draw(screen)
+    
+    # projectile_sprites.update()
+    # projectile_sprites.draw(screen)
+
+    pygame.display.update()
+    clock.tick(60)
 
 pygame.quit()

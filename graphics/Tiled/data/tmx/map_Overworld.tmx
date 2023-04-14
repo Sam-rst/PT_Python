@@ -538,7 +538,7 @@
  <group id="25" name="Objects">
   <objectgroup id="27" name="Items">
    <object id="14" name="Heart" gid="1604" x="556.5" y="368" width="16" height="16"/>
-   <object id="15" name="Piece" gid="1637" x="455.5" y="333" width="16" height="16"/>
+   <object id="15" name="Piece" gid="1637" x="456" y="328.5" width="16" height="16"/>
    <object id="16" name="Piece" gid="1637" x="515.5" y="313" width="16" height="16"/>
    <object id="17" name="Piece" gid="1637" x="475.5" y="299.5" width="16" height="16"/>
    <object id="18" name="Piece" gid="1637" x="410.5" y="348" width="16" height="16"/>
@@ -566,14 +566,14 @@
    <object id="40" x="64.125" y="284.25" width="31.625" height="49.875"/>
    <object id="41" x="94" y="243.5" width="1.875" height="40.625"/>
    <object id="42" x="17.625" y="268" width="46.375" height="52.25"/>
-   <object id="43" x="61.25" y="239.5" width="5.65217" height="28.4986"/>
+   <object id="43" x="62.75" y="239.5" width="2.90217" height="28.4986"/>
    <object id="44" x="64" y="268.004" width="2.90625" height="15.8708"/>
    <object id="45" x="17.5455" y="210" width="2.45455" height="57.6364"/>
    <object id="46" x="20.0625" y="210" width="64.9375" height="3"/>
    <object id="47" x="81.8125" y="194" width="3.1875" height="15.8125"/>
    <object id="48" x="85.0625" y="193.938" width="31.8125" height="3.0625"/>
-   <object id="49" x="114" y="170.938" width="2.8125" height="23"/>
-   <object id="50" x="98.0625" y="170.938" width="15.8125" height="3.875"/>
+   <object id="49" name="obs2" x="114" y="170.938" width="2.8125" height="23"/>
+   <object id="50" name="obs1" x="98.0625" y="170.938" width="15.8125" height="3.875"/>
   </objectgroup>
   <objectgroup id="10" name="Waypoints">
    <object id="1" name="HouseEntrance" x="208.625" y="198" width="15" height="20.625"/>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.10" tiledversion="1.10.0" name="Overworld" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
- <image source="../../../world/Overworld.png" width="640" height="576"/>
+ <image source="../../world/Overworld.png" width="640" height="576"/>
  <wangsets>
   <wangset name="Elements" type="corner" tile="-1">
    <wangcolor name="grass" color="#3abe41" tile="-1" probability="1"/>
    <wangcolor name="sand" color="#e0f878" tile="-1" probability="1"/>
    <wangcolor name="water" color="#259ae2" tile="-1" probability="1"/>
    <wangcolor name="mountain" color="#72534a" tile="-1" probability="1"/>
-   <wangcolor name="" color="#00e9ff" tile="-1" probability="1"/>
+   <wangcolor name="dqdsq" color="#00e9ff" tile="-1" probability="1"/>
    <wangtile tileid="0" wangid="0,1,0,1,0,1,0,1"/>
    <wangtile tileid="120" wangid="0,1,0,2,0,1,0,1"/>
    <wangtile tileid="121" wangid="0,1,0,2,0,2,0,1"/>
@@ -39,8 +39,6 @@
    <wangtile tileid="335" wangid="0,3,0,2,0,2,0,2"/>
    <wangtile tileid="336" wangid="0,3,0,2,0,2,0,3"/>
    <wangtile tileid="337" wangid="0,2,0,2,0,2,0,3"/>
-   <wangtile tileid="360" wangid="0,1,0,0,0,1,0,1"/>
-   <wangtile tileid="361" wangid="0,1,0,1,0,0,0,1"/>
    <wangtile tileid="362" wangid="0,3,0,1,0,3,0,3"/>
    <wangtile tileid="363" wangid="0,3,0,3,0,1,0,3"/>
    <wangtile tileid="364" wangid="0,1,0,1,0,4,0,4"/>
@@ -50,8 +48,6 @@
    <wangtile tileid="368" wangid="0,1,0,1,0,1,0,1"/>
    <wangtile tileid="375" wangid="0,3,0,2,0,3,0,3"/>
    <wangtile tileid="376" wangid="0,3,0,3,0,2,0,3"/>
-   <wangtile tileid="400" wangid="0,0,0,1,0,1,0,1"/>
-   <wangtile tileid="401" wangid="0,1,0,1,0,1,0,0"/>
    <wangtile tileid="402" wangid="0,1,0,3,0,3,0,3"/>
    <wangtile tileid="403" wangid="0,3,0,3,0,3,0,1"/>
    <wangtile tileid="404" wangid="0,1,0,1,0,4,0,4"/>

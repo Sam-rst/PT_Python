@@ -1,23 +1,36 @@
 {
-    "Map/SizeTest": {
-        "height": 4300,
-        "width": 2
-    },
     "activeFile": "data/tmx/map_Overworld.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "data/tmx/Test.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1005.3333333333333,
+                "y": 536.6666666666667
+            }
+        },
         "data/tmx/map_Overworld.tmx": {
             "expandedGroupLayers": [
+                14,
                 25,
-                14
+                17
             ],
-            "scale": 2,
-            "selectedLayer": 14,
+            "expandedObjectLayers": [
+                29,
+                25,
+                27
+            ],
+            "scale": 1.5,
+            "selectedLayer": 15,
             "viewCenter": {
-                "x": 561.75,
-                "y": 312.5
+                "x": 166.33333333333331,
+                "y": 257.3333333333333
             }
         },
         "data/tmx/objects.tsx": {
@@ -34,6 +47,7 @@
             "scaleInEditor": 5.5
         },
         "data/tsx/Overworld_tiled.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 3
         },
@@ -42,35 +56,37 @@
             "scaleInEditor": 4
         },
         "data/tsx/items_tiled.tsx": {
+            "dynamicWrapping": true,
             "scaleInDock": 3,
             "scaleInEditor": 3
         },
         "data/tsx/objects.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInEditor": 3
+        },
+        "data/tsx/test.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
         }
     },
-    "last.exportedFilePath": "C:/Users/samue/Desktop/GitHub/PT_Python/graphics/Tiled/data/export",
-    "last.externalTilesetPath": "C:/Users/samue/Desktop/GitHub/PT_Python/graphics/Tiled/data/tsx",
-    "last.imagePath": "C:/Users/samue/Desktop/GitHub/PT_Python/graphics/world",
-    "map.height": 40,
-    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
-    "map.tileHeight": 16,
-    "map.tileWidth": 16,
-    "map.width": 50,
+    "last.imagePath": "C:/Users/samue/Desktop/GitHub/PT_Python/graphics/Tiled",
+    "map.lastUsedFormat": "tmx",
     "openFiles": [
         "data/tmx/map_Overworld.tmx",
         "data/tsx/Overworld_tiled.tsx",
-        "data/tsx/items_tiled.tsx",
-        "data/tsx/objects.tsx"
+        "data/tsx/objects.tsx",
+        "data/tmx/Test.tmx",
+        "data/tsx/items_tiled.tsx"
     ],
     "project": "Tiled_maps.tiled-project",
     "recentFiles": [
-        "data/tsx/objects.tsx",
         "data/tsx/items_tiled.tsx",
+        "data/tmx/Test.tmx",
+        "data/tsx/objects.tsx",
         "data/tsx/Overworld_tiled.tsx",
         "data/tmx/map_Overworld.tmx",
+        "data/tsx/test.tsx",
         "data/tmx/objects.tsx",
         "data/tmx/test1.tsx",
         "data/tsx/Overworld.tsx",

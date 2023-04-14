@@ -1,19 +1,21 @@
 import pygame, settings
 from dice import Dice, RiggedDice
-from rich import print
 from math import sqrt 
 from weapon import Weapon
 from debug import debug
-from projectiles import Projectile
-from sprites import all_sprites, projectile_sprites
+from projectiles import Projectile, EnnemiProjectile
+from sprites import *
 from settings import *
+from random import randint
 
     
 class Caracter(pygame.sprite.Sprite):
-    type = "caracter"
+    type = "Caracter"
 
-    def __init__(self, name, max_HP, attack, defense, obstacles):
-        super().__init__()
+    def __init__(self, name, max_HP, attack, defense, pos, obstacles, groups):
+        super().__init__(groups)
+        
+        # Aspects of the caracter
         self.name = name
         self.max_HP = max_HP
         self.HP = self.max_HP
@@ -22,18 +24,25 @@ class Caracter(pygame.sprite.Sprite):
         self.range = 5 # rayon d'attaque du caractère
         self.cooldown = 2000 #temps de recharge en millisecondes
         self.last_shot = 0 # temps en millisecondes depuis le début de l'exécution de la boucle de jeu lors du dernier tir
+        
+        # Surface and rectangle
         self.image = pygame.Surface((16, 16))
-        self.rect = self.image.get_rect(midbottom = (200, 200))
+        self.rect = self.image.get_rect(center = pos)
+        self.old_rect = self.rect.copy()
+        
+        self.screen = pygame.display.get_surface()
         
         self.obstacles = obstacles
         self.pos = pygame.math.Vector2(self.rect.topleft)
         self.direction = pygame.math.Vector2()
-        self.speed = 200
-        
+        self.animation_speed = 0.1
+        self.speed = 500
+
+
     def set_name(self, new_name):
         """Changer le nom avec la nouvelle valeur new_name"""
         self.name = new_name
-    
+
     def get_name(self):
         """Permet de récupérer le nom du caractère"""
         return self.name
@@ -98,6 +107,23 @@ class Caracter(pygame.sprite.Sprite):
     def get_pos(self):
         """Permet de récupérer la position du caractère"""
         return self.pos
+    
+    def set_speed(self, new_value):
+        """Changer la valeur de la vitesse du caractère"""
+        self.speed = new_value
+        
+    def get_speed(self):
+        """Permet de récupérer la vitesse du caractère"""
+        return self.speed
+    
+    def get_width(self):
+        return self.image.get_width() * scale // 2.5
+    
+    def get_height(self):
+        return self.image.get_height() * scale // 2.5
+    
+    def transform_scale(self):
+        return pygame.transform.scale(self.image, (self.get_width(), self.get_height()))
     
     def __str__(self):
         return f"Le {self.get_type()} {self.get_name()} possède : vie = {self.get_HP()}/{self.get_max_HP()}, attaque = {self.get_attack_value()}, defense = {self.get_defense_value}, cooldown = {self.get_cooldown()}, attack range = {self.get_range()}, position = {self.get_pos()}"
@@ -170,176 +196,11 @@ class Caracter(pygame.sprite.Sprite):
         self.pos.x += self.direction.x * self.speed * dt
         self.rect.x = round(self.pos.x)
         self.collision('horizontal')
-        self.window_collision('horizontal', resolution)
+        # self.window_collision('horizontal', resolution)
         self.pos.y += self.direction.y * self.speed * dt
         self.rect.y = round(self.pos.y)
         self.collision('vertical')
-        self.window_collision('vertical', resolution)
+        # self.window_collision('vertical', resolution)
         
     def update(self, dt):
         self.apply_collisions(dt)
-        
-
-class Player(Caracter):
-    
-    def __init__(self, name, max_HP, attack, defense, obstacles):
-        super().__init__(name, max_HP, attack, defense, obstacles)
-        player_standing = [pygame.image.load('graphics/player/walking/bottom/anim_1.png').convert_alpha()]
-        
-        player_bottom_walks = [pygame.image.load('graphics/player/walking/bottom/anim_1.png').convert_alpha(),
-                        pygame.image.load('graphics/player/walking/bottom/anim_2.png').convert_alpha(),
-                        pygame.image.load('graphics/player/walking/bottom/anim_3.png').convert_alpha(),
-                        pygame.image.load('graphics/player/walking/bottom/anim_4.png').convert_alpha()]
-        
-        player_left_walks = [pygame.image.load('graphics/player/walking/left/anim_1.png').convert_alpha(),
-                           pygame.image.load('graphics/player/walking/left/anim_2.png').convert_alpha(),
-                           pygame.image.load('graphics/player/walking/left/anim_3.png').convert_alpha(),
-                           pygame.image.load('graphics/player/walking/left/anim_4.png').convert_alpha()]
-    
-        player_top_walks = [pygame.image.load('graphics/player/walking/top/anim_1.png').convert_alpha(),
-                          pygame.image.load('graphics/player/walking/top/anim_2.png').convert_alpha(),
-                          pygame.image.load('graphics/player/walking/top/anim_3.png').convert_alpha(),
-                          pygame.image.load('graphics/player/walking/top/anim_4.png').convert_alpha()]
-        
-        player_right_walks = [pygame.image.load('graphics/player/walking/right/anim_1.png').convert_alpha(),
-                            pygame.image.load('graphics/player/walking/right/anim_2.png').convert_alpha(),
-                            pygame.image.load('graphics/player/walking/right/anim_3.png').convert_alpha(),
-                            pygame.image.load('graphics/player/walking/right/anim_4.png').convert_alpha()]
-        self.frames = {
-            "Standing" : player_standing,
-            "Bottom" : player_bottom_walks,
-            "Top" : player_top_walks,
-            "Left" : player_left_walks,
-            "Right" : player_right_walks
-        }
-        
-        #Image and animations
-        self.animation_index = 0
-        self.animation_direction = "Standing"
-        self.image = self.frames[self.animation_direction][self.animation_index]
-        self.animation_speed = 0.1
-        
-        #Position
-        self.rect = self.image.get_rect(midbottom = (400, 300))
-        self.old_rect = self.rect.copy()
-        self.is_moving = False
-        
-    def input(self):
-        keys = pygame.key.get_pressed()
-        mouse = pygame.mouse.get_pressed()
-        
-        if mouse[0] and pygame.time.get_ticks() - self.last_shot > self.cooldown:
-            self.create_projectile()
-            
-        if keys[pygame.K_z]:
-            self.direction.y = -1
-            self.animation_direction = 'Top'
-            self.is_moving = True
-        elif keys[pygame.K_s]:
-            self.direction.y = 1
-            self.animation_direction = 'Bottom'
-            self.is_moving = True
-        else:
-            self.direction.y = 0
-            # self.is_moving = False
-            # self.animation_direction = 'Standing'
-        
-        if keys[pygame.K_d]:
-            self.direction.x = 1
-            self.animation_direction = 'Right'
-            self.is_moving = True
-            
-        elif keys[pygame.K_q]:
-            self.direction.x = -1
-            self.animation_direction = 'Left'
-            self.is_moving = True
-        else:
-            self.direction.x = 0
-            # self.is_moving = False
-            # self.animation_direction = 'Standing'
-        #Movement
-    
-    def create_projectile(self):
-        projectile = Projectile(self.rect.center)
-        projectile_sprites.add(projectile)
-        all_sprites.add(projectile)
-        self.last_shot = pygame.time.get_ticks()  # on enregistre le temps du dernier tir
-        print("Tire")
-    
-    
-    def animation_state(self):
-        if self.is_moving:
-            self.animation_index += self.animation_speed
-            if self.animation_index >= len(self.frames[self.animation_direction]):
-                self.animation_index = 0
-            self.image = self.frames[self.animation_direction][int(self.animation_index)]
-            # debug(self.animation_index)
-        
-    
-        
-    # def draw(self, screen):
-    #     screen.blit(self.image, self.rect)
-        
-
-        
-    def update(self, dt):
-        self.old_rect = self.rect.copy()
-        self.apply_collisions(dt)
-        self.input()
-        self.animation_state()
-        # self.draw(screen)
-        if self.direction.magnitude() != 0:
-            self.direction = self.direction.normalize()
-        
-
-
-
-
-        
-class Warrior(Caracter):
-    type = "Warrior"
-    
-    # def compute_damages(self, roll, target):
-    #     print("Bonus : Axe in your face ! (+3 damages)")
-    #     return super().compute_damages(roll, target) + 3
-    
-    def transform(self):
-        """Transformer le player en warrior"""
-        pass
-
-
-class Mage(Caracter):
-    type = "Mage"
-
-    # def compute_defense(self, roll, damages):
-    #     print("Bonus : Magic armor ! (-3 wournds)")
-    #     return super().compute_defense(roll, damages) - 3
-
-
-class Thief(Player):
-    type = "Thief"
-    
-    def compute_damages(self, roll, target):
-        print(f"Bonus : Backstab (+{target.get_defense()} damages) !")
-        return super().compute_damages(roll, target) + target.get_defense()
-
-
-if __name__ == "__main__":
-    a_dice = Dice(6)
-    
-    sword0 = Weapon("Epée en bois", 1, 0, 1)
-    sword1 = Weapon("Epée commune", 2, 0, 1)
-    sword2 = Weapon("Epée rare", 4, 0, 1)
-    sword3 = Weapon("Epée épique", 6, 0, 1)
-    sword4 = Weapon("Epée légendaire", 8, 0, 1)
-    warrior1 = Warrior("Mike", 20, 8, 3, sword0, a_dice)
-    mage1 = Mage("Helen", 20, 8, 3,"Baton de soUrcier", a_dice)
-    thief1 = Thief("Robin", 20, 8, 3,"Dague en plastique", a_dice)
-    print(warrior1)
-    print(thief1)
-
-    while (warrior1.is_alive() and thief1.is_alive()):
-        warrior1.attack(thief1)
-        thief1.attack(warrior1)
-
-#faire une def pour changer d'armes
