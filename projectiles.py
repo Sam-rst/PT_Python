@@ -2,6 +2,7 @@ import pygame
 import random
 import math , sys
 from sprites import *
+from settings import *
 
 # Définition des couleurs
 WHITE = (255, 255, 255)
@@ -10,33 +11,57 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 
 class Projectile(pygame.sprite.Sprite):
-    def __init__(self, pos, groups):
+    def __init__(self, player_sprite, groups):
         super().__init__(groups)
         
-        # Surface and rectangle
-        self.image = pygame.Surface([10, 10])
-        self.image.fill('#00ff00')
-        self.rect = self.image.get_rect()
-        self.rect.center = pos
-        self.speed = 5
-        self.direction = self.get_direction()
-        self.distance_traveled = 0
-        self.damage = 100
-
-    def update(self):
-        self.rect.move_ip(self.direction[0] * self.speed, self.direction[1] * self.speed)
-        self.distance_traveled += self.speed
-        if self.distance_traveled >= 500:
-            self.kill()
-        if self.rect.bottom < 0:
-            self.kill()
+        # Screen
+        self.screen = pygame.display.get_surface()
         
-                # Si le projectile touche le carré ennemi, le faire perdre des points de vie
-        ennemi_touche = pygame.sprite.spritecollide(self, ennemi_group, False)
-        if ennemi_touche:
-            ennemi_touche[0].perdre_hp(self.damage)
+        # Player sprite 
+        self.caracter = player_sprite
+        
+        # Surface and rectangle
+        self.image = pygame.image.load('graphics/weapons/orbs/orb_red.png').convert_alpha()
+        self.rect = self.image.get_rect(center = self.caracter.get_pos())
+        
+        self.pos = pygame.math.Vector2(self.rect.center)
+        self.direction = pygame.math.Vector2()
+        self.get_direction()
+        
+        self.speed = 1000
+        self.range = self.caracter.get_range()
+        self.distance_traveled = 0
+
+    def get_ticks(self):
+        return pygame.time.get_ticks()
+
+    def get_width(self):
+        return self.image.get_width() * scale // 2
+    
+    def get_height(self):
+        return self.image.get_height() * scale // 2
+    
+    def transform_scale(self):
+        return pygame.transform.scale(self.image, (self.get_width(), self.get_height()))
+
+    def update(self, dt):
+        self.pos.x += self.direction.x * self.speed * dt
+        self.rect.x = round(self.pos.x)
+        self.pos.y += self.direction.y * self.speed * dt
+        self.rect.y = round(self.pos.y)
+        
+        self.distance_traveled += 1
+        if  self.distance_traveled >= self.range:
             self.kill()
-            print("tué")
+        # if self.rect.bottom < 0:
+        #     self.kill()
+        
+        # Si le projectile touche le carré ennemi, le faire perdre des points de vie
+        # ennemi_touche = pygame.sprite.spritecollide(self, ennemi_group, False)
+        # if ennemi_touche:
+        #     ennemi_touche[0].perdre_hp(self.damage)
+        #     self.kill()
+        #     print("tué")
 
         # # Si le projectile touche le carré ennemi, le faire perdre des points de vie
         # ennemi_touche = pygame.sprite.spritecollide(self, ennemi_group, False)
@@ -47,13 +72,19 @@ class Projectile(pygame.sprite.Sprite):
     def get_direction(self):
         # On calcule la direction du projectile en fonction de la position de la souris
         mouse_pos = pygame.mouse.get_pos()
-        dx = mouse_pos[0] - self.rect.centerx
-        dy = mouse_pos[1] - self.rect.centery
+        
+        dx = mouse_pos[0] - self.pos.x
+        dy = mouse_pos[1] - self.pos.y
         distance = math.sqrt(dx ** 2 + dy ** 2)
         if distance == 0:
-            return (0, -1)
+            self.direction.x = 0
+            self.direction.y = -1
         else:
-            return (dx / distance, dy / distance)
+            self.direction.x = dx / distance
+            self.direction.y = dy / distance
+        
+        
+        
         
 class EnnemiProjectile(pygame.sprite.Sprite):
     def __init__(self, position):

@@ -12,18 +12,16 @@ pygame.init()
 clock = pygame.time.Clock()
 
 # Création de la map
-OVERWORLD = Carte('map_Overworld')
-TEST_MAP = Carte('Test')
-camera_group = CameraGroup(OVERWORLD)
 # spawn_pos = carte.get_waypoint('Spawn')
 
 # player = Player("Etienne", 20, 8, 3, spawn_pos, collision_sprites, camera_group)
-player = Player("Etienne", 20, 8, 3, (500, 500), collision_sprites, [player_sprite, camera_group])
+player = Player("Etienne", 20, 8, 10, 3, (500, 500), [player_sprite, camera_group])
+print(player)
 # Création des sprites
 # carte.create_obstacles('Obstacles', [collision_sprites, camera_group])
 # carte.create_obstacles('Obstacles', collision_sprites)
-ennemi = Ennemy("Gargantua", 100, 10, 10, (400, 500), collision_sprites, [camera_group, ennemi_group])
-ennemi1 = Ennemy("Etienne", 100, 10, 10, (800, 400), collision_sprites, [camera_group, ennemi_group])
+ennemi = Ennemy("Gargantua", 100, 10, 200, 10, (400, 500), [camera_group, ennemi_group])
+# ennemi1 = Ennemy("Etienne", 100, 10, 10, (800, 400), collision_sprites, [camera_group, ennemi_group])
 
 last_time = time.time()
 while True:
@@ -53,18 +51,6 @@ while True:
 
     camera_group.update(dt)
     camera_group.custom_draw(player, 'box')
-    # player.debug()
-
-    # ennemi.update()
-    
-
-    # ennemi_group.draw(screen)
-    # ennemi_group.update()
-    # ennemi_projectiles.update()
-    # ennemi_projectiles.draw(screen)
-    
-    # projectile_sprites.update()
-    # projectile_sprites.draw(screen)
 
     pygame.display.update()
     clock.tick(60)

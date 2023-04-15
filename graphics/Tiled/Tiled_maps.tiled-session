@@ -17,20 +17,20 @@
         },
         "data/tmx/map_Overworld.tmx": {
             "expandedGroupLayers": [
-                14,
+                17,
                 25,
-                17
+                14
             ],
             "expandedObjectLayers": [
+                27,
                 29,
-                25,
-                27
+                25
             ],
             "scale": 1.5,
             "selectedLayer": 15,
             "viewCenter": {
-                "x": 166.33333333333331,
-                "y": 257.3333333333333
+                "x": 399.66666666666663,
+                "y": 319.66666666666663
             }
         },
         "data/tmx/objects.tsx": {

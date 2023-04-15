@@ -11,16 +11,35 @@ class Carte:
         
         # tmxdata
         self.tmxdata = load_pygame(f'graphics/Tiled/data/tmx/{map_name}.tmx')
-        self.width = self.tmxdata.width * scale
-        self.height = self.tmxdata.height * scale
+        self.width = self.tmxdata.width
+        self.height = self.tmxdata.height
         
         # Layers and Tiles
         self.tilewidth = self.tmxdata.tilewidth * scale
         self.tileheight = self.tmxdata.tileheight * scale
-        self.layers = self.get_layers()
         
-        # tmxdata
-        # self.collision_tiles = self.get_collision_layers()
+        self.size_map_width = self.width * self.tilewidth
+        self.size_map_height = self.height * self.tileheight
+        
+        self.layers = self.get_layers()
+
+    def get_width(self):
+        return self.width
+    
+    def get_height(self):
+        return self.height
+    
+    def get_tilewidth(self):
+        return self.tilewidth
+    
+    def get_tileheight(self):
+        return self.tileheight
+    
+    def get_size_map_width(self):
+        return self.size_map_width
+    
+    def get_size_map_height(self):
+        return self.size_map_height
 
     def get_layers(self):
         layer_list = []

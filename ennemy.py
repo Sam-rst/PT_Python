@@ -3,30 +3,49 @@ from caracter import *
 class Ennemy(Caracter):
     type = 'Ennemy'
     
-    def __init__(self, name, max_HP, attack, defense, pos, obstacles, groups):
-        super().__init__(name, max_HP, attack, defense, pos, obstacles, groups)
-        self.image = pygame.image.load("graphics/caracters/ennemy/demon/walking/anim_1.png").convert_alpha()
+    def __init__(self, name, max_HP, attack, range_attack, defense, pos, groups):
+        super().__init__(name, max_HP, attack, range_attack, defense, pos, groups)
+        self.transform_to_ennemy()
+        
+    def transform_to_ennemy(self):
+        self.frames["Bottom"] = demon_bottom_walks
+        self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
-        self.time_move = 0
-
+        self.set_speed(100)
+        
         
         # Si le temps de recharge est écoulé et que l'ennemi peut tirer, on tire un projectile
-        if pygame.time.get_ticks() - self.last_shot > self.cooldown:
-            self.shoot()
-            self.last_shot = pygame.time.get_ticks()
 
+    
+    def change_direction(self):
+        if randint(0,1):
+            self.direction.x = randint(-1, 1)
+            self.direction.y = randint(-1, 1)
+            self.is_moving = True
+        else:
+            self.is_moving = False
+            self.direction.x = 0
+            self.direction.y = 0
+    
     def shoot(self):
         projectile = EnnemiProjectile(self.rect.center)
         ennemi_projectiles.add(projectile)
         all_sprites.add(projectile)
-
-    def perdre_hp(self, damage):
-        self.HP -= damage
-        if self.HP <= 0:
-            self.kill()
     
     def update(self, dt):
-        # On met à jour la position de l'ennemi de manière aléatoire toutes les 500 ms
-        if pygame.time.get_ticks() - self.time_move > 500:
-            self.rect.move_ip(randint(-5, 5), randint(-5, 5))
-            self.time_move = pygame.time.get_ticks()
+        self.old_rect = self.rect.copy()
+
+        # Collisions and moving setup
+        self.apply_collisions(dt)
+        if (self.get_ticks() - self.cooldown_move) > 1500:
+            self.change_direction()
+            self.cooldown_move = self.get_ticks()
+        if self.direction.magnitude() != 0:
+            self.direction = self.direction.normalize()
+
+        self.animation_state()
+
+        # Attack setup
+        if (self.get_ticks() - self.last_shot) > self.cooldown_attack:
+            self.shoot()
+            self.last_shot = self.get_ticks()
