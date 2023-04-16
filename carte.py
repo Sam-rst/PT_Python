@@ -71,14 +71,29 @@ class Carte:
         return obj
 
     def get_pos_obj(self, obj):
-        return int(obj.x), int(obj.y)
+        return int(obj.x * scale), int(obj.y * scale)
+    
+    def get_obj(self, name_group, obj_name):
+        obj_layer = self.get_group_object(name_group)
+        for obj in obj_layer:
+            if obj.name == obj_name:
+                return obj
+    
+    def get_rect_obj(self, obj):
+        obj_image = obj.image
+        obj_rect = obj_image.get_rect(topleft = (obj.x, obj.y))
+        return obj_image, obj_rect
     
     def get_waypoint(self, name_waypoint):
-        obj_layer = self.get_group_object('Waypoints')
-        for obj in obj_layer:
-            if obj.name == name_waypoint:
-                return self.get_pos_obj(obj)
-
+        obj = self.get_obj('Waypoints', name_waypoint)
+        return self.get_pos_obj(obj)
+    
+    def get_door(self, name_door):
+        obj = self.get_obj('Waypoints', name_door)
+        obj_image, obj_rect = self.get_rect_obj(obj)
+        self.screen.blit(obj_image, obj_rect)
+        
+        
     def get_pickup_distance(self, name_group):
         obj_layer = self.get_group_object(name_group)
         obj_pos = []

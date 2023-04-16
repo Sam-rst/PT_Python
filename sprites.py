@@ -18,6 +18,11 @@ player_sprite = pygame.sprite.GroupSingle()
 
 all_sprites.add(projectile_sprites)
 
-OVERWORLD = Carte('map_Overworld')
-TEST_MAP = Carte('Test')
-camera_group = CameraGroup(OVERWORLD)
+carte = Carte('Dungeon')
+camera_group = CameraGroup(carte)
+
+def change_map(name):
+    global carte, camera_group
+    carte = Carte(name)
+    camera_group.carte = carte
+    

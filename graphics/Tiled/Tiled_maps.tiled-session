@@ -1,9 +1,21 @@
 {
-    "activeFile": "data/tmx/map_Overworld.tmx",
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "data/tmx/Dungeon.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "data/tmx/Dungeon.tmx": {
+            "scale": 4,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 145.875,
+                "y": 144
+            }
+        },
         "data/tmx/Test.tmx": {
             "expandedObjectLayers": [
                 4
@@ -11,26 +23,27 @@
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 1005.3333333333333,
-                "y": 536.6666666666667
+                "x": 998,
+                "y": 531.9999999999999
             }
         },
         "data/tmx/map_Overworld.tmx": {
             "expandedGroupLayers": [
                 17,
-                25,
-                14
-            ],
-            "expandedObjectLayers": [
-                27,
-                29,
+                14,
                 25
             ],
-            "scale": 1.5,
-            "selectedLayer": 15,
+            "expandedObjectLayers": [
+                10,
+                29,
+                25,
+                27
+            ],
+            "scale": 5.5,
+            "selectedLayer": 16,
             "viewCenter": {
-                "x": 399.66666666666663,
-                "y": 319.66666666666663
+                "x": 217.1818181818182,
+                "y": 475.6363636363636
             }
         },
         "data/tmx/objects.tsx": {
@@ -55,6 +68,11 @@
             "scaleInDock": 1,
             "scaleInEditor": 4
         },
+        "data/tsx/dungeon_tiles.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 3,
+            "scaleInEditor": 4
+        },
         "data/tsx/items_tiled.tsx": {
             "dynamicWrapping": true,
             "scaleInDock": 3,
@@ -71,21 +89,27 @@
         }
     },
     "last.imagePath": "C:/Users/samue/Desktop/GitHub/PT_Python/graphics/Tiled",
+    "map.height": 32,
     "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 8,
+    "map.tileWidth": 8,
+    "map.width": 64,
     "openFiles": [
         "data/tmx/map_Overworld.tmx",
         "data/tsx/Overworld_tiled.tsx",
         "data/tsx/objects.tsx",
         "data/tmx/Test.tmx",
-        "data/tsx/items_tiled.tsx"
+        "data/tmx/Dungeon.tmx"
     ],
     "project": "Tiled_maps.tiled-project",
     "recentFiles": [
-        "data/tsx/items_tiled.tsx",
-        "data/tmx/Test.tmx",
-        "data/tsx/objects.tsx",
-        "data/tsx/Overworld_tiled.tsx",
+        "data/tsx/dungeon_tiles.tsx",
         "data/tmx/map_Overworld.tmx",
+        "data/tsx/Overworld_tiled.tsx",
+        "data/tsx/objects.tsx",
+        "data/tmx/Test.tmx",
+        "data/tmx/Dungeon.tmx",
+        "data/tsx/items_tiled.tsx",
         "data/tsx/test.tsx",
         "data/tmx/objects.tsx",
         "data/tmx/test1.tsx",
@@ -93,8 +117,10 @@
         "data/tsx/Tiled_Overworld.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
+    "tileset.margin": 0,
+    "tileset.spacing": 0,
     "tileset.tileSize": {
-        "height": 16,
-        "width": 16
+        "height": 8,
+        "width": 8
     }
 }

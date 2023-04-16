@@ -14,6 +14,7 @@ class Player(Caracter):
         self.frames["Right"] = player_right_walks
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
+        self.rect = self.image.get_rect(center = self.get_pos())
         
     
     def input(self):
@@ -62,14 +63,11 @@ class Player(Caracter):
                 self.animation_index = 0
             self.image = self.frames[self.animation_direction][int(self.animation_index)]
             self.image = self.transform_scale()
-    
-    def debug(self):
-        self.image.fill('#00ff00')
         
     def update(self, dt):
         self.old_rect = self.rect.copy()
-        self.apply_collisions(dt)
         self.input()
+        self.apply_collisions(dt)
         self.animation_state()
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()

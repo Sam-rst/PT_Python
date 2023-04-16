@@ -11,6 +11,7 @@ class Ennemy(Caracter):
         self.frames["Bottom"] = demon_bottom_walks
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
+        self.rect = self.image.get_rect(center = self.get_pos())
         self.set_speed(100)
         
         

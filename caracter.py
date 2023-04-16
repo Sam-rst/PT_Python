@@ -48,7 +48,7 @@ class Caracter(pygame.sprite.Sprite):
         self.screen = pygame.display.get_surface()
         
         # Moving
-        self.pos = pygame.math.Vector2(self.rect.topleft)
+        self.pos = pygame.math.Vector2(self.rect.midbottom)
         self.direction = pygame.math.Vector2()
         self.speed = 500
         self.cooldown_move = 0
@@ -117,8 +117,8 @@ class Caracter(pygame.sprite.Sprite):
     
     def set_pos(self, new_pos):
         """Changer la position du caractère selon la nouvelle position new_pos"""
-        self.rect= new_pos
-        self.pos = self.rect
+        self.pos.x = new_pos[0]
+        self.pos.y = new_pos[1]
     
     def get_pos(self):
         """Permet de récupérer la position du caractère"""
@@ -162,20 +162,13 @@ class Caracter(pygame.sprite.Sprite):
         self.regenerate
     
     def decrease_health(self, amount):
-        self.health -= amount
-        if self.health < 0:
-            self.health = 0
+        self.HP -= amount
+        if self.HP < 0:
+            self.HP = 0
 
     def is_alive(self):
-        if not self.health > 0:
+        if not self.HP > 0:
             self.kill()
-
-    def collision_projectiles(self):
-        collision_projectiles = pygame.sprite.spritecollide(self, projectile_sprites, False)
-        if collision_projectiles:
-            for sprite_projectile in collision_projectiles:
-                self.decrease_health(sprite_projectile.caracter.get_attack_value())
-                self.is_alive()
 
     def collision(self, direction):
         collisions = pygame.sprite.spritecollide(self, collision_sprites, False)
@@ -208,8 +201,8 @@ class Caracter(pygame.sprite.Sprite):
                 self.rect.left = 0
                 self.pos.x = self.rect.x
                 # self.direction.x *= -1
-            if self.rect.right > camera_group.carte.get_size_map_width(): 
-                self.rect.right = camera_group.carte.get_size_map_width()
+            if self.rect.right > carte.get_size_map_width(): 
+                self.rect.right = carte.get_size_map_width()
                 self.pos.x = self.rect.x
                 # self.direction.x *= -1
                 
@@ -218,8 +211,8 @@ class Caracter(pygame.sprite.Sprite):
                 self.rect.top = 0
                 self.pos.y = self.rect.y
                 # self.direction.y *= -1
-            if self.rect.bottom > camera_group.carte.get_size_map_height() - camera_group.carte.get_tileheight():
-                self.rect.bottom = camera_group.carte.get_size_map_height() - camera_group.carte.get_tileheight()
+            if self.rect.bottom > carte.get_size_map_height() - carte.get_tileheight():
+                self.rect.bottom = carte.get_size_map_height() - carte.get_tileheight()
                 self.pos.y = self.rect.y
                 # self.direction.y *= -1
                 
@@ -240,3 +233,10 @@ class Caracter(pygame.sprite.Sprite):
                 self.animation_index = 0
             self.image = self.frames[self.animation_direction][int(self.animation_index)]
             self.image = self.transform_scale()
+            self.rect = self.image.get_rect(topleft = self.get_pos())
+            
+    def debug(self):
+        pygame.draw.rect(self.screen, '#ff0000', self.rect, 5)
+        pygame.draw.rect(self.screen, '#00ff00', self.old_rect, 5)
+        pygame.draw.circle(self.screen, '#fd5a61', self.get_pos(), 5)
+        self.image.fill('#0000ff')
