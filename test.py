@@ -46,7 +46,7 @@ else:
  # self.reset_menu = ResetMenu(self.screen.get_width(), self.screen.get_height())
 inventaire = Inventaire()
 # menu = Menu()
-menu_ouvert = False    
+menu_ouvert = False
 last_time = time.time()
 while True:
     dt = time.time() - last_time
@@ -60,28 +60,28 @@ while True:
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
                 sys.exit()
-            
+
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_c:
                 # menu.run()
                 print("Menu ouvert")
-                
-                
+
+
             if event.key == pygame.K_e:
                 # obj_pos, pickup_distance = carte.get_pickup_distance('Items')
                 # player_x, player_y = player.get_position()
                 pass
-                
-    
+
+
     # screen.fill('#71ddee') #Map overworld
     screen.fill('#1f1f1f') #Map Dungeon
     # carte.get_door('ExitDungeon')
     camera_group.update(dt)
     camera_group.custom_draw(player, 'box')
-    
+
     # Permettre de debuger les sprites
     camera_group.debug()
-    
+
     # Sauvegarde la position du joueur toutes les 5 secondes
     current_time = pygame.time.get_ticks()
     if current_time - last_save_time > 5000:
