@@ -1,24 +1,27 @@
 import json
-from caracter import *
+from player import *
 
 class Encoder(json.JSONEncoder):
     
     def default(self, obj):
         if isinstance(obj, Warrior):
             return {
-                "__class__": "Warrior",
-                "name": obj.name,
-                "max_health": obj.max_health,
-                "attack": obj.attack,
-                "defend": obj.defense,
+                "Class": "Warrior",
+                "Name": obj.get_name(),
+                "Max HP": obj.get_max_HP(),
+                "Attack value": obj.get_attack_value(),
+                "Attack range": obj.get_range(),
+                "Defend value": obj.get_defense_value(),
+                # "Position": obj.get_pos(),
+                
+                
             }
 
         if isinstance(obj, Mage):
                 return {
                     "class": "Mage",
-                    "name": obj.name,
-                    "max_health": obj.max_health,
-                    "attack": obj.attack,
-                    "defend": obj.defense,
+                    "max_health": obj.get_max_health(),
+                    "attack": obj.get_attack_value(),
+                    "defend": obj.get_defense_value()
                 }
         return None

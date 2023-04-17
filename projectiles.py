@@ -11,6 +11,8 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 
 class Projectile(pygame.sprite.Sprite):
+    type = 'Projectile'
+    
     def __init__(self, player_sprite, groups):
         super().__init__(groups)
         
@@ -60,18 +62,10 @@ class Projectile(pygame.sprite.Sprite):
     def get_direction(self):
         # On calcule la direction du projectile en fonction de la position de la souris
         mouse_pos = pygame.mouse.get_pos()
+        self.direction = pygame.Vector2(([mouse_pos[0] - (resolution[0] // 2), mouse_pos[1] - (resolution[1] // 2)])).normalize()
         
-        dx = mouse_pos[0] - self.pos.x
-        dy = mouse_pos[1] - self.pos.y
-        distance = math.sqrt(dx ** 2 + dy ** 2)
-        if distance == 0:
-            self.direction.x = 0
-            self.direction.y = -1
-        else:
-            self.direction.x = dx / distance
-            self.direction.y = dy / distance
-        
-        
+    def get_type(self):
+        return type(self).type
         
         
 class EnnemiProjectile(pygame.sprite.Sprite):
@@ -113,4 +107,3 @@ class EnnemiProjectile(pygame.sprite.Sprite):
         #     joueur_touche[0].perdre_hp(self.damage)
 
         #     self.kill()
-

@@ -29,13 +29,13 @@ class Caracter(pygame.sprite.Sprite):
         
         # Image and animations
         self.frames = {
-            "Bottom" : caracter_bottom_walks,
-            "Left" : caracter_left_walks,
-            "Top" : caracter_top_walks,
-            "Right" : caracter_right_walks
+            "Bottom Walk" : caracter_bottom_walks,
+            "Left Walk" : caracter_left_walks,
+            "Top Walk" : caracter_top_walks,
+            "Right Walk" : caracter_right_walks
         }
         self.animation_index = 0
-        self.animation_direction = "Bottom"
+        self.animation_direction = "Bottom Walk"
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
         self.animation_speed = 0.2
@@ -201,8 +201,8 @@ class Caracter(pygame.sprite.Sprite):
                 self.rect.left = 0
                 self.pos.x = self.rect.x
                 # self.direction.x *= -1
-            if self.rect.right > carte.get_size_map_width(): 
-                self.rect.right = carte.get_size_map_width()
+            if self.rect.right > camera_group.carte.get_size_map_width():
+                self.rect.right = camera_group.carte.get_size_map_width()
                 self.pos.x = self.rect.x
                 # self.direction.x *= -1
                 
@@ -211,8 +211,8 @@ class Caracter(pygame.sprite.Sprite):
                 self.rect.top = 0
                 self.pos.y = self.rect.y
                 # self.direction.y *= -1
-            if self.rect.bottom > carte.get_size_map_height() - carte.get_tileheight():
-                self.rect.bottom = carte.get_size_map_height() - carte.get_tileheight()
+            if self.rect.bottom > camera_group.carte.get_size_map_height() - camera_group.carte.get_tileheight():
+                self.rect.bottom = camera_group.carte.get_size_map_height() - camera_group.carte.get_tileheight()
                 self.pos.y = self.rect.y
                 # self.direction.y *= -1
                 

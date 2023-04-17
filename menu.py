@@ -1,8 +1,8 @@
 import pygame, sys
 from dice import Dice
 from save import SaveData
-from caracter import Warrior, Mage
-
+from player import *
+from camera import *
 
 class Menu:
     def __init__(self):
@@ -11,10 +11,7 @@ class Menu:
         self.class_joueur = self.save_data.load_player_class()
         
     def run(self):
-        if self.class_joueur:
-            # sert a passer si le joueur a deja une classe
-            return
-        else:
+        if not self.class_joueur:
             # Sinon, on affiche le menu de sélection de classe
             largeur_bouton = 200
             bouton_guerrier = pygame.Rect((self.fenetre.get_width() - largeur_bouton) / 2, 100, largeur_bouton, 50)
@@ -28,15 +25,15 @@ class Menu:
                         sys.exit()
                     elif evenement.type == pygame.MOUSEBUTTONDOWN:
                         if bouton_guerrier.collidepoint(pygame.mouse.get_pos()):
-                            classe = Warrior("mechant", 20, 8, 3)
-                            self.save_data.save_player_class(classe)
+                            player = Warrior("mechant", 40, 30, 10, 15, camera_group.carte.get_waypoint('Spawn'), [player_sprite] + list(camera_groups.values()))
+                            self.save_data.save_player_class(player)
                             
-                            return
-                        elif bouton_mage.collidepoint(pygame.mouse.get_pos()):
-                            classe = Mage("fdp", 20, 8, 3)
-                            self.save_data.save_player_class(classe)
+                            return player
+                        # elif bouton_mage.collidepoint(pygame.mouse.get_pos()):
+                        #     classe = Mage("fdp", 20, 8, 3)
+                        #     self.save_data.save_player_class(classe)
                             
-                            return
+                        #     return
                 
                 self.fenetre.fill((0, 0, 0))
                 

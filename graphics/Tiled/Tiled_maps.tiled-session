@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "data/tsx/dungeon_tiles.tsx",
+    "activeFile": "data/tmx/Dungeon.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -13,10 +13,25 @@
                 5
             ],
             "scale": 4,
-            "selectedLayer": 1,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 81.125,
-                "y": 107.5
+                "x": 68.625,
+                "y": 52.75
+            }
+        },
+        "data/tmx/Overworld.tmx": {
+            "expandedGroupLayers": [
+                25
+            ],
+            "expandedObjectLayers": [
+                10,
+                25
+            ],
+            "scale": 4,
+            "selectedLayer": 16,
+            "viewCenter": {
+                "x": 297.625,
+                "y": 315
             }
         },
         "data/tmx/Test.tmx": {
@@ -26,8 +41,8 @@
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 1005.3333333333333,
-                "y": 536.6666666666667
+                "x": 959.3333333333333,
+                "y": 535.9999999999999
             }
         },
         "data/tmx/map_Overworld.tmx": {
@@ -93,6 +108,10 @@
         "data/tsx/test.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 3
+        },
+        "data/tsx/test1.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
         }
     },
     "last.imagePath": "C:/Users/samue/Desktop/GitHub/PT_Python/graphics/Tiled",
@@ -112,18 +131,18 @@
     ],
     "project": "Tiled_maps.tiled-project",
     "recentFiles": [
+        "data/tmx/Dungeon.tmx",
         "data/tmx/map_Overworld.tmx",
         "data/tsx/Overworld_tiled.tsx",
         "data/tsx/objects.tsx",
         "data/tmx/Test.tmx",
-        "data/tmx/Dungeon.tmx",
-        "data/tsx/dungeon_tiles2.tsx",
         "data/tsx/dungeon_tiles.tsx",
+        "data/tsx/dungeon_tiles2.tsx",
+        "data/tsx/test1.tsx",
         "data/tsx/items_tiled.tsx",
         "data/tsx/test.tsx",
         "data/tmx/objects.tsx",
-        "data/tmx/test1.tsx",
-        "data/tsx/Overworld.tsx"
+        "data/tmx/test1.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.margin": 0,

@@ -2,7 +2,7 @@ import pygame
 from settings import *
 
 class CameraGroup(pygame.sprite.Group):
-    def __init__(self, carte):
+    def __init__(self, carte, tps):
         super().__init__()
         self.screen = pygame.display.get_surface()
 
@@ -13,6 +13,9 @@ class CameraGroup(pygame.sprite.Group):
 
         # Ground
         self.carte = carte
+
+        # Les TPS
+        self.tps = [self.carte.create_teleportation(tp[0], tp[1], [self]) for tp in tps]
 
         # Box setup
         self.camera_borders = {'left' : 300, 'right' : 300, 'top' : 200, 'bottom' : 200}
@@ -61,7 +64,7 @@ class CameraGroup(pygame.sprite.Group):
             raise ValueError("Ce type de camera n'existe pas")
 
         # Clean background
-        self.screen.fill((0, 0, 0))
+        # self.screen.fill((0, 0, 0))
 
         # Ground
         for layer in self.carte.layers:
@@ -72,7 +75,8 @@ class CameraGroup(pygame.sprite.Group):
 
         # Active elements
         for sprite in sorted(self.sprites(), key = lambda sprite: sprite.rect.centery):
-            self.screen.blit(sprite.image, sprite.rect.topleft - self.offset)
+            if not sprite.get_type() == 'TP':
+                self.screen.blit(sprite.image, sprite.rect.topleft - self.offset)
 
     def debug(self):
         def translate_pos_with_offset(rect, offset):

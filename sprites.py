@@ -18,8 +18,13 @@ player_sprite = pygame.sprite.GroupSingle()
 
 all_sprites.add(projectile_sprites)
 
-carte = Carte('Dungeon')
-camera_group = CameraGroup(carte)
+
+camera_groups = {
+    "Dungeon": CameraGroup(Carte('Dungeon'), [('ExitDungeon', 'Overworld')]),
+    "Overworld": CameraGroup(Carte('Overworld'), [('EnterDungeon', 'Dungeon')]),
+}
+
+camera_group = camera_groups["Overworld"]
 
 def change_map(name):
     global carte, camera_group

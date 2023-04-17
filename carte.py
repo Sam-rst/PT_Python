@@ -79,19 +79,13 @@ class Carte:
             if obj.name == obj_name:
                 return obj
     
-    def get_rect_obj(self, obj):
-        obj_image = obj.image
-        obj_rect = obj_image.get_rect(topleft = (obj.x, obj.y))
-        return obj_image, obj_rect
-    
     def get_waypoint(self, name_waypoint):
         obj = self.get_obj('Waypoints', name_waypoint)
         return self.get_pos_obj(obj)
     
-    def get_door(self, name_door):
-        obj = self.get_obj('Waypoints', name_door)
-        obj_image, obj_rect = self.get_rect_obj(obj)
-        self.screen.blit(obj_image, obj_rect)
+    def create_teleportation(self, name_teleportation, name_destination, groups):
+        obj = self.get_obj('Waypoints', name_teleportation)
+        return Teleportation(obj, name_destination, groups)
         
         
     def get_pickup_distance(self, name_group):
@@ -102,3 +96,20 @@ class Carte:
         
         pickup_distance = 50
         return obj_pos, pickup_distance
+    
+class Teleportation(pygame.sprite.Sprite):
+    type = 'TP'
+    def __init__(self, obj, name_destination, groups):
+        super().__init__(groups)
+        self.obj = obj
+        self.name_destination = name_destination
+        self.image = pygame.Surface((obj.width * scale, obj.height * scale))
+        self.rect = self.image.get_rect(topleft = (obj.x * scale, obj.y * scale))
+        self.old_rect = self.rect.copy()
+        self.pos = pygame.math.Vector2(self.rect.topleft)
+
+    def get_pos(self):
+        return self.pos
+    
+    def get_type(self):
+        return type(self).type

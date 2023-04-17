@@ -66,7 +66,7 @@ player_right_walks = [
     ]
 
 player_bottom_attack = [
-
+    
 ]
 # ~~~~~~~~~~===> Demon's images <===~~~~~~~~~~
 demon_bottom_walks = [

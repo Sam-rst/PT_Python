@@ -6,9 +6,10 @@ class Ennemy(Caracter):
     def __init__(self, name, max_HP, attack, range_attack, defense, pos, groups):
         super().__init__(name, max_HP, attack, range_attack, defense, pos, groups)
         self.transform_to_ennemy()
+        self.range_can_attack = 5
         
     def transform_to_ennemy(self):
-        self.frames["Bottom"] = demon_bottom_walks
+        self.frames["Bottom Walk"] = demon_bottom_walks
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
         self.rect = self.image.get_rect(center = self.get_pos())
