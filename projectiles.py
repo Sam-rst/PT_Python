@@ -60,16 +60,7 @@ class Projectile(pygame.sprite.Sprite):
     def get_direction(self):
         # On calcule la direction du projectile en fonction de la position de la souris
         mouse_pos = pygame.mouse.get_pos()
-        
-        dx = mouse_pos[0] - self.pos.x
-        dy = mouse_pos[1] - self.pos.y
-        distance = math.sqrt(dx ** 2 + dy ** 2)
-        if distance == 0:
-            self.direction.x = 0
-            self.direction.y = -1
-        else:
-            self.direction.x = dx / distance
-            self.direction.y = dy / distance
+        self.direction = pygame.Vector2(([mouse_pos[0] - (resolution[0] // 2), mouse_pos[1] - (resolution[1] // 2)])).normalize()
         
         
         
