@@ -65,6 +65,9 @@ player_right_walks = [
     pygame.image.load('graphics/caracters/player/villager/walking/right/anim_4.png').convert_alpha()
     ]
 
+player_bottom_attack = [
+
+]
 # ~~~~~~~~~~===> Demon's images <===~~~~~~~~~~
 demon_bottom_walks = [
     pygame.image.load('graphics/caracters/ennemy/demon/walking/bottom/anim_1.png').convert_alpha()
