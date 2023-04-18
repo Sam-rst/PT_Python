@@ -3,8 +3,8 @@ from caracter import *
 class Player(Caracter):
     type = 'Player'
     
-    def __init__(self, name, max_HP, attack, range_attack, defense, pos, groups):
-        super().__init__(name, max_HP, attack, range_attack, defense, pos, groups)
+    def __init__(self, name, pos, groups):
+        super().__init__(name, pos, groups)
         self.transform_to_player()
     
     def transform_to_player(self):
@@ -14,7 +14,7 @@ class Player(Caracter):
         self.frames["Right Walk"] = player_right_walks
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
-        self.rect = self.image.get_rect(center = self.get_pos())
+        # self.rect = self.image.get_rect(center = self.get_pos())
         
     
     def input(self):
@@ -53,16 +53,9 @@ class Player(Caracter):
             self.animation_index = 0
     
     def shoot(self):
-        Projectile(self, [projectile_sprites, camera_group])
+        Projectile(self, [sprites.projectile_sprites] + list(sprites.camera_groups.values()))
         self.last_shot = pygame.time.get_ticks()  # on enregistre le temps du dernier tir
-    
-    def animation_state(self):
-        if self.is_moving:
-            self.animation_index += self.animation_speed
-            if self.animation_index >= len(self.frames[self.animation_direction]):
-                self.animation_index = 0
-            self.image = self.frames[self.animation_direction][int(self.animation_index)]
-            self.image = self.transform_scale()
+        self.is_attack = True
         
     def update(self, dt):
         self.old_rect = self.rect.copy()
@@ -75,13 +68,30 @@ class Player(Caracter):
 class Warrior(Player):
     type = "Warrior"
     
-    def __init__(self, name, max_HP, attack, range_attack, defense, pos, groups):
-        super().__init__(name, max_HP, attack, range_attack, defense, pos, groups)
+    def __init__(self, name, pos, groups):
+        super().__init__(name, pos, groups)
+        self.transform_to_warrior()
     
     def transform_to_warrior(self):
         """Transformer le player en warrior"""
-        self.frames['Bottom'] = None
-        pass
+        self.frames['Bottom Walk'] = warrior_bottom_walks
+        self.frames['Left Walk'] = warrior_left_walks
+        self.frames['Top Walk'] = warrior_top_walks
+        self.frames['Right Walk'] = warrior_right_walks
+        self.frames['Bottom Attack'] = warrior_bottom_attack
+        self.frames['Left Attack'] = warrior_left_attack
+        self.frames['Top Attack'] = warrior_top_attack
+        self.frames['Right Attack'] = warrior_right_attack
+        self.image = self.frames[self.animation_direction][self.animation_index]
+        self.image = self.transform_scale()
+        
+    def update(self, dt):
+        self.old_rect = self.rect.copy()
+        self.input()
+        self.apply_collisions(dt)
+        self.animation_state()
+        if self.direction.magnitude() != 0:
+            self.direction = self.direction.normalize()
 
 
 class Mage(Player):

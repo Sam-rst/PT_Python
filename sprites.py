@@ -1,6 +1,9 @@
 import pygame
 from camera import CameraGroup
 from carte import Carte
+from save import SaveData
+
+
 
 all_sprites = pygame.sprite.Group()
 
@@ -20,14 +23,13 @@ all_sprites.add(projectile_sprites)
 
 
 camera_groups = {
-    "Dungeon": CameraGroup(Carte('Dungeon'), [('ExitDungeon', 'Overworld')]),
-    "Overworld": CameraGroup(Carte('Overworld'), [('EnterDungeon', 'Dungeon')]),
+    "Dungeon": CameraGroup(Carte('Dungeon'), [('ExitDungeon', 'Overworld', 'DungeonExit')]),
+    "Overworld": CameraGroup(Carte('Overworld'), [('EnterDungeon', 'Dungeon', 'DungeonEntrance')]),
 }
 
-camera_group = camera_groups["Overworld"]
-
-def change_map(name):
-    global carte, camera_group
-    carte = Carte(name)
-    camera_group.carte = carte
-    
+save_data = SaveData('save.json')
+map_name = save_data.load_player_map()
+if map_name is None:
+    camera_group = camera_groups["Overworld"]
+else:
+    camera_group = camera_groups[map_name]

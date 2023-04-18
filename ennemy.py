@@ -3,8 +3,8 @@ from caracter import *
 class Ennemy(Caracter):
     type = 'Ennemy'
     
-    def __init__(self, name, max_HP, attack, range_attack, defense, pos, groups):
-        super().__init__(name, max_HP, attack, range_attack, defense, pos, groups)
+    def __init__(self, name, pos, groups):
+        super().__init__(name, pos, groups)
         self.transform_to_ennemy()
         self.range_can_attack = 5
         
@@ -31,8 +31,8 @@ class Ennemy(Caracter):
     
     def shoot(self):
         projectile = EnnemiProjectile(self.rect.center)
-        ennemi_projectiles.add(projectile)
-        all_sprites.add(projectile)
+        sprites.ennemi_projectiles.add(projectile)
+        sprites.all_sprites.add(projectile)
     
     def update(self, dt):
         self.old_rect = self.rect.copy()

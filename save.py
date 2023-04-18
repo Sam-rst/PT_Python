@@ -28,6 +28,31 @@ class SaveData:
                 return data
         except FileNotFoundError:
             return None
+        
+    def save_player_map(self, player_map):
+        try:
+            with open(self.filename, "r") as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            data = {}
+
+        data["map_name"] = player_map
+        try:
+            with open(self.filename, "w") as file:
+                json.dump(data, file)
+        except IOError:
+            print("Erreur lors de l'écriture du fichier de sauvegarde.")
+
+    def load_player_map(self):
+        try:
+            with open(self.filename, "r") as file:
+                data = json.load(file)
+                if "map_name" in data:
+                    return data["map_name"]
+                else:
+                    return None
+        except FileNotFoundError:
+            return None
 
     def save_removed_objects(self, removed_objects):
         try:

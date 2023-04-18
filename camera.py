@@ -15,8 +15,7 @@ class CameraGroup(pygame.sprite.Group):
         self.carte = carte
 
         # Les TPS
-        self.tps = [self.carte.create_teleportation(tp[0], tp[1], [self]) for tp in tps]
-
+        self.tps = [self.carte.create_teleportation(tp[0], tp[1], tp[2], [self]) for tp in tps]
         # Box setup
         self.camera_borders = {'left' : 300, 'right' : 300, 'top' : 200, 'bottom' : 200}
         l = self.camera_borders['left']

@@ -1,7 +1,7 @@
 import pygame
 import random
 import math , sys
-from sprites import *
+import sprites
 from settings import *
 
 # Définition des couleurs
@@ -48,11 +48,14 @@ class Projectile(pygame.sprite.Sprite):
         self.pos.y += self.direction.y * self.speed * dt
         self.rect.y = round(self.pos.y)
         
+        #Changement de la direction de l'animation
+        
+        
         self.distance_traveled += 1
         if  self.distance_traveled >= self.range:
             self.kill()
             
-        ennemy_touched = pygame.sprite.spritecollide(self, ennemi_group, False)
+        ennemy_touched = pygame.sprite.spritecollide(self, sprites.ennemi_group, False)
         if ennemy_touched:
             for ennemy in ennemy_touched:
                 ennemy.decrease_health(self.caracter.get_attack_value())
@@ -63,7 +66,19 @@ class Projectile(pygame.sprite.Sprite):
         # On calcule la direction du projectile en fonction de la position de la souris
         mouse_pos = pygame.mouse.get_pos()
         self.direction = pygame.Vector2(([mouse_pos[0] - (resolution[0] // 2), mouse_pos[1] - (resolution[1] // 2)])).normalize()
-        
+        self.caracter.is_attack = True
+        if (-1 < self.direction.x < 1) and (0 < self.direction.y < 1):
+            self.caracter.animation_direction = "Bottom Attack"
+
+        elif (-1 < self.direction.x < 0) and (-1 < self.direction.y < 1):
+            self.caracter.animation_direction = "Left Attack"
+
+        elif (-1 < self.direction.x < 1) and (-1 < self.direction.y < 0):
+            self.caracter.animation_direction = 'Top Attack'
+
+        elif (0 < self.direction.x < 1) and (-1 < self.direction.y < 1):
+            self.caracter.animation_direction = "Right Attack"
+
     def get_type(self):
         return type(self).type
         
@@ -82,7 +97,7 @@ class EnnemiProjectile(pygame.sprite.Sprite):
 
     def get_direction(self):
         # On calcule la direction du projectile en fonction de la position du joueur
-        joueur_pos = player_sprite.sprite.rect.center
+        joueur_pos = sprites.player_sprite.sprite.rect.center
         dx = joueur_pos[0] - self.rect.centerx
         dy = joueur_pos[1] - self.rect.centery
         distance = math.sqrt(dx ** 2 + dy ** 2)

@@ -4,26 +4,24 @@ from math import sqrt
 from weapon import Weapon
 from debug import debug
 from projectiles import Projectile, EnnemiProjectile
-from sprites import *
 from settings import *
-from debug import debug
 from random import randint, choice
 from images import *
-
+import sprites
     
 class Caracter(pygame.sprite.Sprite):
     type = "Caracter"
 
-    def __init__(self, name, max_HP, attack, range_attack, defense, pos, groups):
+    def __init__(self, name, pos, groups):
         super().__init__(groups)
         
         # Aspects of the caracter
         self.name = name
-        self.max_HP = max_HP
+        self.max_HP = 100
         self.HP = self.max_HP
-        self.attack_value = attack
-        self.defense_value = defense
-        self.range = range_attack * scale  # rayon d'attaque du caractère
+        self.attack_value = 10
+        self.defense_value = 5
+        self.range = 10 * scale  # rayon d'attaque du caractère
         self.cooldown_attack = 200 #temps de recharge en millisecondes
         self.last_shot = 0 # temps en millisecondes depuis le début de l'exécution de la boucle de jeu lors du dernier tir
         
@@ -39,9 +37,11 @@ class Caracter(pygame.sprite.Sprite):
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
         self.animation_speed = 0.2
+        self.is_moving = False
+        self.is_attack = False
         
         # Rectangle
-        self.rect = self.image.get_rect(center = pos)
+        self.rect = self.image.get_rect(topleft = pos)
         self.old_rect = self.rect.copy()
         
         # Screen
@@ -52,7 +52,6 @@ class Caracter(pygame.sprite.Sprite):
         self.direction = pygame.math.Vector2()
         self.speed = 500
         self.cooldown_move = 0
-        self.is_moving = False
 
 
     def set_name(self, new_name):
@@ -171,9 +170,9 @@ class Caracter(pygame.sprite.Sprite):
             self.kill()
 
     def collision(self, direction):
-        collisions = pygame.sprite.spritecollide(self, collision_sprites, False)
+        collisions = pygame.sprite.spritecollide(self, sprites.collision_sprites, False)
         if collisions:
-            for sprite in collision_sprites:
+            for sprite in sprites.collision_sprites:
                 if  direction == 'horizontal':
                     #Collision on the right
                     if self.rect.right >= sprite.rect.left and self.old_rect.right <= sprite.old_rect.left:
@@ -201,8 +200,8 @@ class Caracter(pygame.sprite.Sprite):
                 self.rect.left = 0
                 self.pos.x = self.rect.x
                 # self.direction.x *= -1
-            if self.rect.right > camera_group.carte.get_size_map_width():
-                self.rect.right = camera_group.carte.get_size_map_width()
+            if self.rect.right > sprites.camera_group.carte.get_size_map_width():
+                self.rect.right = sprites.camera_group.carte.get_size_map_width()
                 self.pos.x = self.rect.x
                 # self.direction.x *= -1
                 
@@ -211,8 +210,8 @@ class Caracter(pygame.sprite.Sprite):
                 self.rect.top = 0
                 self.pos.y = self.rect.y
                 # self.direction.y *= -1
-            if self.rect.bottom > camera_group.carte.get_size_map_height() - camera_group.carte.get_tileheight():
-                self.rect.bottom = camera_group.carte.get_size_map_height() - camera_group.carte.get_tileheight()
+            if self.rect.bottom > sprites.camera_group.carte.get_size_map_height() - sprites.camera_group.carte.get_tileheight():
+                self.rect.bottom = sprites.camera_group.carte.get_size_map_height() - sprites.camera_group.carte.get_tileheight()
                 self.pos.y = self.rect.y
                 # self.direction.y *= -1
                 
@@ -227,13 +226,25 @@ class Caracter(pygame.sprite.Sprite):
         self.map_collision('vertical')
     
     def animation_state(self):
+        # print(f" En train de bouger : {self.is_moving} et en train d'attaquer : {self.is_attack}")
         if self.is_moving:
             self.animation_index += self.animation_speed
             if self.animation_index >= len(self.frames[self.animation_direction]):
                 self.animation_index = 0
-            self.image = self.frames[self.animation_direction][int(self.animation_index)]
-            self.image = self.transform_scale()
-            self.rect = self.image.get_rect(topleft = self.get_pos())
+            else:
+                self.image = self.frames[self.animation_direction][int(self.animation_index)]
+                self.image = self.transform_scale()
+                self.rect = self.image.get_rect(topleft = self.get_pos())
+            
+        elif self.is_attack:
+            self.animation_index += self.animation_speed
+            if self.animation_index >= len(self.frames[self.animation_direction]):
+                self.animation_index = 0
+                self.is_attack = False
+            else:
+                self.image = self.frames[self.animation_direction][int(self.animation_index)]
+                self.image = self.transform_scale()
+                self.rect = self.image.get_rect(topleft = self.get_pos())
             
     def debug(self):
         pygame.draw.rect(self.screen, '#ff0000', self.rect, 5)

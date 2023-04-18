@@ -576,21 +576,21 @@
    <object id="50" name="obs1" x="98.0625" y="170.938" width="15.8125" height="3.875"/>
   </objectgroup>
   <objectgroup id="10" name="Waypoints">
-   <object id="1" name="HouseEntrance" x="208.625" y="198" width="15" height="20.625"/>
+   <object id="4" name="DungeonExit" x="272" y="346.25">
+    <point/>
+   </object>
    <object id="3" name="EnterDungeon" x="249" y="296.667" width="44.6667" height="39.3333"/>
-   <object id="4" name="DungeonSpawn" x="272" y="346.25">
+   <object id="5" name="HouseExit" x="215" y="233.5">
     <point/>
    </object>
-   <object id="5" name="HouseSpawn" x="215" y="233.5">
-    <point/>
-   </object>
-   <object id="19" name="Spawn" x="215.833" y="415.333">
-    <point/>
-   </object>
+   <object id="1" name="HouseEntrance" x="208.625" y="198" width="15" height="20.625"/>
    <object id="51" name="NorthTrail" x="208" y="7.81818">
     <point/>
    </object>
    <object id="52" name="SouthTrail" x="711.455" y="634">
+    <point/>
+   </object>
+   <object id="19" name="Spawn" x="215.833" y="415.333">
     <point/>
    </object>
   </objectgroup>

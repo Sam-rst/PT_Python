@@ -15,8 +15,8 @@
             "scale": 4,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 68.625,
-                "y": 52.75
+                "x": 17.375,
+                "y": 27.25
             }
         },
         "data/tmx/Overworld.tmx": {
@@ -24,14 +24,14 @@
                 25
             ],
             "expandedObjectLayers": [
-                10,
-                25
+                25,
+                10
             ],
             "scale": 4,
             "selectedLayer": 16,
             "viewCenter": {
-                "x": 297.625,
-                "y": 315
+                "x": 270.625,
+                "y": 315.75
             }
         },
         "data/tmx/Test.tmx": {
@@ -41,27 +41,26 @@
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 959.3333333333333,
-                "y": 535.9999999999999
+                "x": 1005.3333333333333,
+                "y": 536.6666666666667
             }
         },
         "data/tmx/map_Overworld.tmx": {
             "expandedGroupLayers": [
+                14,
                 25,
-                17,
-                14
+                17
             ],
             "expandedObjectLayers": [
-                27,
-                29,
                 25,
+                27,
                 10
             ],
-            "scale": 1,
+            "scale": 5.5,
             "selectedLayer": 16,
             "viewCenter": {
-                "x": 346.5,
-                "y": 415
+                "x": 271.72727272727275,
+                "y": 368
             }
         },
         "data/tmx/objects.tsx": {
@@ -131,8 +130,8 @@
     ],
     "project": "Tiled_maps.tiled-project",
     "recentFiles": [
-        "data/tmx/Dungeon.tmx",
         "data/tmx/map_Overworld.tmx",
+        "data/tmx/Dungeon.tmx",
         "data/tsx/Overworld_tiled.tsx",
         "data/tsx/objects.tsx",
         "data/tmx/Test.tmx",

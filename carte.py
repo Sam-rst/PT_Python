@@ -10,7 +10,8 @@ class Carte:
         self.screen = pygame.display.get_surface()
         
         # tmxdata
-        self.tmxdata = load_pygame(f'graphics/Tiled/data/tmx/{map_name}.tmx')
+        self.map_name = map_name
+        self.tmxdata = load_pygame(f'graphics/Tiled/data/tmx/{self.map_name}.tmx')
         self.width = self.tmxdata.width
         self.height = self.tmxdata.height
         
@@ -80,12 +81,15 @@ class Carte:
                 return obj
     
     def get_waypoint(self, name_waypoint):
-        obj = self.get_obj('Waypoints', name_waypoint)
-        return self.get_pos_obj(obj)
+        try : 
+            obj = self.get_obj('Waypoints', name_waypoint)
+            return self.get_pos_obj(obj)
+        except:
+            raise ValueError("Je n'arrive pas à retrouver ton waypoint")
     
-    def create_teleportation(self, name_teleportation, name_destination, groups):
+    def create_teleportation(self, name_teleportation, name_destination, name_tp_back, groups):
         obj = self.get_obj('Waypoints', name_teleportation)
-        return Teleportation(obj, name_destination, groups)
+        return Teleportation(obj, name_destination, name_tp_back, groups)
         
         
     def get_pickup_distance(self, name_group):
@@ -99,17 +103,18 @@ class Carte:
     
 class Teleportation(pygame.sprite.Sprite):
     type = 'TP'
-    def __init__(self, obj, name_destination, groups):
+    def __init__(self, obj, name_destination, name_tp_back, groups):
         super().__init__(groups)
         self.obj = obj
         self.name_destination = name_destination
-        self.image = pygame.Surface((obj.width * scale, obj.height * scale))
-        self.rect = self.image.get_rect(topleft = (obj.x * scale, obj.y * scale))
+        self.name_tp_back = name_tp_back
+        self.image = pygame.Surface((self.obj.width * scale, self.obj.height * scale))
+        self.rect = self.image.get_rect(topleft = (self.obj.x * scale, self.obj.y * scale))
         self.old_rect = self.rect.copy()
         self.pos = pygame.math.Vector2(self.rect.topleft)
 
     def get_pos(self):
         return self.pos
-    
+
     def get_type(self):
         return type(self).type
