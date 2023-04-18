@@ -3,17 +3,23 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "data/tmx/Swamp.tmx",
+    "activeFile": "data/tmx/Waterfall.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "data/Desktop/Overworld.tsx": {
+            "scaleInDock": 1
+        },
+        "data/Desktop/Water +.tsx": {
+            "scaleInDock": 1
+        },
         "data/tmx/Catacombs.tmx": {
             "scale": 1.6241536458333334,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 383.5843989257225,
-                "y": 256.4412554615785
+                "x": 383.2765462781096,
+                "y": 256.13340281396563
             }
         },
         "data/tmx/Dungeon.tmx": {
@@ -23,25 +29,25 @@
             "scale": 4,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 178.375,
-                "y": 85.5
+                "x": 253.375,
+                "y": 97
             }
         },
         "data/tmx/Overworld.tmx": {
             "expandedGroupLayers": [
-                17,
-                25
+                25,
+                17
             ],
             "expandedObjectLayers": [
                 25,
-                27,
-                10
+                10,
+                27
             ],
-            "scale": 1.5,
-            "selectedLayer": 12,
+            "scale": 3,
+            "selectedLayer": 16,
             "viewCenter": {
-                "x": 270.99999999999994,
-                "y": 313.33333333333337
+                "x": 225.16666666666666,
+                "y": 103.66666666666669
             }
         },
         "data/tmx/Swamp.tmx": {
@@ -49,10 +55,10 @@
                 8
             ],
             "scale": 4,
-            "selectedLayer": 4,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 346.375,
-                "y": 493.25
+                "x": 151.375,
+                "y": 43
             }
         },
         "data/tmx/Test.tmx": {
@@ -62,8 +68,19 @@
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 960,
-                "y": 536.6666666666667
+                "x": 958,
+                "y": 535.9999999999999
+            }
+        },
+        "data/tmx/Waterfall.tmx": {
+            "expandedObjectLayers": [
+                21
+            ],
+            "scale": 2,
+            "selectedLayer": 14,
+            "viewCenter": {
+                "x": 53.25,
+                "y": 330.5
             }
         },
         "data/tmx/map_Overworld.tmx": {
@@ -111,6 +128,11 @@
             "scaleInDock": 1,
             "scaleInEditor": 4
         },
+        "data/tsx/Water.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 4
+        },
         "data/tsx/decorative.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 1.5,
@@ -150,7 +172,8 @@
             "scaleInEditor": 3
         }
     },
-    "last.imagePath": "C:/Users/samue/Desktop/GitHub/PT_Python/graphics/Tiled/Catacombes",
+    "last.externalTilesetPath": "C:/Users/samue/Desktop/GitHub/PT_Python/graphics/Tiled/data/tsx",
+    "last.imagePath": "C:/Users/samue/Desktop/GitHub/PT_Python/graphics/Tiled",
     "map.height": 32,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
@@ -160,6 +183,7 @@
         "data/tmx/Overworld.tmx",
         "data/tmx/Swamp.tmx",
         "data/tmx/Dungeon.tmx",
+        "data/tmx/Waterfall.tmx",
         "data/tsx/Overworld_tiled.tsx",
         "data/tsx/objects.tsx",
         "data/tmx/Test.tmx",
@@ -171,7 +195,10 @@
     ],
     "project": "Tiled_maps.tiled-project",
     "recentFiles": [
+        "data/tsx/Water.tsx",
         "data/tmx/Overworld.tmx",
+        "data/tmx/Swamp.tmx",
+        "data/tmx/Dungeon.tmx",
         "data/tsx/Candles.tsx",
         "data/tsx/mainlevbuild.tsx",
         "data/tmx/Catacombs.tmx",
@@ -179,10 +206,7 @@
         "data/tsx/dungeon_tiles.tsx",
         "data/tmx/Test.tmx",
         "data/tsx/objects.tsx",
-        "data/tsx/Overworld_tiled.tsx",
-        "data/tmx/Dungeon.tmx",
-        "data/tmx/Swamp.tmx",
-        "data/tsx/dungeon_tiles2.tsx"
+        "data/tsx/Overworld_tiled.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.margin": 0,

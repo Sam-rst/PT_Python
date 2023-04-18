@@ -698,11 +698,283 @@ assassin_top_attack = [
 ]
 
 
-# ~~~~~~~~~~===> Demon's images <===~~~~~~~~~~
+# ~~~~~~~~~~===> Demon's walking images <===~~~~~~~~~~
 
 demon_bottom_walks = [
-    pygame.image.load('graphics/caracters/ennemy/demon/walking/bottom/anim_1.png').convert_alpha()
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/bottom/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/bottom/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/bottom/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/bottom/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/bottom/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/bottom/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/bottom/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/bottom/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/bottom/anim_9.png').convert_alpha()
+
 ]
+
+demon_left_walks = [
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/left/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/left/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/left/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/left/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/left/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/left/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/left/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/left/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/left/anim_9.png').convert_alpha()
+]
+
+demon_right_walks = [
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/right/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/right/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/right/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/right/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/right/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/right/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/right/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/right/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/right/anim_9.png').convert_alpha()
+]
+
+demon_top_walks = [
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/top/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/top/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/top/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/top/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/top/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/top/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/top/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/top/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/walking/top/anim_9.png').convert_alpha()
+]
+
+# ~~~~~~~~~~===> Demon's attack images <===~~~~~~~~~~
+
+demon_bottom_attack = [
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/bottom/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/bottom/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/bottom/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/bottom/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/bottom/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/bottom/anim_6.png').convert_alpha()
+
+]
+
+demon_left_attack = [
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/left/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/left/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/left/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/left/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/left/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/left/anim_6.png').convert_alpha()
+
+]
+
+demon_right_attack = [
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/right/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/right/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/right/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/right/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/right/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/right/anim_6.png').convert_alpha()
+
+]
+
+demon_top_attack = [
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/top/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/top/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/top/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/top/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/top/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/demon/attack/top/anim_6.png').convert_alpha()
+
+]
+
+# ~~~~~~~~~~===> Zombie's walking images <===~~~~~~~~~~
+
+zombie_bottom_walks = [
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/bottom/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/bottom/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/bottom/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/bottom/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/bottom/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/bottom/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/bottom/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/bottom/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/bottom/anim_9.png').convert_alpha()
+]
+
+zombie_left_walks = [
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/left/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/left/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/left/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/left/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/left/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/left/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/left/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/left/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/left/anim_9.png').convert_alpha()
+]
+
+zombie_right_walks = [
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/right/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/right/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/right/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/right/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/right/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/right/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/right/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/right/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/right/anim_9.png').convert_alpha()
+]
+
+zombie_top_walks = [
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/top/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/top/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/top/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/top/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/top/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/top/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/top/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/top/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/walking/top/anim_9.png').convert_alpha()
+]
+
+# ~~~~~~~~~~===> Zombie's attack images <===~~~~~~~~~~
+
+zombie_bottom_attack = [
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/bottom/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/bottom/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/bottom/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/bottom/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/bottom/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/bottom/anim_6.png').convert_alpha()
+
+]
+
+zombie_left_attack = [
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/left/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/left/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/left/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/left/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/left/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/left/anim_6.png').convert_alpha()
+
+]
+
+zombie_right_attack = [
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/right/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/right/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/right/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/right/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/right/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/right/anim_6.png').convert_alpha()
+
+]
+
+zombie_top_attack = [
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/top/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/top/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/top/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/top/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/top/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/zombie/attack/top/anim_6.png').convert_alpha()
+
+]
+
+# ~~~~~~~~~~===> Gobelin's walking images <===~~~~~~~~~~
+
+gobelin_bottom_walks = [
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/bottom/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/bottom/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/bottom/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/bottom/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/bottom/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/bottom/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/bottom/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/bottom/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/bottom/anim_9.png').convert_alpha()
+]
+
+gobelin_left_walks = [
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/left/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/left/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/left/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/left/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/left/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/left/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/left/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/left/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/left/anim_9.png').convert_alpha()
+]
+
+gobelin_right_walks = [
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/right/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/right/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/right/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/right/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/right/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/right/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/right/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/right/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/right/anim_9.png').convert_alpha()
+]
+
+gobelin_top_walks = [
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/top/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/top/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/top/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/top/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/top/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/top/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/top/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/top/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/walking/top/anim_9.png').convert_alpha()
+]
+
+# ~~~~~~~~~~===> Gobelin's attack images <===~~~~~~~~~~
+
+gobelin_bottom_attack = [
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/bottom/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/bottom/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/bottom/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/bottom/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/bottom/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/bottom/anim_6.png').convert_alpha()
+
+]
+
+gobelin_left_attack = [
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/left/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/left/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/left/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/left/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/left/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/left/anim_6.png').convert_alpha()
+
+]
+
+gobelin_right_attack = [
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/right/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/right/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/right/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/right/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/right/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/right/anim_6.png').convert_alpha()
+
+]
+
+gobelin_top_attack = [
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/top/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/top/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/top/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/top/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/top/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/gobelin/attack/top/anim_6.png').convert_alpha()
+
+]
+
 
 
 

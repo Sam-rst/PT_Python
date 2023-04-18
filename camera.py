@@ -22,7 +22,6 @@ class CameraGroup(pygame.sprite.Group):
         self.teleporters = [self.carte.create_teleportation(tp[0], tp[1], tp[2], [self]) for tp in list_teleporters]
         #Les obstacles
         self.carte.collision_layers = list_layers_obstacles
-        print(self.carte.map_name)
         # self.carte.create_collisions([self])
         
         # Box setup

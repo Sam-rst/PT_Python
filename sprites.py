@@ -20,9 +20,11 @@ items_sprites = pygame.sprite.Group()
 
 camera_groups = {
     "Dungeon": CameraGroup(name_map='Dungeon', list_teleporters=[('DungeonExit', 'Overworld', 'DungeonExit')], list_layers_obstacles=['Buildings', 'Mountains']),
-    "Overworld": CameraGroup(name_map='Overworld', list_teleporters=[('DungeonEntrance', 'Dungeon', 'DungeonEntrance')], list_layers_obstacles=['Buildings', 'Rivers', 'Moutains', 'DecorationObstacles'])
-    # "Swamp": CameraGroup(name_map='Swamp', list_teleporters=[('OverworldEntrance', 'Overworld', '')])
+    "Overworld": CameraGroup(name_map='Overworld', list_teleporters=[('DungeonEntrance', 'Dungeon', 'DungeonEntrance'), ('SwampEntrance', 'Swamp', 'OverworldExit')], list_layers_obstacles=['Buildings', 'Rivers', 'Moutains', 'DecorationObstacles']),
+    "Swamp": CameraGroup(name_map='Swamp', list_teleporters=[('OverworldEntrance', 'Overworld', 'SwampExit'), ('WaterfallEntrance', 'Waterfall', 'WaterfallEntrance')], list_layers_obstacles=['Buildings']),
+    # "Waterfall" : CameraGroup(name_map='Waterfall', list_teleporters=[('SwampEntrance', 'Swamp', 'WaterfallExit')], list_layers_obstacles=['Building', 'Collisions'])
 }
+# Water Fall ;)
 
 save_data = SaveData('save.json')
 map_name = save_data.load_player_map()
