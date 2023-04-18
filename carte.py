@@ -1,14 +1,14 @@
-import pygame, pytmx
+import pygame, pytmx, sprites
 from pytmx.util_pygame import load_pygame
-from obstacle import Obstacle
+from collisions import CollisionTile
 from settings import *
+from inventaire import Inventaire
 
 class Carte:
     
     def __init__(self, map_name):
         # screen
         self.screen = pygame.display.get_surface()
-        
         # tmxdata
         self.map_name = map_name
         self.tmxdata = load_pygame(f'graphics/Tiled/data/tmx/{self.map_name}.tmx')
@@ -24,6 +24,30 @@ class Carte:
         
         self.layers = self.get_layers()
 
+        self.collision_layers = []
+        self.collision_tiles = []
+
+        # for x, y, tile in self.collision_layer.tiles():
+        #     if tile:
+        #         self.collision_tiles.append(pygame.Rect(x * self.tilewidth, y * self.tileheight, self.tilewidth, self.tileheight))
+        # Charger les données sauvegardées pour les objets supprimés
+        
+    #     self.removed_objects = self.save_data.load_removed_objects()
+    #     self.items = self.save_data.load_inventory()
+    #     self.inventaire = Inventaire()
+        
+    # def remove_object_by_id(self, obj_id):
+    #     # Supprimer l'objet de la couche d'objets
+    #     obj = self.tmxdata.get_object_by_id(obj_id)
+    #     # obj.remove()
+    #     # Ajouter l'objet à l'inventaire
+    #     # self.inventaire.ajouter_objet(obj_name)
+    #     # self.items.append(obj_name)
+    #     # self.save_data.save_inventory(self.items)
+    #     # # Ajouter l'objet à la liste des objets supprimés dans les données sauvegardées
+    #     # self.removed_objects.append(obj_name)
+    #     # self.save_data.save_removed_objects(self.removed_objects)
+            
     def get_width(self):
         return self.width
     
@@ -39,8 +63,20 @@ class Carte:
     def get_size_map_width(self):
         return self.size_map_width
     
+    def get_collision_tiles(self):
+        return self.collision_tiles
+    
     def get_size_map_height(self):
         return self.size_map_height
+
+    def create_collisions(self, groups):
+        for layer in self.layers:
+            if layer.name in self.collision_layers:
+                print(f'Le layer : {layer.name} va créer les sprites de collision')
+                for x, y, image in layer.tiles():
+                    image = pygame.transform.scale(image, (self.tilewidth, self.tileheight))
+                    print(image.get_size())
+                    self.collision_tiles.append(CollisionTile(image, (x * self.tilewidth, y * self.tileheight), [groups, sprites.collision_sprites]))
 
     def get_layers(self):
         layer_list = []
@@ -55,25 +91,13 @@ class Carte:
             if object_layer.name == name_group:
                 return object_layer
 
-    def create_obstacles(self, name_group, groups):
-        """Méthode permettant de créer les obstacles selon le nom de la couche d'objet 
-        et dans quel groupe se situent les obstacles (ex : collision_sprites, all_sprites)"""
-        for obj in self.get_group_object(name_group):
-            Obstacle(obj, groups)
-
-    def remove_object(self, name_group, obj_name):
-        """Méthode permettant de supprimer un objet obj_name d'une couche layer_name"""
-        obj_layer = self.get_group_object(name_group)
-        list_obj = []
-        for obj in obj_layer:
-            if obj.name == obj_name:
-                obj_layer.remove(obj)
-                list_obj.append(obj)
-        return obj
+    def create_teleportation(self, name_teleportation, name_destination, name_tp_back, groups):
+        obj = self.get_obj('Waypoints', name_teleportation)
+        return Teleportation(obj, name_destination, name_tp_back, groups)
 
     def get_pos_obj(self, obj):
         return int(obj.x * scale), int(obj.y * scale)
-    
+
     def get_obj(self, name_group, obj_name):
         obj_layer = self.get_group_object(name_group)
         for obj in obj_layer:
@@ -86,23 +110,20 @@ class Carte:
             return self.get_pos_obj(obj)
         except:
             raise ValueError("Je n'arrive pas à retrouver ton waypoint")
+
     
-    def create_teleportation(self, name_teleportation, name_destination, name_tp_back, groups):
-        obj = self.get_obj('Waypoints', name_teleportation)
-        return Teleportation(obj, name_destination, name_tp_back, groups)
-        
-        
-    def get_pickup_distance(self, name_group):
-        obj_layer = self.get_group_object(name_group)
+    def get_pickup_distance(self, tmx_data):
+        # Extraire la position de l'objet à collecter
         obj_pos = []
-        for obj in obj_layer:
-            obj_pos.append((obj.name, self.get_pos_obj(obj)))
-        
+        for obj in tmx_data.objects:
+            obj_pos.append((obj.name, (obj.x, obj.y)))
+        # Définir la distance à laquelle le joueur peut ramasser l'objet
         pickup_distance = 50
+
         return obj_pos, pickup_distance
     
 class Teleportation(pygame.sprite.Sprite):
-    type = 'TP'
+    type = 'Teleportation'
     def __init__(self, obj, name_destination, name_tp_back, groups):
         super().__init__(groups)
         self.obj = obj

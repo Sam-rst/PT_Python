@@ -1,13 +1,10 @@
 import pygame
 from camera import CameraGroup
-from carte import Carte
 from save import SaveData
 
 
 
 all_sprites = pygame.sprite.Group()
-
-collision_sprites = pygame.sprite.Group()
 
 projectile_sprites = pygame.sprite.Group()
 
@@ -19,12 +16,12 @@ collision_sprites = pygame.sprite.Group()
 
 player_sprite = pygame.sprite.GroupSingle()
 
-all_sprites.add(projectile_sprites)
-
+items_sprites = pygame.sprite.Group()
 
 camera_groups = {
-    "Dungeon": CameraGroup(Carte('Dungeon'), [('ExitDungeon', 'Overworld', 'DungeonExit')]),
-    "Overworld": CameraGroup(Carte('Overworld'), [('EnterDungeon', 'Dungeon', 'DungeonEntrance')]),
+    "Dungeon": CameraGroup(name_map='Dungeon', list_teleporters=[('DungeonExit', 'Overworld', 'DungeonExit')], list_layers_obstacles=['Buildings', 'Mountains']),
+    "Overworld": CameraGroup(name_map='Overworld', list_teleporters=[('DungeonEntrance', 'Dungeon', 'DungeonEntrance')], list_layers_obstacles=['Buildings', 'Rivers', 'Moutains', 'DecorationObstacles'])
+    # "Swamp": CameraGroup(name_map='Swamp', list_teleporters=[('OverworldEntrance', 'Overworld', '')])
 }
 
 save_data = SaveData('save.json')

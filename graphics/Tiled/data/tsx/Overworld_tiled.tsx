@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.10" tiledversion="1.10.0" name="Overworld" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
  <image source="../../world/Overworld.png" width="640" height="576"/>
+ <tile id="40" probability="0.1"/>
+ <tile id="41" probability="0.1"/>
+ <tile id="42" probability="0.1"/>
+ <tile id="43" probability="0.1"/>
+ <tile id="80" probability="0.1"/>
+ <tile id="81" probability="0.1"/>
+ <tile id="82" probability="0.1"/>
+ <tile id="83" probability="0.1"/>
+ <tile id="123" probability="0.01"/>
+ <tile id="124" probability="0.01"/>
+ <tile id="125" probability="0.01"/>
+ <tile id="163" probability="0.01"/>
+ <tile id="164" probability="0.01"/>
+ <tile id="165" probability="0.01"/>
  <wangsets>
   <wangset name="Elements" type="corner" tile="-1">
    <wangcolor name="grass" color="#3abe41" tile="-1" probability="1"/>
    <wangcolor name="sand" color="#e0f878" tile="-1" probability="1"/>
    <wangcolor name="water" color="#259ae2" tile="-1" probability="1"/>
    <wangcolor name="mountain" color="#72534a" tile="-1" probability="1"/>
-   <wangcolor name="dqdsq" color="#00e9ff" tile="-1" probability="1"/>
+   <wangcolor name="hight_grass" color="#35a541" tile="-1" probability="1"/>
    <wangtile tileid="0" wangid="0,1,0,1,0,1,0,1"/>
    <wangtile tileid="120" wangid="0,1,0,2,0,1,0,1"/>
    <wangtile tileid="121" wangid="0,1,0,2,0,2,0,1"/>
@@ -77,71 +91,45 @@
    <wangtile tileid="569" wangid="0,3,0,3,0,2,0,1"/>
    <wangtile tileid="570" wangid="0,1,0,3,0,3,0,2"/>
    <wangtile tileid="571" wangid="0,2,0,3,0,3,0,1"/>
+   <wangtile tileid="1174" wangid="0,1,0,5,0,1,0,1"/>
+   <wangtile tileid="1175" wangid="0,1,0,5,0,5,0,1"/>
+   <wangtile tileid="1176" wangid="0,1,0,1,0,5,0,1"/>
+   <wangtile tileid="1214" wangid="0,5,0,5,0,1,0,1"/>
+   <wangtile tileid="1215" wangid="0,5,0,5,0,5,0,5"/>
+   <wangtile tileid="1216" wangid="0,1,0,1,0,5,0,5"/>
+   <wangtile tileid="1254" wangid="0,5,0,1,0,1,0,1"/>
+   <wangtile tileid="1255" wangid="0,5,0,1,0,1,0,5"/>
+   <wangtile tileid="1256" wangid="0,1,0,1,0,1,0,5"/>
   </wangset>
-  <wangset name="Elements2" type="mixed" tile="-1">
-   <wangcolor name="CampaignRoad" color="#a87848" tile="-1" probability="1"/>
-   <wangcolor name="bridge1" color="#8f7459" tile="-1" probability="1"/>
-   <wangcolor name="StreetRoad" color="#a87848" tile="-1" probability="1"/>
-   <wangcolor name="CityRoad" color="#a3aab1" tile="-1" probability="1"/>
-   <wangcolor name="water" color="#1e7cb8" tile="-1" probability="1"/>
-   <wangtile tileid="242" wangid="0,0,0,5,0,0,0,0"/>
-   <wangtile tileid="243" wangid="0,0,0,5,5,5,0,0"/>
-   <wangtile tileid="244" wangid="0,0,0,0,0,5,0,0"/>
-   <wangtile tileid="282" wangid="0,5,5,5,0,0,0,0"/>
-   <wangtile tileid="283" wangid="5,5,5,5,5,5,5,5"/>
-   <wangtile tileid="284" wangid="0,0,0,0,0,5,5,5"/>
-   <wangtile tileid="322" wangid="0,5,0,0,0,0,0,0"/>
-   <wangtile tileid="323" wangid="5,5,0,0,0,0,0,5"/>
-   <wangtile tileid="324" wangid="0,0,0,0,0,0,0,5"/>
-   <wangtile tileid="362" wangid="5,5,0,0,0,5,5,5"/>
-   <wangtile tileid="363" wangid="5,5,5,5,0,0,0,5"/>
-   <wangtile tileid="402" wangid="0,0,0,5,5,5,5,5"/>
-   <wangtile tileid="403" wangid="0,5,5,5,5,5,0,0"/>
-   <wangtile tileid="455" wangid="0,0,0,4,0,0,0,0"/>
-   <wangtile tileid="456" wangid="0,0,0,4,4,4,0,0"/>
-   <wangtile tileid="457" wangid="0,0,0,0,0,4,0,0"/>
-   <wangtile tileid="495" wangid="0,4,4,4,0,0,0,0"/>
-   <wangtile tileid="496" wangid="4,4,4,4,4,4,4,4"/>
-   <wangtile tileid="497" wangid="0,0,0,0,0,4,4,4"/>
-   <wangtile tileid="535" wangid="0,4,0,0,0,0,0,0"/>
-   <wangtile tileid="536" wangid="4,4,0,0,0,0,0,4"/>
-   <wangtile tileid="537" wangid="0,0,0,0,0,0,0,4"/>
-   <wangtile tileid="575" wangid="4,4,0,0,0,4,4,4"/>
-   <wangtile tileid="576" wangid="4,4,4,4,0,0,0,4"/>
-   <wangtile tileid="615" wangid="0,0,0,4,4,4,4,4"/>
-   <wangtile tileid="616" wangid="0,4,4,4,4,4,0,0"/>
+  <wangset name="Roads" type="corner" tile="-1">
+   <wangcolor name="Campaign" color="#94785c" tile="-1" probability="1"/>
+   <wangcolor name="City" color="#a87848" tile="-1" probability="1"/>
    <wangtile tileid="691" wangid="0,0,0,1,0,0,0,0"/>
-   <wangtile tileid="692" wangid="0,0,0,1,1,1,0,0"/>
+   <wangtile tileid="692" wangid="0,0,0,1,0,1,0,0"/>
    <wangtile tileid="693" wangid="0,0,0,0,0,1,0,0"/>
-   <wangtile tileid="694" wangid="0,0,0,3,0,0,0,0"/>
-   <wangtile tileid="695" wangid="0,0,0,3,3,3,0,0"/>
-   <wangtile tileid="696" wangid="0,0,0,0,0,3,0,0"/>
-   <wangtile tileid="731" wangid="0,1,1,1,0,0,0,0"/>
-   <wangtile tileid="732" wangid="1,1,1,1,1,1,1,1"/>
-   <wangtile tileid="733" wangid="0,0,0,0,0,1,1,1"/>
-   <wangtile tileid="734" wangid="0,3,3,3,0,0,0,0"/>
-   <wangtile tileid="735" wangid="3,3,3,3,3,3,3,3"/>
-   <wangtile tileid="736" wangid="0,0,0,0,0,3,3,3"/>
+   <wangtile tileid="694" wangid="0,0,0,2,0,0,0,0"/>
+   <wangtile tileid="695" wangid="0,0,0,2,0,2,0,0"/>
+   <wangtile tileid="696" wangid="0,0,0,0,0,2,0,0"/>
+   <wangtile tileid="731" wangid="0,1,0,1,0,0,0,0"/>
+   <wangtile tileid="732" wangid="0,0,0,1,0,1,0,0"/>
+   <wangtile tileid="733" wangid="0,0,0,0,0,1,0,1"/>
+   <wangtile tileid="734" wangid="0,2,0,2,0,0,0,0"/>
+   <wangtile tileid="735" wangid="0,2,0,2,0,2,0,2"/>
+   <wangtile tileid="736" wangid="0,0,0,0,0,2,0,2"/>
    <wangtile tileid="771" wangid="0,1,0,0,0,0,0,0"/>
-   <wangtile tileid="772" wangid="1,1,0,0,0,0,0,1"/>
+   <wangtile tileid="772" wangid="0,1,0,0,0,0,0,1"/>
    <wangtile tileid="773" wangid="0,0,0,0,0,0,0,1"/>
-   <wangtile tileid="774" wangid="0,3,0,0,0,0,0,0"/>
-   <wangtile tileid="775" wangid="3,3,0,0,0,0,0,3"/>
-   <wangtile tileid="776" wangid="0,0,0,0,0,0,0,3"/>
-   <wangtile tileid="811" wangid="1,1,0,0,0,1,1,1"/>
-   <wangtile tileid="812" wangid="1,1,1,1,0,0,0,1"/>
-   <wangtile tileid="813" wangid="3,3,0,0,0,3,3,3"/>
-   <wangtile tileid="814" wangid="3,3,3,3,0,0,0,3"/>
-   <wangtile tileid="818" wangid="0,2,2,2,0,0,0,0"/>
-   <wangtile tileid="819" wangid="2,2,2,2,2,2,2,2"/>
-   <wangtile tileid="820" wangid="0,0,0,0,0,2,2,2"/>
-   <wangtile tileid="851" wangid="0,0,0,1,1,1,1,1"/>
-   <wangtile tileid="852" wangid="0,1,1,1,1,1,0,0"/>
-   <wangtile tileid="853" wangid="0,0,0,3,3,3,3,3"/>
-   <wangtile tileid="854" wangid="0,3,3,3,3,3,0,0"/>
-   <wangtile tileid="858" wangid="0,2,2,0,0,0,0,0"/>
-   <wangtile tileid="859" wangid="2,2,2,0,0,0,2,2"/>
-   <wangtile tileid="860" wangid="0,0,0,0,0,0,2,2"/>
+   <wangtile tileid="774" wangid="0,2,0,0,0,0,0,0"/>
+   <wangtile tileid="775" wangid="0,2,0,0,0,0,0,2"/>
+   <wangtile tileid="776" wangid="0,0,0,0,0,0,0,2"/>
+   <wangtile tileid="811" wangid="0,1,0,0,0,1,0,1"/>
+   <wangtile tileid="812" wangid="0,1,0,1,0,0,0,1"/>
+   <wangtile tileid="813" wangid="0,2,0,0,0,2,0,2"/>
+   <wangtile tileid="814" wangid="0,2,0,2,0,0,0,2"/>
+   <wangtile tileid="851" wangid="0,0,0,1,0,1,0,1"/>
+   <wangtile tileid="852" wangid="0,1,0,1,0,1,0,0"/>
+   <wangtile tileid="853" wangid="0,0,0,2,0,2,0,2"/>
+   <wangtile tileid="854" wangid="0,2,0,2,0,2,0,0"/>
   </wangset>
  </wangsets>
 </tileset>

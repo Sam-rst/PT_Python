@@ -536,13 +536,7 @@
 </data>
  </layer>
  <group id="25" name="Objects">
-  <objectgroup id="27" name="Items">
-   <object id="14" name="Heart" gid="1604" x="556.5" y="368" width="16" height="16"/>
-   <object id="15" name="Piece" gid="1637" x="456" y="328.5" width="16" height="16"/>
-   <object id="16" name="Piece" gid="1637" x="515.5" y="313" width="16" height="16"/>
-   <object id="17" name="Piece" gid="1637" x="475.5" y="299.5" width="16" height="16"/>
-   <object id="18" name="Piece" gid="1637" x="410.5" y="348" width="16" height="16"/>
-  </objectgroup>
+  <objectgroup id="27" name="Items"/>
   <objectgroup id="29" name="Obstacles">
    <object id="21" x="405.375" y="22.9091" width="5.17045" height="112.716"/>
    <object id="22" x="229.273" y="22.7273" width="175.818" height="6.18182"/>
@@ -579,17 +573,11 @@
    <object id="4" name="DungeonExit" x="272" y="346.25">
     <point/>
    </object>
-   <object id="3" name="EnterDungeon" x="249" y="296.667" width="44.6667" height="39.3333"/>
+   <object id="3" name="DungeonEntrance" x="249" y="296.667" width="44.6667" height="39.3333"/>
    <object id="5" name="HouseExit" x="215" y="233.5">
     <point/>
    </object>
    <object id="1" name="HouseEntrance" x="208.625" y="198" width="15" height="20.625"/>
-   <object id="51" name="NorthTrail" x="208" y="7.81818">
-    <point/>
-   </object>
-   <object id="52" name="SouthTrail" x="711.455" y="634">
-    <point/>
-   </object>
    <object id="19" name="Spawn" x="215.833" y="415.333">
     <point/>
    </object>

@@ -1,10 +1,14 @@
 import pygame
 from settings import *
+from carte import Carte
 
 class CameraGroup(pygame.sprite.Group):
-    def __init__(self, carte, tps):
+    def __init__(self, name_map, list_teleporters, list_layers_obstacles):
         super().__init__()
         self.screen = pygame.display.get_surface()
+
+        # Type camera
+        self.type_camera = "center"
 
         # Camera Offset
         self.offset = pygame.math.Vector2()
@@ -12,10 +16,15 @@ class CameraGroup(pygame.sprite.Group):
         self.half_h = self.screen.get_size()[1] // 2
 
         # Ground
-        self.carte = carte
+        self.carte = Carte(name_map)
 
-        # Les TPS
-        self.tps = [self.carte.create_teleportation(tp[0], tp[1], tp[2], [self]) for tp in tps]
+        # Les Teleporters
+        self.teleporters = [self.carte.create_teleportation(tp[0], tp[1], tp[2], [self]) for tp in list_teleporters]
+        #Les obstacles
+        self.carte.collision_layers = list_layers_obstacles
+        print(self.carte.map_name)
+        # self.carte.create_collisions([self])
+        
         # Box setup
         self.camera_borders = {'left' : 300, 'right' : 300, 'top' : 200, 'bottom' : 200}
         l = self.camera_borders['left']
@@ -23,6 +32,12 @@ class CameraGroup(pygame.sprite.Group):
         w = self.screen.get_size()[0] - (self.camera_borders['left'] + self.camera_borders['right'])
         h = self.screen.get_size()[1] - (self.camera_borders['top'] + self.camera_borders['bottom'])
         self.camera_rect = pygame.Rect(l, t, w, h)
+
+    def set_type_camera(self, type_camera):
+        if type_camera == 'center': self.type_camera = type_camera
+        elif type_camera == 'box': self.type_camera = type_camera
+        else:
+            raise ValueError("Ce type de camera n'existe pas")
 
     def center_target_camera(self, target):
         self.offset.x = target.rect.centerx - self.half_w
@@ -52,13 +67,13 @@ class CameraGroup(pygame.sprite.Group):
         self.offset.x = self.camera_rect.left - self.camera_borders['left']
         self.offset.y = self.camera_rect.top - self.camera_borders['top']
 
-    def custom_draw(self, player, type_camera):
+    def custom_draw(self, player):
         """Choix du type de la caméra selon 5 types avec la liste en paramètre :
             - 'center'
             - 'box'"""
 
-        if type_camera == 'center': self.center_target_camera(player)
-        elif type_camera == 'box': self.box_target_camera(player)
+        if self.type_camera == 'center': self.center_target_camera(player)
+        elif self.type_camera == 'box': self.box_target_camera(player)
         else:
             raise ValueError("Ce type de camera n'existe pas")
 
@@ -69,12 +84,16 @@ class CameraGroup(pygame.sprite.Group):
         for layer in self.carte.layers:
             for x, y, image in layer.tiles():
                 image = pygame.transform.scale(image, (self.carte.tilewidth, self.carte.tileheight))
+                # print(image.get_size())
+                # if layer.name in self.carte.collision_layers:
+                #     self.carte.collision_tiles.append(CollisionTile(image, (x, y), [self]))
+                
                 ground_offset = (x*self.carte.tilewidth, y*self.carte.tileheight) - self.offset
                 self.screen.blit(image, ground_offset)
 
         # Active elements
         for sprite in sorted(self.sprites(), key = lambda sprite: sprite.rect.centery):
-            if not sprite.get_type() == 'TP':
+            if not sprite.get_type() == 'Teleportation' or sprite.get_type() == 'CollisionTile':
                 self.screen.blit(sprite.image, sprite.rect.topleft - self.offset)
 
     def debug(self):

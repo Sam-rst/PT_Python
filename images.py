@@ -1,5 +1,13 @@
 import pygame
 
+# ~~~~~~~~~~===> Items's images <===~~~~~~~~~~
+piece_anim = [
+    pygame.image.load('graphics/items/piece/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/items/piece/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/items/piece/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/items/piece/anim_4.png').convert_alpha()
+]
+
 # ~~~~~~~~~~===> Caracter's images <===~~~~~~~~~~
 
 caracter_bottom_walks = [

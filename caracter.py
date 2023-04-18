@@ -53,7 +53,7 @@ class Caracter(pygame.sprite.Sprite):
         self.speed = 500
         self.cooldown_move = 0
 
-
+        
     def set_name(self, new_name):
         """Changer le nom avec la nouvelle valeur new_name"""
         self.name = new_name

@@ -1,4 +1,4 @@
-import pygame, sys, time
+import pygame, sys, time, math
 from settings import *
 import sprites
 from debug import debug
@@ -8,21 +8,18 @@ from ennemy import *
 from save import *
 from inventaire import *
 from menu import Menu
+from items import Item
 
-# def retreive_data(caracter):
-
-# Initialisation de pygame
 pygame.init()
 
 clock = pygame.time.Clock()
 
-
 # Création des sprites
-# e1 = Ennemy("Gargantua", (400, 500), [camera_groups["Dungeon"], ennemi_group])
-# e2 = Ennemy("Gargantua", (400, 500), [camera_groups["Dungeon"], ennemi_group])
-# e3 = Ennemy("Gargantua", (400, 500), [camera_groups["Dungeon"], ennemi_group])
-# e4 = Ennemy("Gargantua", (400, 500), [camera_groups["Dungeon"], ennemi_group])
-# e5 = Ennemy("Gargantua", (400, 500), [camera_groups["Dungeon"], ennemi_group])
+e1 = Ennemy("Gargantua", (400, 500), [sprites.camera_groups["Dungeon"], sprites.ennemi_group])
+e2 = Ennemy("Gargantua", (400, 500), [sprites.camera_groups["Dungeon"], sprites.ennemi_group])
+e3 = Ennemy("Gargantua", (400, 500), [sprites.camera_groups["Dungeon"], sprites.ennemi_group])
+e4 = Ennemy("Gargantua", (400, 500), [sprites.camera_groups["Dungeon"], sprites.ennemi_group])
+e5 = Ennemy("Gargantua", (400, 500), [sprites.camera_groups["Dungeon"], sprites.ennemi_group])
 
 # Saves
 menu = Menu()
@@ -31,10 +28,19 @@ save_data = SaveData("save.json")
 last_save_time = pygame.time.get_ticks()
 inventaire = Inventaire()
 
+# TODO: Charge la liste des items depuis un fichier tileds avec des Waypoints
+piece1 = Item('Piece', sprites.camera_group.carte.get_waypoint('Spawn'), [sprites.camera_group, sprites.items_sprites])
+items = [piece1]
+
+
+
+# Type camera
+sprites.camera_group.set_type_camera("box")
+
 last_time = time.time()
 while True:
     dt = time.time() - last_time
-    last_time = time.time()
+    last_time = time.time() 
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -50,21 +56,23 @@ while True:
                 # menu.run()
                 print("Menu ouvert")
 
-            for tp in sprites.camera_group.tps:
+            for tp in sprites.camera_group.teleporters:
                 if event.key == pygame.K_e and player.rect.colliderect(tp.rect):
                     sprites.camera_group = sprites.camera_groups[tp.name_destination]
                     # print(f"Nom de la map : {camera_group.carte.map_name}")
                     # print(f"Nom de la destination : {tp.name_destination}, nom du waypoint de destination : {tp.name_tp_back}")
                     player.set_pos(sprites.camera_group.carte.get_waypoint(tp.name_tp_back))
+            if event.key == pygame.K_a and player.rect.colliderect(piece1.rect):
+                piece1.remove_object(piece1)
 
     screen.fill('#71ddee') #Map overworld
     # screen.fill('#1f1f1f') #Map Dungeon
     # carte.get_door('ExitDungeon')
     sprites.camera_group.update(dt)
-    sprites.camera_group.custom_draw(player, 'center')
+    sprites.camera_group.custom_draw(player)
 
     # Permettre de debuger les sprites
-    sprites.camera_group.debug()
+    # sprites.camera_group.debug()
 
     # Sauvegarde la position du joueur toutes les 5 secondes
     current_time = pygame.time.get_ticks()

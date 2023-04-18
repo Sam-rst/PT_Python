@@ -65,7 +65,13 @@ class Projectile(pygame.sprite.Sprite):
     def get_direction(self):
         # On calcule la direction du projectile en fonction de la position de la souris
         mouse_pos = pygame.mouse.get_pos()
-        self.direction = pygame.Vector2(([mouse_pos[0] - (resolution[0] // 2), mouse_pos[1] - (resolution[1] // 2)])).normalize()
+        if sprites.camera_group.type_camera == "center":
+            self.direction = pygame.Vector2(([mouse_pos[0] - (resolution[0] // 2), mouse_pos[1] - (resolution[1] // 2)])).normalize()
+        elif sprites.camera_group.type_camera == "box":
+            player_x = self.caracter.pos[0] - sprites.camera_group.offset[0]
+            player_y = self.caracter.pos[1] - sprites.camera_group.offset[1]
+            self.direction = pygame.Vector2(([mouse_pos[0] - player_x, mouse_pos[1] - player_y])).normalize()
+
         self.caracter.is_attack = True
         if (-1 < self.direction.x < 1) and (0 < self.direction.y < 1):
             self.caracter.animation_direction = "Bottom Attack"
