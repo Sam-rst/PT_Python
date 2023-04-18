@@ -11,12 +11,11 @@ class Menu:
         self.class_joueur = self.save_data.load_player_class()
         
     def run(self):
-        if not self.class_joueur:
+        if self.class_joueur is not None:
             # Sinon, on affiche le menu de sélection de classe
             largeur_bouton = 200
             bouton_guerrier = pygame.Rect((self.fenetre.get_width() - largeur_bouton) / 2, 100, largeur_bouton, 50)
             bouton_mage = pygame.Rect((self.fenetre.get_width() - largeur_bouton) / 2, 200, largeur_bouton, 50)
-            classe = None
             
             while True:
                 for evenement in pygame.event.get():
