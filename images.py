@@ -311,39 +311,39 @@ archer_bottom_walks = [
 ]
 
 archer_left_walks = [
-    pygame.image.load('graphics/caracters/player/guard/walking/left/anim_1.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/left/anim_2.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/left/anim_3.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/left/anim_4.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/left/anim_5.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/left/anim_6.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/left/anim_7.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/left/anim_8.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/left/anim_9.png').convert_alpha()
+    pygame.image.load('graphics/caracters/player/archer/walking/left/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/left/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/left/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/left/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/left/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/left/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/left/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/left/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/left/anim_9.png').convert_alpha()
 ]
 
 archer_right_walks = [
-    pygame.image.load('graphics/caracters/player/guard/walking/right/anim_1.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/right/anim_2.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/right/anim_3.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/right/anim_4.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/right/anim_5.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/right/anim_6.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/right/anim_7.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/right/anim_8.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/right/anim_9.png').convert_alpha()
+    pygame.image.load('graphics/caracters/player/archer/walking/right/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/right/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/right/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/right/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/right/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/right/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/right/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/right/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/right/anim_9.png').convert_alpha()
 ]
 
 archer_top_walks = [
-    pygame.image.load('graphics/caracters/player/guard/walking/top/anim_1.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/top/anim_2.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/top/anim_3.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/top/anim_4.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/top/anim_5.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/top/anim_6.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/top/anim_7.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/top/anim_8.png').convert_alpha(),
-    pygame.image.load('graphics/caracters/player/guard/walking/top/anim_9.png').convert_alpha()
+    pygame.image.load('graphics/caracters/player/archer/walking/top/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/top/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/top/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/top/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/top/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/top/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/top/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/top/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/player/archer/walking/top/anim_9.png').convert_alpha()
 ]
 
 # ~~~~~~~~~~===> Archer's attack images <===~~~~~~~~~~
@@ -885,7 +885,7 @@ zombie_top_attack = [
 
 # ~~~~~~~~~~===> Gobelin's walking images <===~~~~~~~~~~
 
-gobelin_bottom_walks = [
+goblin_bottom_walks = [
     pygame.image.load('graphics/caracters/ennemy/gobelin/walking/bottom/anim_1.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/walking/bottom/anim_2.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/walking/bottom/anim_3.png').convert_alpha(),
@@ -897,7 +897,7 @@ gobelin_bottom_walks = [
     pygame.image.load('graphics/caracters/ennemy/gobelin/walking/bottom/anim_9.png').convert_alpha()
 ]
 
-gobelin_left_walks = [
+goblin_left_walks = [
     pygame.image.load('graphics/caracters/ennemy/gobelin/walking/left/anim_1.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/walking/left/anim_2.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/walking/left/anim_3.png').convert_alpha(),
@@ -909,7 +909,7 @@ gobelin_left_walks = [
     pygame.image.load('graphics/caracters/ennemy/gobelin/walking/left/anim_9.png').convert_alpha()
 ]
 
-gobelin_right_walks = [
+goblin_right_walks = [
     pygame.image.load('graphics/caracters/ennemy/gobelin/walking/right/anim_1.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/walking/right/anim_2.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/walking/right/anim_3.png').convert_alpha(),
@@ -921,7 +921,7 @@ gobelin_right_walks = [
     pygame.image.load('graphics/caracters/ennemy/gobelin/walking/right/anim_9.png').convert_alpha()
 ]
 
-gobelin_top_walks = [
+goblin_top_walks = [
     pygame.image.load('graphics/caracters/ennemy/gobelin/walking/top/anim_1.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/walking/top/anim_2.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/walking/top/anim_3.png').convert_alpha(),
@@ -935,7 +935,7 @@ gobelin_top_walks = [
 
 # ~~~~~~~~~~===> Gobelin's attack images <===~~~~~~~~~~
 
-gobelin_bottom_attack = [
+goblin_bottom_attack = [
     pygame.image.load('graphics/caracters/ennemy/gobelin/attack/bottom/anim_1.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/attack/bottom/anim_2.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/attack/bottom/anim_3.png').convert_alpha(),
@@ -945,7 +945,7 @@ gobelin_bottom_attack = [
 
 ]
 
-gobelin_left_attack = [
+goblin_left_attack = [
     pygame.image.load('graphics/caracters/ennemy/gobelin/attack/left/anim_1.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/attack/left/anim_2.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/attack/left/anim_3.png').convert_alpha(),
@@ -955,7 +955,7 @@ gobelin_left_attack = [
 
 ]
 
-gobelin_right_attack = [
+goblin_right_attack = [
     pygame.image.load('graphics/caracters/ennemy/gobelin/attack/right/anim_1.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/attack/right/anim_2.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/attack/right/anim_3.png').convert_alpha(),
@@ -965,7 +965,7 @@ gobelin_right_attack = [
 
 ]
 
-gobelin_top_attack = [
+goblin_top_attack = [
     pygame.image.load('graphics/caracters/ennemy/gobelin/attack/top/anim_1.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/attack/top/anim_2.png').convert_alpha(),
     pygame.image.load('graphics/caracters/ennemy/gobelin/attack/top/anim_3.png').convert_alpha(),
@@ -975,6 +975,95 @@ gobelin_top_attack = [
 
 ]
 
+# ~~~~~~~~~~===> Skeleton's walking images <===~~~~~~~~~~
 
+skeleton_bottom_walks = [
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/bottom/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/bottom/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/bottom/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/bottom/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/bottom/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/bottom/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/bottom/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/bottom/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/bottom/anim_9.png').convert_alpha()
+]
 
+skeleton_left_walks = [
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/left/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/left/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/left/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/left/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/left/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/left/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/left/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/left/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/left/anim_9.png').convert_alpha()
+]
 
+skeleton_right_walks = [
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/right/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/right/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/right/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/right/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/right/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/right/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/right/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/right/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/right/anim_9.png').convert_alpha()
+]
+
+skeleton_top_walks = [
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/top/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/top/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/top/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/top/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/top/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/top/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/top/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/top/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/walking/top/anim_9.png').convert_alpha()
+]
+
+# ~~~~~~~~~~===> Skeleton's attack images <===~~~~~~~~~~
+
+skeleton_bottom_attack = [
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/bottom/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/bottom/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/bottom/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/bottom/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/bottom/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/bottom/anim_6.png').convert_alpha()
+
+]
+
+skeleton_left_attack = [
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/left/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/left/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/left/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/left/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/left/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/left/anim_6.png').convert_alpha()
+
+]
+
+skeleton_right_attack = [
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/right/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/right/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/right/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/right/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/right/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/right/anim_6.png').convert_alpha()
+
+]
+
+skeleton_top_attack = [
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/top/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/top/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/top/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/top/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/top/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/skeleton/attack/top/anim_6.png').convert_alpha()
+
+]
+#Etienne <3

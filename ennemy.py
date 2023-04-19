@@ -9,12 +9,12 @@ class Ennemy(Caracter):
         self.range_can_attack = 5
         
     def transform_to_ennemy(self):
-        self.frames["Bottom Walk"] = demon_bottom_walks
+        # self.frames["Bottom Walk"] = demon_bottom_walks
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
         self.rect = self.image.get_rect(center = self.get_pos())
         self.set_speed(100)
-    
+
     def change_direction(self):
         if randint(0,1):
             self.direction.x = randint(-1, 1)
@@ -24,9 +24,19 @@ class Ennemy(Caracter):
             self.is_moving = False
             self.direction.x = 0
             self.direction.y = 0
+        
+        if self.direction.x == -1:
+            self.animation_direction = 'Left Walk'
+        elif self.direction.x == 1:
+            self.animation_direction = 'Right Walk'
+        
+        if self.direction.y == -1:
+            self.animation_direction = 'Top Walk'
+        elif self.direction.y == 1:
+            self.animation_direction = 'Bottom Walk'
     
     def shoot(self):
-        EnnemiProjectile(self.rect.center, [sprites.ennemi_projectiles])
+        EnnemiProjectile(self, [sprites.ennemi_projectiles] + list(sprites.camera_groups.values()))
     
     def update(self, dt):
         self.old_rect = self.rect.copy()
@@ -34,21 +44,100 @@ class Ennemy(Caracter):
         # Collisions and moving setup
         self.apply_collisions(dt)
         if (self.get_ticks() - self.last_move) > self.cooldown_move:
-            print('Moving !!')
+            # print('Moving !!')
             self.change_direction()
             self.last_move = self.get_ticks()
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
 
-
-        # Attack setup
-        # if (self.get_ticks() - self.last_shot) > self.cooldown_attack:
-        #     self.shoot()
-        #     self.last_shot = self.get_ticks()
-        
         if self.get_ticks() - self.last_shot > self.cooldown_attack:
-            # self.shoot()
-            print('Shooting !!')
+            self.shoot()
+            self.is_attack = True
+            # print('Shooting !!')
             self.last_shot = self.get_ticks()
+        else:
+            self.is_attack = False
         
         self.animation_state()
+        self.rect = self.image.get_rect(topleft = self.get_pos())
+        
+class Demon(Ennemy):
+    type = 'Demon'
+    
+    def __init__(self, name, pos, groups):
+        super().__init__(name, pos, groups)
+        self.transform_to_demon()
+        
+    def transform_to_demon(self):
+        """Transformer le player en demon"""
+        self.frames['Bottom Walk'] = demon_bottom_walks
+        self.frames['Left Walk'] = demon_left_walks
+        self.frames['Top Walk'] = demon_top_walks
+        self.frames['Right Walk'] = demon_right_walks
+        self.frames['Bottom Attack'] = demon_bottom_attack
+        self.frames['Left Attack'] = demon_left_attack
+        self.frames['Top Attack'] = demon_top_attack
+        self.frames['Right Attack'] = demon_right_attack
+        self.image = self.frames[self.animation_direction][self.animation_index]
+        self.image = self.transform_scale()
+        self.cooldown_attack = 2000
+
+class Goblin(Ennemy):
+    type = 'Goblin'
+    
+    def __init__(self, name, pos, groups):
+        super().__init__(name, pos, groups)
+        self.transform_to_goblin()
+        
+    def transform_to_goblin(self):
+        """Transformer le player en goblin"""
+        self.frames['Bottom Walk'] = goblin_bottom_walks
+        self.frames['Left Walk'] = goblin_left_walks
+        self.frames['Top Walk'] = goblin_top_walks
+        self.frames['Right Walk'] = goblin_right_walks
+        self.frames['Bottom Attack'] = goblin_bottom_attack
+        self.frames['Left Attack'] = goblin_left_attack
+        self.frames['Top Attack'] = goblin_top_attack
+        self.frames['Right Attack'] = goblin_right_attack
+        self.image = self.frames[self.animation_direction][self.animation_index]
+        self.image = self.transform_scale()
+
+class Zombie(Ennemy):
+    type = 'Zombie'
+    
+    def __init__(self, name, pos, groups):
+        super().__init__(name, pos, groups)
+        self.transform_to_zombie()
+        
+    def transform_to_zombie(self):
+        """Transformer le player en zombie"""
+        self.frames['Bottom Walk'] = zombie_bottom_walks
+        self.frames['Left Walk'] = zombie_left_walks
+        self.frames['Top Walk'] = zombie_top_walks
+        self.frames['Right Walk'] = zombie_right_walks
+        self.frames['Bottom Attack'] = zombie_bottom_attack
+        self.frames['Left Attack'] = zombie_left_attack
+        self.frames['Top Attack'] = zombie_top_attack
+        self.frames['Right Attack'] = zombie_right_attack
+        self.image = self.frames[self.animation_direction][self.animation_index]
+        self.image = self.transform_scale()
+
+class Skeleton(Ennemy):
+    type = 'Skeleton'
+    
+    def __init__(self, name, pos, groups):
+        super().__init__(name, pos, groups)
+        self.transform_to_skeleton()
+        
+    def transform_to_skeleton(self):
+        """Transformer le player en skeleton"""
+        self.frames['Bottom Walk'] = skeleton_bottom_walks
+        self.frames['Left Walk'] = skeleton_left_walks
+        self.frames['Top Walk'] = skeleton_top_walks
+        self.frames['Right Walk'] = skeleton_right_walks
+        self.frames['Bottom Attack'] = skeleton_bottom_attack
+        self.frames['Left Attack'] = skeleton_left_attack
+        self.frames['Top Attack'] = skeleton_top_attack
+        self.frames['Right Attack'] = skeleton_right_attack
+        self.image = self.frames[self.animation_direction][self.animation_index]
+        self.image = self.transform_scale()

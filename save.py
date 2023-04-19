@@ -91,6 +91,7 @@ class SaveData:
             os.remove(self.filename)
         except FileNotFoundError:
             pass
+
     def save_inventory(self, inventory):
         try:
             with open(self.filename, "r") as file:
@@ -112,6 +113,36 @@ class SaveData:
                 data = json.load(file)
                 if "inventory" in data:
                     return data["inventory"]
+                else:
+                    return  []
+        except FileNotFoundError:
+            return []
+    
+    def save_mob_dead(self, mob_name):
+        try:
+            with open(self.filename, "r") as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            data = {}
+
+        if "mob_name" in data:
+                # if object_name not in data["removed_objects"]:
+                data["mob_name"].append(mob_name)
+        else:
+            data["mob_name"] = [mob_name]
+
+        try:
+            with open(self.filename, "w") as file:
+                json.dump(data, file)
+        except IOError:
+            print("Erreur lors de l'écriture du fichier de sauvegarde.")
+
+    def load_mob_dead(self):
+        try:
+            with open(self.filename, "r") as file:
+                data = json.load(file)
+                if "mob_name" in data:
+                    return data["mob_name"]
                 else:
                     return  []
         except FileNotFoundError:

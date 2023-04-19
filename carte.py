@@ -1,4 +1,4 @@
-import pygame, pytmx, sprites
+import pygame, pytmx, sprites, sys
 from pytmx.util_pygame import load_pygame
 from collisions import CollisionTile
 from settings import *
@@ -98,6 +98,22 @@ class Carte:
         pickup_distance = 50
 
         return obj_pos, pickup_distance
+    def game_over(self):
+        # Afficher un message de fin de partie et quitter la boucle principale
+        font = pygame.font.SysFont(None, 64)
+        text = font.render("Game Over appuyez sur E pour respawn", True, (255, 0, 0))
+        text_rect = text.get_rect(center=(self.width * scale, self.height * scale))
+        self.screen.blit(text, text_rect)
+        pygame.display.flip()
+        pygame.time.delay(10000)
+
+        # # Supprimer le fichier save.json
+        # if os.path.exists(self.save_file):
+        #     os.remove(self.save_file)
+            
+        pygame.quit()
+        sys.exit()
+
     
 class Teleportation(pygame.sprite.Sprite):
     type = 'Teleportation'

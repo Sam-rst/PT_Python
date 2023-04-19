@@ -14,6 +14,7 @@ class Caracter(pygame.sprite.Sprite):
 
     def __init__(self, name, pos, groups):
         super().__init__(groups)
+        self.save_data = sprites.save_data
         # Aspects of the caracter
         self.name = name
         self.max_HP = 100
@@ -23,7 +24,7 @@ class Caracter(pygame.sprite.Sprite):
         self.range = 10 * scale  # rayon d'attaque du caractère
         self.cooldown_attack = 200 #temps de recharge en millisecondes
         self.last_shot = 0 # temps en millisecondes depuis le début de l'exécution de la boucle de jeu lors du dernier tir
-        
+
         # Image and animations
         self.frames = {
             "Bottom Walk" : caracter_bottom_walks,
@@ -38,14 +39,14 @@ class Caracter(pygame.sprite.Sprite):
         self.animation_speed = 0.2
         self.is_moving = False
         self.is_attack = False
-        
+
         # Rectangle
         self.rect = self.image.get_rect(midbottom = pos)
         self.old_rect = self.rect.copy()
-        
+
         # Screen
         self.screen = pygame.display.get_surface()
-        
+
         # Moving
         self.pos = pygame.math.Vector2(self.rect.midbottom)
         self.direction = pygame.math.Vector2()
@@ -53,7 +54,7 @@ class Caracter(pygame.sprite.Sprite):
         self.cooldown_move = 1500
         self.last_move = 0
 
-        
+
     def set_name(self, new_name):
         """Changer le nom avec la nouvelle valeur new_name"""
         self.name = new_name
@@ -116,6 +117,7 @@ class Caracter(pygame.sprite.Sprite):
     
     def set_pos(self, new_pos):
         """Changer la position du caractère selon la nouvelle position new_pos"""
+        # self.pos = new_pos
         self.pos.x = new_pos[0]
         self.pos.y = new_pos[1]
     
@@ -149,16 +151,16 @@ class Caracter(pygame.sprite.Sprite):
     
     def __str__(self):
         return f"Le {self.get_type()} {self.get_name()} possède : vie = {self.get_HP()}/{self.get_max_HP()}, attaque = {self.get_attack_value()}, defense = {self.get_defense_value()}, cooldown = {self.get_cooldown_attack()}, attack range = {self.get_range()}, position = {self.get_pos()}"
-    
+
     def regenerate(self):
         """Permet de regénérer la vie du caractère"""
-        self.health = self.max_health
-        
+        self.HP = self.max_HP
+
     def level_up(self):
-        self.set_attack_value(self.get_attack_value + 5)
-        self.set_defense_value(self.get_defense_value + 2)
-        self.set_max_HP += 5
-        self.regenerate
+        self.set_attack_value(self.attack_value + 5)
+        self.set_defense_value(self.defense_value + 2)
+        self.set_max_HP(self.max_HP + 5)
+        self.regenerate()
     
     def decrease_health(self, amount):
         self.HP -= amount
@@ -168,6 +170,7 @@ class Caracter(pygame.sprite.Sprite):
     def is_alive(self):
         if not self.HP > 0:
             self.kill()
+            self.save_data.save_mob_dead(self.name)
 
     def collision(self, direction):
         collisions = pygame.sprite.spritecollide(self, sprites.camera_group.collision_group, False)
@@ -178,12 +181,12 @@ class Caracter(pygame.sprite.Sprite):
                     if self.rect.right >= sprite.rect.left and self.old_rect.right <= sprite.old_rect.left:
                         self.rect.right = sprite.rect.left
                         self.pos.x = self.rect.x
-                        
+
                     #Collision on the left
                     if self.rect.left <= sprite.rect.right and self.old_rect.left >= sprite.old_rect.right:
                         self.rect.left = sprite.rect.right
                         self.pos.x = self.rect.x
-                        
+
                 if direction == 'vertical':
                     #Collisions on the top
                     if self.rect.top <= sprite.rect.bottom and self.old_rect.top >= sprite.old_rect.bottom:
@@ -199,22 +202,18 @@ class Caracter(pygame.sprite.Sprite):
             if self.rect.left < 0: #With the left side of the map
                 self.rect.left = 0
                 self.pos.x = self.rect.x
-                # self.direction.x *= -1
             if self.rect.right > sprites.camera_group.carte.get_size_map_width():
                 self.rect.right = sprites.camera_group.carte.get_size_map_width()
                 self.pos.x = self.rect.x
-                # self.direction.x *= -1
-                
+
         if direction == 'vertical': #With the top side of the window
             if self.rect.top < 0:
                 self.rect.top = 0
                 self.pos.y = self.rect.y
-                # self.direction.y *= -1
             if self.rect.bottom > sprites.camera_group.carte.get_size_map_height() - sprites.camera_group.carte.get_tileheight():
                 self.rect.bottom = sprites.camera_group.carte.get_size_map_height() - sprites.camera_group.carte.get_tileheight()
                 self.pos.y = self.rect.y
-                # self.direction.y *= -1
-                
+
     def apply_collisions(self, dt):
         self.pos.x += self.direction.x * self.speed * dt
         self.rect.x = round(self.pos.x)
@@ -224,19 +223,9 @@ class Caracter(pygame.sprite.Sprite):
         self.rect.y = round(self.pos.y)
         self.collision('vertical')
         self.map_collision('vertical')
-    
+
     def animation_state(self):
-        # print(f" En train de bouger : {self.is_moving} et en train d'attaquer : {self.is_attack}")
-        if self.is_moving:
-            self.animation_index += self.animation_speed
-            if self.animation_index >= len(self.frames[self.animation_direction]):
-                self.animation_index = 0
-            else:
-                self.image = self.frames[self.animation_direction][int(self.animation_index)]
-                self.image = self.transform_scale()
-                # self.rect = self.image.get_rect(topleft = self.get_pos())
-            
-        elif self.is_attack:
+        if self.is_attack:
             self.animation_index += self.animation_speed
             if self.animation_index >= len(self.frames[self.animation_direction]):
                 self.animation_index = 0
@@ -244,7 +233,14 @@ class Caracter(pygame.sprite.Sprite):
             else:
                 self.image = self.frames[self.animation_direction][int(self.animation_index)]
                 self.image = self.transform_scale()
-                # self.rect = self.image.get_rect(topleft = self.get_pos())
+                
+        elif self.is_moving:
+            self.animation_index += self.animation_speed
+            if self.animation_index >= len(self.frames[self.animation_direction]):
+                self.animation_index = 0
+            else:
+                self.image = self.frames[self.animation_direction][int(self.animation_index)]
+                self.image = self.transform_scale()
             
     def debug(self):
         pygame.draw.rect(self.screen, '#ff0000', self.rect, 5)
