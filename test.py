@@ -37,9 +37,6 @@ for name_ennemy in dead_ennemies:
 # TODO: Charge la liste des items depuis un fichier tileds avec des Waypoints
 piece1 = Item('Piece', sprites.camera_group.carte.get_waypoint('SpawnItems'), [sprites.camera_group, sprites.items_sprites])
 items = [piece1]
-
-
-
 # Type camera
 sprites.camera_group.set_type_camera("center")
 
@@ -73,12 +70,13 @@ while True:
             if event.key == pygame.K_a and player.rect.colliderect(piece1.rect):
                 piece1.remove_object(piece1)
 
-            if  player.HP < 0:
-                sprites.camera_group.carte.game_over()
-                if event.key == pygame.K_e:
-                    player.set_HP == player.max_HP
-                    player.set_pos(sprites.camera_group.carte.get_waypoint('Spawn'))
-                break  
+    #Test
+            # if player.HP < 0:
+            #     sprites.camera_group.carte.game_over()
+            #     if event.key == pygame.K_e:
+            #         player.set_HP == player.max_HP
+            #         player.set_pos(sprites.camera_group.carte.get_waypoint('Spawn'))
+
     dungeon_bg = ['Dungeon']
     overworld_bg = ['Overworld', 'Swamp', 'Waterfall']
     if sprites.camera_group.carte.map_name in dungeon_bg:

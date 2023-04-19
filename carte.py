@@ -98,6 +98,7 @@ class Carte:
         pickup_distance = 50
 
         return obj_pos, pickup_distance
+    
     def game_over(self):
         # Afficher un message de fin de partie et quitter la boucle principale
         font = pygame.font.SysFont(None, 64)
