@@ -35,7 +35,7 @@ items = [piece1]
 
 
 # Type camera
-sprites.camera_group.set_type_camera("box")
+sprites.camera_group.set_type_camera("center")
 
 last_time = time.time()
 while True:
@@ -61,6 +61,7 @@ while True:
                     sprites.camera_group = sprites.camera_groups[tp.name_destination]
                     # print(f"Nom de la map : {camera_group.carte.map_name}")
                     # print(f"Nom de la destination : {tp.name_destination}, nom du waypoint de destination : {tp.name_tp_back}")
+                    print(f'La position de la teleportation : {tp.pos} et du joueur : {player.get_pos()}')
                     player.set_pos(sprites.camera_group.carte.get_waypoint(tp.name_tp_back))
             if event.key == pygame.K_a and player.rect.colliderect(piece1.rect):
                 piece1.remove_object(piece1)
@@ -72,7 +73,7 @@ while True:
     sprites.camera_group.custom_draw(player)
 
     # Permettre de debuger les sprites
-    # sprites.camera_group.debug()
+    sprites.camera_group.debug()
 
     # Sauvegarde la position du joueur toutes les 5 secondes
     current_time = pygame.time.get_ticks()

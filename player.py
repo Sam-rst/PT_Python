@@ -53,23 +53,6 @@ class Player(Caracter):
             self.is_moving = False
             self.animation_index = 0
 
-        # collisions = pygame.sprite.spritecollide(self, sprites.collision_sprites, False)
-        # if collisions:
-        #     for tile_rect in collisions:
-        #         if keys[pygame.K_z] or keys[pygame.K_s] or keys[pygame.K_d] or keys[pygame.K_q]:
-        #             if keys[pygame.K_z]:
-        #                 self.pos.x = tile_rect.left - 16
-        #             elif keys[pygame.K_s]:
-        #                 self.pos.x = tile_rect.right - 16
-        #             if keys[pygame.K_d]:
-        #                 self.pos.y = tile_rect.top - 16
-        #             elif keys[pygame.K_q]:
-        #                 self.pos.y = tile_rect.bottom - 16
-
-        #             # Ajouter une instruction de sortie immédiate ici
-        #             break
-
-
     def shoot(self):
         Projectile(self, [sprites.projectile_sprites] + list(sprites.camera_groups.values()))
         self.last_shot = pygame.time.get_ticks()  # on enregistre le temps du dernier tir

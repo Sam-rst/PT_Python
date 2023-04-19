@@ -222,7 +222,7 @@
   <object id="1" name="Spawn" x="17.5" y="27.75">
    <point/>
   </object>
-  <object id="2" name="ExitDungeon" x="0.181818" y="0.363636" width="23.7273" height="22.1818"/>
+  <object id="2" name="ExitDungeon" x="122.432" y="96.8636" width="23.7273" height="22.1818"/>
   <object id="4" name="DungeonEntrance" x="17.5" y="27.75">
    <point/>
   </object>
