@@ -3,6 +3,7 @@ from settings import *
 
 class CollisionTile(pygame.sprite.Sprite):
     type = 'CollisionTile'
+    
     def __init__(self, image, pos, group):
         super().__init__(group)
         self.image = image

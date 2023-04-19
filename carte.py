@@ -27,27 +27,6 @@ class Carte:
         self.collision_layers = []
         self.collision_tiles = []
 
-        # for x, y, tile in self.collision_layer.tiles():
-        #     if tile:
-        #         self.collision_tiles.append(pygame.Rect(x * self.tilewidth, y * self.tileheight, self.tilewidth, self.tileheight))
-        # Charger les données sauvegardées pour les objets supprimés
-        
-    #     self.removed_objects = self.save_data.load_removed_objects()
-    #     self.items = self.save_data.load_inventory()
-    #     self.inventaire = Inventaire()
-        
-    # def remove_object_by_id(self, obj_id):
-    #     # Supprimer l'objet de la couche d'objets
-    #     obj = self.tmxdata.get_object_by_id(obj_id)
-    #     # obj.remove()
-    #     # Ajouter l'objet à l'inventaire
-    #     # self.inventaire.ajouter_objet(obj_name)
-    #     # self.items.append(obj_name)
-    #     # self.save_data.save_inventory(self.items)
-    #     # # Ajouter l'objet à la liste des objets supprimés dans les données sauvegardées
-    #     # self.removed_objects.append(obj_name)
-    #     # self.save_data.save_removed_objects(self.removed_objects)
-            
     def get_width(self):
         return self.width
     
@@ -72,11 +51,10 @@ class Carte:
     def create_collisions(self, groups):
         for layer in self.layers:
             if layer.name in self.collision_layers:
-                print(f'Le layer : {layer.name} va créer les sprites de collision')
                 for x, y, image in layer.tiles():
+                    # print(f'Le layer : {layer.name} va créer les sprites de collision')
                     image = pygame.transform.scale(image, (self.tilewidth, self.tileheight))
-                    print(image.get_size())
-                    self.collision_tiles.append(CollisionTile(image, (x * self.tilewidth, y * self.tileheight), [groups, sprites.collision_sprites]))
+                    self.collision_tiles.append(CollisionTile(image, (x*self.tilewidth, y * self.tileheight), groups))
 
     def get_layers(self):
         layer_list = []
@@ -110,7 +88,6 @@ class Carte:
             return self.get_pos_obj(obj)
         except:
             raise ValueError("Je n'arrive pas à retrouver ton waypoint")
-
     
     def get_pickup_distance(self, tmx_data):
         # Extraire la position de l'objet à collecter

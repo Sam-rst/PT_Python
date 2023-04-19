@@ -1,9 +1,10 @@
 import pygame
 from settings import *
 from carte import Carte
+from collisions import CollisionTile
 
 class CameraGroup(pygame.sprite.Group):
-    def __init__(self, name_map, list_teleporters, list_layers_obstacles):
+    def __init__(self, name_map, list_teleporters, layers_obstacles):
         super().__init__()
         self.screen = pygame.display.get_surface()
 
@@ -21,8 +22,9 @@ class CameraGroup(pygame.sprite.Group):
         # Les Teleporters
         self.teleporters = [self.carte.create_teleportation(tp[0], tp[1], tp[2], [self]) for tp in list_teleporters]
         #Les obstacles
-        self.carte.collision_layers = list_layers_obstacles
-        # self.carte.create_collisions([self])
+        self.carte.collision_layers = layers_obstacles[0]
+        self.collision_group = layers_obstacles[1]
+        self.carte.create_collisions([self, self.collision_group])
         
         # Box setup
         self.camera_borders = {'left' : 300, 'right' : 300, 'top' : 200, 'bottom' : 200}
@@ -92,7 +94,8 @@ class CameraGroup(pygame.sprite.Group):
 
         # Active elements
         for sprite in sorted(self.sprites(), key = lambda sprite: sprite.rect.centery):
-            if not sprite.get_type() == 'Teleportation' or sprite.get_type() == 'CollisionTile':
+            not_display = ['Teleportation', 'CollisionTile']
+            if not sprite.get_type() in not_display:
                 self.screen.blit(sprite.image, sprite.rect.topleft - self.offset)
 
     def debug(self):

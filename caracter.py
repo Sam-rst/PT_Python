@@ -14,7 +14,6 @@ class Caracter(pygame.sprite.Sprite):
 
     def __init__(self, name, pos, groups):
         super().__init__(groups)
-        
         # Aspects of the caracter
         self.name = name
         self.max_HP = 100
@@ -41,7 +40,7 @@ class Caracter(pygame.sprite.Sprite):
         self.is_attack = False
         
         # Rectangle
-        self.rect = self.image.get_rect(topleft = pos)
+        self.rect = self.image.get_rect(midbottom = pos)
         self.old_rect = self.rect.copy()
         
         # Screen
@@ -51,7 +50,8 @@ class Caracter(pygame.sprite.Sprite):
         self.pos = pygame.math.Vector2(self.rect.midbottom)
         self.direction = pygame.math.Vector2()
         self.speed = 500
-        self.cooldown_move = 0
+        self.cooldown_move = 1500
+        self.last_move = 0
 
         
     def set_name(self, new_name):
@@ -170,9 +170,9 @@ class Caracter(pygame.sprite.Sprite):
             self.kill()
 
     def collision(self, direction):
-        collisions = pygame.sprite.spritecollide(self, sprites.collision_sprites, False)
+        collisions = pygame.sprite.spritecollide(self, sprites.camera_group.collision_group, False)
         if collisions:
-            for sprite in sprites.collision_sprites:
+            for sprite in sprites.camera_group.collision_group:
                 if  direction == 'horizontal':
                     #Collision on the right
                     if self.rect.right >= sprite.rect.left and self.old_rect.right <= sprite.old_rect.left:
@@ -234,7 +234,7 @@ class Caracter(pygame.sprite.Sprite):
             else:
                 self.image = self.frames[self.animation_direction][int(self.animation_index)]
                 self.image = self.transform_scale()
-                self.rect = self.image.get_rect(topleft = self.get_pos())
+                # self.rect = self.image.get_rect(topleft = self.get_pos())
             
         elif self.is_attack:
             self.animation_index += self.animation_speed
@@ -244,7 +244,7 @@ class Caracter(pygame.sprite.Sprite):
             else:
                 self.image = self.frames[self.animation_direction][int(self.animation_index)]
                 self.image = self.transform_scale()
-                self.rect = self.image.get_rect(topleft = self.get_pos())
+                # self.rect = self.image.get_rect(topleft = self.get_pos())
             
     def debug(self):
         pygame.draw.rect(self.screen, '#ff0000', self.rect, 5)

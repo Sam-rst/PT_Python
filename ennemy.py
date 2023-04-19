@@ -14,10 +14,6 @@ class Ennemy(Caracter):
         self.image = self.transform_scale()
         self.rect = self.image.get_rect(center = self.get_pos())
         self.set_speed(100)
-        
-        
-        # Si le temps de recharge est écoulé et que l'ennemi peut tirer, on tire un projectile
-
     
     def change_direction(self):
         if randint(0,1):
@@ -30,24 +26,29 @@ class Ennemy(Caracter):
             self.direction.y = 0
     
     def shoot(self):
-        projectile = EnnemiProjectile(self.rect.center)
-        sprites.ennemi_projectiles.add(projectile)
-        sprites.all_sprites.add(projectile)
+        EnnemiProjectile(self.rect.center, [sprites.ennemi_projectiles])
     
     def update(self, dt):
         self.old_rect = self.rect.copy()
 
         # Collisions and moving setup
         self.apply_collisions(dt)
-        if (self.get_ticks() - self.cooldown_move) > 1500:
+        if (self.get_ticks() - self.last_move) > self.cooldown_move:
+            print('Moving !!')
             self.change_direction()
-            self.cooldown_move = self.get_ticks()
+            self.last_move = self.get_ticks()
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
 
-        self.animation_state()
 
         # Attack setup
-        if (self.get_ticks() - self.last_shot) > self.cooldown_attack:
-            self.shoot()
+        # if (self.get_ticks() - self.last_shot) > self.cooldown_attack:
+        #     self.shoot()
+        #     self.last_shot = self.get_ticks()
+        
+        if self.get_ticks() - self.last_shot > self.cooldown_attack:
+            # self.shoot()
+            print('Shooting !!')
             self.last_shot = self.get_ticks()
+        
+        self.animation_state()
