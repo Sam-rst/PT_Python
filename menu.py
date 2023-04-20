@@ -17,12 +17,12 @@ class Menu:
     def run(self):
         if self.class_joueur is None:
             largeur_bouton = 200
-            bouton_guerrier = pygame.Rect((self.screen.get_width() - largeur_bouton) / 2, 100, largeur_bouton, 50)
-            bouton_mage = pygame.Rect((self.screen.get_width() - largeur_bouton) / 2, 200, largeur_bouton, 50)
-            bouton_assassin = pygame.Rect((self.screen.get_width() - largeur_bouton) / 2, 300, largeur_bouton, 50)
-            bouton_guard = pygame.Rect((self.screen.get_width() - largeur_bouton) / 2, 400, largeur_bouton, 50)
-            bouton_archer = pygame.Rect((self.screen.get_width() - largeur_bouton) / 2, 500, largeur_bouton, 50)
-            bouton_tank = pygame.Rect((self.screen.get_width() - largeur_bouton) / 2, 600, largeur_bouton, 50)
+            bouton_guerrier = pygame.Rect((self.screen.get_width() - largeur_bouton) / 2, 300, largeur_bouton, 50)
+            bouton_mage = pygame.Rect((self.screen.get_width() - largeur_bouton) / 2, 400, largeur_bouton, 50)
+            bouton_assassin = pygame.Rect((self.screen.get_width() - largeur_bouton) / 2, 500, largeur_bouton, 50)
+            bouton_guard = pygame.Rect((self.screen.get_width() - largeur_bouton) / 2, 600, largeur_bouton, 50)
+            bouton_archer = pygame.Rect((self.screen.get_width() - largeur_bouton) / 2, 700, largeur_bouton, 50)
+            bouton_tank = pygame.Rect((self.screen.get_width() - largeur_bouton) / 2, 800, largeur_bouton, 50)
             
             while True:
                 for event in pygame.event.get():
@@ -61,21 +61,26 @@ class Menu:
                             return player
                 
                 self.screen.fill((0, 0, 0))
-                
+
+                font_grand = pygame.font.Font('graphics/font/Enchanted_Land.otf', 50)
+                texte_bienvenue = font_grand.render("Bienvenue dans The Quest-ionable Heroe", True, (255, 255, 255))
+                texte_bienvenue2 = font_grand.render("Choisissez votre classe", True, (255, 255, 255))
+                self.screen.blit(texte_bienvenue, ((self.screen.get_width() - texte_bienvenue.get_width()) / 2, 50))
+                self.screen.blit(texte_bienvenue2, ((self.screen.get_width() - texte_bienvenue2.get_width()) / 2, 100))
                 pygame.draw.rect(self.screen, (255, 255, 255), bouton_guerrier)
                 pygame.draw.rect(self.screen, (255, 255, 255), bouton_mage)
                 pygame.draw.rect(self.screen, (255, 255, 255), bouton_assassin)
                 pygame.draw.rect(self.screen, (255, 255, 255), bouton_guard)
                 pygame.draw.rect(self.screen, (255, 255, 255), bouton_archer)
                 pygame.draw.rect(self.screen, (255, 255, 255), bouton_tank)
-                pygame.draw.rect(self.screen, (255, 0, 0), bouton_guerrier, 3)
-                pygame.draw.rect(self.screen, (255, 0, 0), bouton_mage, 3)
-                pygame.draw.rect(self.screen, (255, 0, 0), bouton_assassin, 3)
-                pygame.draw.rect(self.screen, (255, 0, 0), bouton_guard, 3)
-                pygame.draw.rect(self.screen, (255, 0, 0), bouton_archer, 3)
-                pygame.draw.rect(self.screen, (255, 0, 0), bouton_tank, 3)
+                pygame.draw.rect(self.screen, (0, 0, 0), bouton_guerrier, 3)
+                pygame.draw.rect(self.screen, (0, 0, 0), bouton_mage, 3)
+                pygame.draw.rect(self.screen, (0, 0, 0), bouton_assassin, 3)
+                pygame.draw.rect(self.screen, (0, 0, 0), bouton_guard, 3)
+                pygame.draw.rect(self.screen, (0, 0, 0), bouton_archer, 3)
+                pygame.draw.rect(self.screen, (0, 0, 0), bouton_tank, 3)
                 
-                font = pygame.font.Font(None, 30)
+                font = pygame.font.Font('graphics/font/Enchanted_Land.otf', 30)
                 texte_guerrier = font.render("Guerrier", True, (0, 0, 0))
                 texte_mage = font.render("Mage", True, (0, 0, 0))
                 texte_assassin = font.render("Assassin", True, (0, 0, 0))

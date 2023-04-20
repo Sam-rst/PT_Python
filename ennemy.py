@@ -19,6 +19,7 @@ class Ennemy(Caracter):
         self.set_speed(100)
         self.set_attack_value(5)
         self.set_cooldown_attack(2500)
+        self.set_HP(50)
 
     def change_direction(self):
         if randint(0,1):
@@ -50,17 +51,10 @@ class Ennemy(Caracter):
     def random_spawn(self):
         width, height = sprites.camera_group.carte.get_size_map()
         self.set_pos((randint(100, width-100), randint(100, height-100)))
-    
+
     def shoot(self):
         EnnemiProjectile(self, [sprites.ennemi_projectiles] + list(sprites.camera_groups.values()))
 
-    def display_life(self, screen, offset):
-        life_ratio = self.get_HP() / self.get_max_HP()
-        x = self.pos.x - 10 - offset.x
-        y = self.pos.y - 10 - offset.y
-        pygame.draw.rect(screen, '#ff0000', pygame.rect.Rect(x, y, 100, 10), 5)
-        pygame.draw.rect(screen, '#00ff00', pygame.rect.Rect(x, y, 100 * life_ratio, 10), 5)
-    
     def update(self, dt):
         self.is_alive()
         self.old_rect = self.rect.copy()

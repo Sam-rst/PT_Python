@@ -3,6 +3,7 @@ from settings import *
 from carte import Carte
 from collisions import CollisionTile
 from ennemy import Ennemy
+from player import Player
 
 class CameraGroup(pygame.sprite.Group):
     def __init__(self, name_map, list_teleporters, layers_obstacles):
@@ -99,6 +100,8 @@ class CameraGroup(pygame.sprite.Group):
             if not sprite.get_type() in not_display:
                 self.screen.blit(sprite.image, sprite.rect.topleft - self.offset)
                 if isinstance(sprite, Ennemy):
+                    sprite.display_life(self.screen, self.offset)
+                if isinstance(sprite, Player):
                     sprite.display_life(self.screen, self.offset)
 
     def debug(self):

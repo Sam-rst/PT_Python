@@ -169,6 +169,13 @@ class Caracter(pygame.sprite.Sprite):
         self.set_HP(self.get_HP() - amount)
         if self.get_HP() < 0:
             self.set_HP(0)
+            
+    def display_life(self, screen, offset):
+        life_ratio = self.get_HP() / self.get_max_HP()
+        x = self.pos.x - 10 - offset.x
+        y = self.pos.y - 10 - offset.y
+        pygame.draw.rect(screen, '#ff0000', pygame.rect.Rect(x, y, 100, 10), 5)
+        pygame.draw.rect(screen, '#00ff00', pygame.rect.Rect(x, y, 100 * life_ratio, 10), 5)
 
     def collision(self, direction):
         if self.is_teleporting: return
