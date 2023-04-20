@@ -1,4 +1,4 @@
 import pygame
-resolution = (1920, 1080)
-screen = pygame.display.set_mode(resolution)
+resolution = (0, 0)
+screen = pygame.display.set_mode(resolution, pygame.FULLSCREEN)
 scale = 4

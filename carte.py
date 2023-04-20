@@ -1,4 +1,4 @@
-import pygame, pytmx, sprites, sys
+import pygame, pytmx, sprites, sys, os
 from pytmx.util_pygame import load_pygame
 from collisions import CollisionTile
 from settings import *
@@ -14,6 +14,7 @@ class Carte:
         self.tmxdata = load_pygame(f'graphics/Tiled/data/tmx/{self.map_name}.tmx')
         self.width = self.tmxdata.width
         self.height = self.tmxdata.height
+        self.size_map = (self.width, self.height)
         
         # Layers and Tiles
         self.tilewidth = self.tmxdata.tilewidth * scale
@@ -101,19 +102,39 @@ class Carte:
     
     def game_over(self):
         # Afficher un message de fin de partie et quitter la boucle principale
+        clock = pygame.time.Clock()
         font = pygame.font.SysFont(None, 64)
-        text = font.render("Game Over appuyez sur E pour respawn", True, (255, 0, 0))
-        text_rect = text.get_rect(center=(self.width * scale, self.height * scale))
-        self.screen.blit(text, text_rect)
-        pygame.display.flip()
-        pygame.time.delay(10000)
-
+        text_surf = font.render("Game Over appuyez sur SPACE pour respawn", True, (255, 0, 0))
+        text_rect = text_surf.get_rect(center=((self.screen.get_size()[0]//2, self.screen.get_size()[1]//2)))
+        is_respawn = False
+        while not is_respawn:
+            self.screen.fill('#000000')
+            self.screen.blit(text_surf, text_rect)
+            pygame.display.update()
+            
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
+                    if event.key == pygame.K_e or event.key == pygame.K_SPACE:
+                        print(('Respawn'))
+                        sprites.player.regenerate()
+                        sprites.camera_group = sprites.camera_groups['Overworld']
+                        sprites.player.set_pos(sprites.camera_group.carte.get_waypoint('Spawn'))
+                        os.remove('save.json')
+                        # pygame.quit()
+                        is_respawn = True
+                        # sys.exit()
+            
         # # Supprimer le fichier save.json
         # if os.path.exists(self.save_file):
         #     os.remove(self.save_file)
+            # clock.tick(60)
             
-        pygame.quit()
-        sys.exit()
 
     
 class Teleportation(pygame.sprite.Sprite):

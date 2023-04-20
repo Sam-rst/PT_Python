@@ -9,17 +9,13 @@ from save import *
 from inventaire import *
 from menu import Menu
 from items import Item
+from random import randint
 
 pygame.init()
 
 clock = pygame.time.Clock()
 
 # Création des sprites
-Demon("Gargantua", (400, 500), [sprites.camera_groups["Dungeon"], sprites.ennemi_group])
-Demon("Gargantua", (400, 500), [sprites.camera_groups["Dungeon"], sprites.ennemi_group])
-Demon("Gargantua", (400, 500), [sprites.camera_groups["Dungeon"], sprites.ennemi_group])
-Demon("Gargantua", (400, 500), [sprites.camera_groups["Dungeon"], sprites.ennemi_group])
-Demon("Gargantua", (400, 500), [sprites.camera_groups["Dungeon"], sprites.ennemi_group])
 
 # Saves
 menu = Menu()
@@ -29,14 +25,25 @@ save_data = SaveData("save.json")
 last_save_time = pygame.time.get_ticks()
 inventaire = Inventaire()
 
-dead_ennemies = sprites.mob_dead
-print(dead_ennemies)
-for name_ennemy in dead_ennemies:
-    print(name_ennemy)
+ennemies_map_spawn = sprites.camera_groups["Dungeon"]
+width, height = ennemies_map_spawn.carte.size_map
+Demon("Demon1", (randint(0, width), randint(0, height)), [ennemies_map_spawn, sprites.ennemi_group])
+Demon("Demon2", (randint(0, width), randint(0, height)), [ennemies_map_spawn, sprites.ennemi_group])
+Demon("Demon3", (randint(0, width), randint(0, height)), [ennemies_map_spawn, sprites.ennemi_group])
+Demon("Demon4", (randint(0, width), randint(0, height)), [ennemies_map_spawn, sprites.ennemi_group])
+Demon("Demon5", (randint(0, width), randint(0, height)), [ennemies_map_spawn, sprites.ennemi_group])
+
+for ennemy_name in save_data.load_mob_dead():
+    # Trouver l'objet sprite correspondant au nom de l'ennemi mort
+    for sprite in sprites.ennemi_group:
+        if sprite.name == ennemy_name:
+            # Supprimer la sprite en appelant la méthode kill()
+            sprite.kill()
 
 # TODO: Charge la liste des items depuis un fichier tileds avec des Waypoints
 piece1 = Item('Piece', sprites.camera_group.carte.get_waypoint('SpawnItems'), [sprites.camera_group, sprites.items_sprites])
 items = [piece1]
+
 # Type camera
 sprites.camera_group.set_type_camera("center")
 
@@ -54,7 +61,6 @@ while True:
                 pygame.quit()
                 sys.exit()
 
-        if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_c:
                 # menu.run()
                 print("Menu ouvert")
@@ -70,13 +76,6 @@ while True:
             if event.key == pygame.K_a and player.rect.colliderect(piece1.rect):
                 piece1.remove_object(piece1)
 
-    #Test
-            # if player.HP < 0:
-            #     sprites.camera_group.carte.game_over()
-            #     if event.key == pygame.K_e:
-            #         player.set_HP == player.max_HP
-            #         player.set_pos(sprites.camera_group.carte.get_waypoint('Spawn'))
-
     dungeon_bg = ['Dungeon']
     overworld_bg = ['Overworld', 'Swamp', 'Waterfall']
     if sprites.camera_group.carte.map_name in dungeon_bg:
@@ -88,7 +87,7 @@ while True:
     sprites.camera_group.custom_draw(player)
 
     # Permettre de debuger les sprites
-    sprites.camera_group.debug()
+    # sprites.camera_group.debug()
 
     # Sauvegarde la position du joueur toutes les 5 secondes
     current_time = pygame.time.get_ticks()
@@ -102,4 +101,3 @@ while True:
     pygame.display.update()
     clock.tick(60)
 
-pygame.quit()

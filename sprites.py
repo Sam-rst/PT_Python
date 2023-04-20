@@ -10,6 +10,7 @@ projectile_sprites = pygame.sprite.Group()
 
 ennemi_projectiles = pygame.sprite.Group()
 
+
 ennemi_group = pygame.sprite.Group()
 
 player_sprite = pygame.sprite.GroupSingle()

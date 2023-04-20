@@ -17,10 +17,10 @@ class Caracter(pygame.sprite.Sprite):
         self.save_data = sprites.save_data
         # Aspects of the caracter
         self.name = name
-        self.max_HP = 100
+        self.max_HP = 1
         self.HP = self.max_HP
-        self.attack_value = 10
-        self.defense_value = 5
+        self.attack_value = 1
+        self.defense_value = 1
         self.range = 10 * scale  # rayon d'attaque du caractère
         self.cooldown_attack = 200 #temps de recharge en millisecondes
         self.last_shot = 0 # temps en millisecondes depuis le début de l'exécution de la boucle de jeu lors du dernier tir
@@ -163,14 +163,9 @@ class Caracter(pygame.sprite.Sprite):
         self.regenerate()
     
     def decrease_health(self, amount):
-        self.HP -= amount
-        if self.HP < 0:
-            self.HP = 0
-
-    def is_alive(self):
-        if not self.HP > 0:
-            self.kill()
-            self.save_data.save_mob_dead(self.name)
+        self.set_HP(self.get_HP() - amount)
+        if self.get_HP() < 0:
+            self.set_HP(0)
 
     def collision(self, direction):
         collisions = pygame.sprite.spritecollide(self, sprites.camera_group.collision_group, False)

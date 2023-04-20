@@ -14,6 +14,8 @@ class Ennemy(Caracter):
         self.image = self.transform_scale()
         self.rect = self.image.get_rect(center = self.get_pos())
         self.set_speed(100)
+        self.set_attack_value(5)
+        self.set_cooldown_attack(2500)
 
     def change_direction(self):
         if randint(0,1):
@@ -35,12 +37,17 @@ class Ennemy(Caracter):
         elif self.direction.y == 1:
             self.animation_direction = 'Bottom Walk'
     
+    def is_alive(self):
+        if self.get_HP() <= 0:
+            self.kill()
+            self.save_data.save_mob_dead(self.name)
+    
     def shoot(self):
         EnnemiProjectile(self, [sprites.ennemi_projectiles] + list(sprites.camera_groups.values()))
     
     def update(self, dt):
+        self.is_alive()
         self.old_rect = self.rect.copy()
-
         # Collisions and moving setup
         self.apply_collisions(dt)
         if (self.get_ticks() - self.last_move) > self.cooldown_move:
@@ -81,6 +88,7 @@ class Demon(Ennemy):
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
         self.cooldown_attack = 2000
+        self.set_max_HP(20)
 
 class Goblin(Ennemy):
     type = 'Goblin'

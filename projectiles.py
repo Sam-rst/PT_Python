@@ -44,7 +44,7 @@ class Projectile(pygame.sprite.Sprite):
         if sprites.camera_group.type_camera == "center":
             self.direction = pygame.Vector2((mouse_pos[0] - self.screen.get_size()[0] // 2, mouse_pos[1] - self.screen.get_size()[1] // 2)).normalize()
         elif sprites.camera_group.type_camera == "box":
-            player_pos = self.caracter.pos - sprites.camera_group.offset
+            player_pos = self.player.pos - sprites.camera_group.offset
             self.direction = pygame.Vector2(mouse_pos - player_pos).normalize()
 
         self.caracter.is_attack = True
@@ -131,4 +131,5 @@ class EnnemiProjectile(Projectile):
         player_touched = pygame.sprite.spritecollide(self, [sprites.player], False)
         if player_touched:
             self.player.decrease_health(self.caracter.get_attack_value())
+            self.player.is_alive()
             self.kill()

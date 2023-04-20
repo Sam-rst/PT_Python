@@ -16,6 +16,10 @@ class Player(Caracter):
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
     
+    def is_alive(self):
+        if self.HP <= 0:
+            sprites.camera_group.carte.game_over()
+    
     def input(self):
         keys = pygame.key.get_pressed()
         mouse = pygame.mouse.get_pressed()
@@ -86,18 +90,18 @@ class Warrior(Player):
         self.set_range(10)
         self.set_max_HP(150)
         self.HP = self.max_HP
-        self.attack_value = 70
+        self.attack_value = 700
         self.defense_value = 20
         self.range = 2 * scale  # rayon d'attaque du caractère
-        self.cooldown_attack = 1000 #temps de recharge en millisecondes
+        self.cooldown_attack = 200 #temps de recharge en millisecondes
 
-    def update(self, dt):
-        self.old_rect = self.rect.copy()
-        self.input()
-        self.apply_collisions(dt)
-        self.animation_state()
-        if self.direction.magnitude() != 0:
-            self.direction = self.direction.normalize()
+    # def update(self, dt):
+    #     self.old_rect = self.rect.copy()
+    #     self.input()
+    #     self.apply_collisions(dt)
+    #     self.animation_state()
+    #     if self.direction.magnitude() != 0:
+    #         self.direction = self.direction.normalize()
 
 
 class Mage(Player):
@@ -128,13 +132,13 @@ class Mage(Player):
         self.range = 2 * scale  # rayon d'attaque du caractère
         self.cooldown_attack = 1000 #temps de recharge en millisecondes
         
-    def update(self, dt):
-        self.old_rect = self.rect.copy()
-        self.input()
-        self.apply_collisions(dt)
-        self.animation_state()
-        if self.direction.magnitude() != 0:
-            self.direction = self.direction.normalize()
+    # def update(self, dt):
+    #     self.old_rect = self.rect.copy()
+    #     self.input()
+    #     self.apply_collisions(dt)
+    #     self.animation_state()
+    #     if self.direction.magnitude() != 0:
+    #         self.direction = self.direction.normalize()
 
 class Assassin(Player):
     type = "Assassin"
@@ -164,13 +168,13 @@ class Assassin(Player):
         self.range = 2 * scale  # rayon d'attaque du caractère
         self.cooldown_attack = 1000 #temps de recharge en millisecondes
         
-    def update(self, dt):
-        self.old_rect = self.rect.copy()
-        self.input()
-        self.apply_collisions(dt)
-        self.animation_state()
-        if self.direction.magnitude() != 0:
-            self.direction = self.direction.normalize()
+    # def update(self, dt):
+    #     self.old_rect = self.rect.copy()
+    #     self.input()
+    #     self.apply_collisions(dt)
+    #     self.animation_state()
+    #     if self.direction.magnitude() != 0:
+    #         self.direction = self.direction.normalize()
 
 class Guard(Player):
     type = "Guard"
@@ -200,13 +204,13 @@ class Guard(Player):
         self.range = 2 * scale  # rayon d'attaque du caractère
         self.cooldown_attack = 1000 #temps de recharge en millisecondes
         
-    def update(self, dt):
-        self.old_rect = self.rect.copy()
-        self.input()
-        self.apply_collisions(dt)
-        self.animation_state()
-        if self.direction.magnitude() != 0:
-            self.direction = self.direction.normalize()
+    # def update(self, dt):
+    #     self.old_rect = self.rect.copy()
+    #     self.input()
+    #     self.apply_collisions(dt)
+    #     self.animation_state()
+    #     if self.direction.magnitude() != 0:
+    #         self.direction = self.direction.normalize()
 
 class Archer(Player):
     type = "Archer"
@@ -236,13 +240,13 @@ class Archer(Player):
         self.range = 2 * scale  # rayon d'attaque du caractère
         self.cooldown_attack = 1000 #temps de recharge en millisecondes
         
-    def update(self, dt):
-        self.old_rect = self.rect.copy()
-        self.input()
-        self.apply_collisions(dt)
-        self.animation_state()
-        if self.direction.magnitude() != 0:
-            self.direction = self.direction.normalize()
+    # def update(self, dt):
+    #     self.old_rect = self.rect.copy()
+    #     self.input()
+    #     self.apply_collisions(dt)
+    #     self.animation_state()
+    #     if self.direction.magnitude() != 0:
+    #         self.direction = self.direction.normalize()
 
 class Tank(Player):
     type = "Tank"
@@ -272,10 +276,10 @@ class Tank(Player):
         self.range = 2 * scale  # rayon d'attaque du caractère
         self.cooldown_attack = 1000 #temps de recharge en millisecondes
         
-    def update(self, dt):
-        self.old_rect = self.rect.copy()
-        self.input()
-        self.apply_collisions(dt)
-        self.animation_state()
-        if self.direction.magnitude() != 0:
-            self.direction = self.direction.normalize()
+    # def update(self, dt):
+    #     self.old_rect = self.rect.copy()
+    #     self.input()
+    #     self.apply_collisions(dt)
+    #     self.animation_state()
+    #     if self.direction.magnitude() != 0:
+    #         self.direction = self.direction.normalize()
