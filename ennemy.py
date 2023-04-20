@@ -48,6 +48,13 @@ class Ennemy(Caracter):
     
     def shoot(self):
         EnnemiProjectile(self, [sprites.ennemi_projectiles] + list(sprites.camera_groups.values()))
+
+    def display_life(self, screen, offset):
+        life_ratio = self.get_HP() / self.get_max_HP()
+        x = self.pos.x - 10 - offset.x
+        y = self.pos.y - 10 - offset.y
+        pygame.draw.rect(screen, '#ff0000', pygame.rect.Rect(x, y, 100, 10), 5)
+        pygame.draw.rect(screen, '#00ff00', pygame.rect.Rect(x, y, 100 * life_ratio, 10), 5)
     
     def update(self, dt):
         self.is_alive()
@@ -92,7 +99,7 @@ class Demon(Ennemy):
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
         self.cooldown_attack = 2000
-        self.set_max_HP(20)
+        self.set_max_HP(8000)
         
         self.random_spawn()
 
