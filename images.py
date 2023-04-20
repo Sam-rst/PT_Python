@@ -1067,3 +1067,53 @@ skeleton_top_attack = [
 
 ]
 #Etienne <3
+farmer_top_walking = [
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/top/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/top/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/top/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/top/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/top/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/top/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/top/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/top/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/top/anim_9.png').convert_alpha()
+    
+    ]
+farmer_bottom_walking = [
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/bottom/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/bottom/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/bottom/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/bottom/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/bottom/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/bottom/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/bottom/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/bottom/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/bottom/anim_9.png').convert_alpha()
+
+    ]
+
+farmer_left_walking = [
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/left/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/left/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/left/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/left/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/left/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/left/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/left/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/left/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/left/anim_9.png').convert_alpha()
+
+    ]
+
+farmer_right_walking = [
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/right/anim_1.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/right/anim_2.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/right/anim_3.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/right/anim_4.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/right/anim_5.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/right/anim_6.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/right/anim_7.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/right/anim_8.png').convert_alpha(),
+    pygame.image.load('graphics/caracters/ennemy/farmer/walking/right/anim_9.png').convert_alpha()
+
+    ]
