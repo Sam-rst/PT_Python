@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="36" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="17" nextobjectid="6">
- <tileset firstgid="1" source="../Desktop/GitHub/PT_Python/graphics/Tiled/data/tsx/Overworld_tiled.tsx"/>
- <tileset firstgid="1441" source="../Desktop/GitHub/PT_Python/graphics/Tiled/data/tsx/dungeon_tiles.tsx"/>
- <layer id="15" name="Collision" width="36" height="30">
+<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="36" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="17" nextobjectid="7">
+ <tileset firstgid="1" source="../tsx/Overworld_tiled.tsx"/>
+ <tileset firstgid="1441" source="../tsx/dungeon_tiles.tsx"/>
+ <layer id="15" name="Collisions" width="36" height="30">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -240,12 +240,15 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,498,496,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="14" name="Waypoints ">
-  <object id="1" name="WatertempleExit " x="286.667" y="465.333">
+ <objectgroup id="14" name="Waypoints">
+  <object id="1" name="WatertempleEntrance" x="286.667" y="465.333">
    <point/>
   </object>
-  <object id="2" name="WatertempleEntrance " x="264" y="439.333" width="46.6667" height="38"/>
+  <object id="2" name="WatertempleExit" x="264" y="439.333" width="46.6667" height="38"/>
   <object id="5" name="SpawnBoss" x="288.667" y="271.333">
+   <point/>
+  </object>
+  <object id="6" name="Spawn" x="287" y="384">
    <point/>
   </object>
  </objectgroup>
