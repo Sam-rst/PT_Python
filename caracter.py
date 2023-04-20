@@ -53,6 +53,8 @@ class Caracter(pygame.sprite.Sprite):
         self.speed = 500
         self.cooldown_move = 1500
         self.last_move = 0
+        
+        self.is_teleporting = False
 
 
     def set_name(self, new_name):
@@ -169,6 +171,8 @@ class Caracter(pygame.sprite.Sprite):
             self.set_HP(0)
 
     def collision(self, direction):
+        if self.is_teleporting: return
+        
         collisions = pygame.sprite.spritecollide(self, sprites.camera_group.collision_group, False)
         if collisions:
             for sprite in sprites.camera_group.collision_group:

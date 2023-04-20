@@ -48,6 +48,9 @@ last_time = time.time()
 while True:
     dt = time.time() - last_time
     last_time = time.time() 
+    
+    if sprites.player.is_teleporting:
+        sprites.player.is_teleporting = False
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -70,6 +73,7 @@ while True:
                     # print(f"Nom de la destination : {tp.name_destination}, nom du waypoint de destination : {tp.name_tp_back}")
                     # print(f'La position de la teleportation : {tp.pos} et du joueur : {sprites.player.get_pos()}')
                     sprites.player.set_pos(sprites.camera_groups[name_dest].carte.get_waypoint(tp.name_tp_back))
+                    sprites.player.is_teleporting = True
             if event.key == pygame.K_a and sprites.player.rect.colliderect(piece1.rect):
                 piece1.remove_object(piece1)
     
