@@ -219,11 +219,11 @@
  </layer>
  <objectgroup id="8" name="Items"/>
  <objectgroup id="5" name="Waypoints">
-  <object id="1" name="Spawn" x="24.1667" y="33.0833">
+  <object id="1" name="Spawn" x="30.1667" y="96.5833">
    <point/>
   </object>
   <object id="2" name="ExitDungeon" x="2.09866" y="3.19693" width="23.7273" height="22.1818"/>
-  <object id="4" name="DungeonEntrance" x="19.5" y="33.0833">
+  <object id="4" name="DungeonEntrance" x="22.25" y="97.0833">
    <point/>
   </object>
   <object id="8" name="SpawnItems" x="117.667" y="40.6666">

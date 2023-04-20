@@ -17,10 +17,10 @@ demons_group = pygame.sprite.Group()
 goblins_group = pygame.sprite.Group()
 skeletons_group = pygame.sprite.Group()
 zombies_group = pygame.sprite.Group()
-
+pnj_group = pygame.sprite.Group()
 player_sprite = pygame.sprite.GroupSingle()
 player = None
-
+items_drop = pygame.sprite.Group()
 items_sprites = pygame.sprite.Group()
 
 dungeon_collisions = pygame.sprite.Group()

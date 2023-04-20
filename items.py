@@ -37,6 +37,9 @@ class Item(pygame.sprite.Sprite):
     def get_height(self):
         return self.image.get_height() * scale
     
+    def get_rect(self):
+        return self.rect
+    
     def transform_scale(self):
         return pygame.transform.scale(self.image, (self.get_width(), self.get_height()))
     

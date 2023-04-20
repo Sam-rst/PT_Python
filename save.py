@@ -117,6 +117,27 @@ class SaveData:
                     return  []
         except FileNotFoundError:
             return []
+    
+    def remove_item_from_inventory(self, item_name):
+        try:
+            with open(self.filename, "r") as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            data = {}
+
+        # Vérifier si l'inventaire existe déjà
+        if "inventory" in data:
+            # Supprimer l'élément souhaité de la liste d'inventaire
+            if item_name in data["inventory"]:
+                data["inventory"].remove(item_name)
+        else:
+            print("L'inventaire n'existe pas.")
+
+        try:
+            with open(self.filename, "w") as file:
+                json.dump(data, file)
+        except IOError:
+            print("Erreur lors de l'écriture du fichier de sauvegarde.")
         
     def save_player_life(self, player_life):
         try:
@@ -202,3 +223,4 @@ class SaveData:
         
     def player_class_exists(self):
         return self.load_player_class() is not None
+    

@@ -1,4 +1,4 @@
-import pygame, sys, time, math
+import pygame, sys, time, math, introduction
 from settings import *
 import sprites
 from debug import debug
@@ -9,6 +9,8 @@ from inventaire import *
 from menu import Menu
 from items import Item
 from random import randint
+from pnj import *
+from menu_marchand import *
 
 pygame.init()
 
@@ -17,7 +19,9 @@ clock = pygame.time.Clock()
 # Création des sprites
 
 # Saves
+# introduction.run()
 menu = Menu()
+menu_marchand = Menu_Marchand()
 sprites.player = menu.run()
 last_save_time = pygame.time.get_ticks()
 inventaire = Inventaire()
@@ -33,40 +37,42 @@ Demon("Demon7", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_gr
 Demon("Demon8", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
 Demon("Demon9", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
 Demon("Demon10", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
-Demon("Demon11", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
-Demon("Demon12", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
-Demon("Demon13", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
-Demon("Demon14", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
-Demon("Demon15", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
-Demon("Demon16", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
-Demon("Demon17", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
-Demon("Demon18", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
-Demon("Demon19", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
-Demon("Demon20", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
+# Demon("Demon11", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
+# Demon("Demon12", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
+# Demon("Demon13", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
+# Demon("Demon14", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
+# Demon("Demon15", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
+# Demon("Demon16", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
+# Demon("Demon17", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
+# Demon("Demon18", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
+# Demon("Demon19", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
+# Demon("Demon20", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.demons_group])
 
-Goblin("Goblin1", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
-Goblin("Goblin2", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
-Goblin("Goblin3", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
-Goblin("Goblin4", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
-Goblin("Goblin5", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
-Goblin("Goblin6", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
-Goblin("Goblin7", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
-Goblin("Goblin8", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
-Goblin("Goblin9", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
-Goblin("Goblin10", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
+# Goblin("Goblin1", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
+# Goblin("Goblin2", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
+# Goblin("Goblin3", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
+# Goblin("Goblin4", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
+# Goblin("Goblin5", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
+# Goblin("Goblin6", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
+# Goblin("Goblin7", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
+# Goblin("Goblin8", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
+# Goblin("Goblin9", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
+# Goblin("Goblin10", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.goblins_group])
 
-Skeleton("Skeleton1", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.skeletons_group])
-Skeleton("Skeleton2", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.skeletons_group])
-Skeleton("Skeleton3", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.skeletons_group])
-Skeleton("Skeleton4", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.skeletons_group])
-Skeleton("Skeleton5", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.skeletons_group])
+# Skeleton("Skeleton1", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.skeletons_group])
+# Skeleton("Skeleton2", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.skeletons_group])
+# Skeleton("Skeleton3", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.skeletons_group])
+# Skeleton("Skeleton4", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.skeletons_group])
+# Skeleton("Skeleton5", (100, 100), [sprites.camera_groups["Watertemple"], sprites.ennemi_group, sprites.skeletons_group])
 
-Zombie("Zombie1", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.zombies_group])
-Zombie("Zombie2", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.zombies_group])
-Zombie("Zombie3", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.zombies_group])
-Zombie("Zombie4", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.zombies_group])
-Zombie("Zombie5", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.zombies_group])
+# Zombie("Zombie1", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.zombies_group])
+# Zombie("Zombie2", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.zombies_group])
+# Zombie("Zombie3", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.zombies_group])
+# Zombie("Zombie4", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.zombies_group])
+# Zombie("Zombie5", (100, 100), [sprites.camera_groups["Dungeon"], sprites.ennemi_group, sprites.zombies_group])
 
+marchand = Marchand("Kiki", (522,744), [sprites.camera_groups["Overworld"], sprites.pnj_group])
+# pretre = Pretre("Joseph", (522,744), [sprites.camera_groups["Overworld"], sprites.pnj_group])
 for ennemy_name in sprites.save_data.load_mob_dead():
     # Trouver l'objet sprite correspondant au nom de l'ennemi mort
     for sprite in sprites.ennemi_group:
@@ -75,7 +81,7 @@ for ennemy_name in sprites.save_data.load_mob_dead():
             sprite.kill()
 
 # Type camera
-sprites.camera_group.set_type_camera("box")
+sprites.camera_group.set_type_camera("center")
 
 last_time = time.time()
 while True:
@@ -105,8 +111,20 @@ while True:
                     sprites.player.is_teleporting = True
             for sprite in sprites.items_drop:
                 if event.key == pygame.K_a and sprites.player.rect.colliderect(sprite.rect):
-                    # sprite.remove_object(piece1)
-                    pass
+                    sprite.remove_object(sprites.items_drop)
+
+            if event.key == pygame.K_i and pygame.sprite.spritecollide(marchand, sprites.pnj_group, False):
+                menu_marchand.run()
+            if event.key == pygame.K_1:
+                # print('click')
+                items_old = sprites.save_data.load_inventory()
+                num_potion = items_old.count("potion")
+                if num_potion >= 1:
+                    sprites.player.set_HP((int(sprites.player.get_HP() * 1.3)))
+                    sprites.save_data.remove_item_from_inventory("potion")
+                    items = sprites.save_data.load_inventory()
+                    sprites.save_data.save_inventory(items)
+            
     
     dungeon_bg = ['Dungeon']
     overworld_bg = ['Overworld', 'Swamp', 'Waterfall', 'Watertemple', 'Castle']

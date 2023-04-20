@@ -83,7 +83,7 @@ class Carte:
 
     def get_obj(self, name_group, obj_name):
         obj_layer = self.get_group_object(name_group)
-        print(obj_layer)
+        # print(obj_layer)
         for obj in obj_layer:
             if obj.name == obj_name:
                 return obj
@@ -107,7 +107,6 @@ class Carte:
     
     def game_over(self):
         # Afficher un message de fin de partie et quitter la boucle principale
-        clock = pygame.time.Clock()
         font = pygame.font.SysFont(None, 64)
         text_surf = font.render("Game Over appuyez sur SPACE pour respawn", True, (255, 0, 0))
         text_rect = text_surf.get_rect(center=((self.screen.get_size()[0]//2, self.screen.get_size()[1]//2)))

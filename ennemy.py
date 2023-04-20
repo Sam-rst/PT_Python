@@ -1,4 +1,7 @@
+import pygame
+from save import SaveData
 from caracter import *
+from items import Item
 
 class Ennemy(Caracter):
     type = 'Ennemy'
@@ -7,7 +10,7 @@ class Ennemy(Caracter):
         super().__init__(name, pos, groups)
         self.transform_to_ennemy()
         self.range_can_attack = 5
-        
+        self.items = []
     def transform_to_ennemy(self):
         # self.frames["Bottom Walk"] = demon_bottom_walks
         self.image = self.frames[self.animation_direction][self.animation_index]
@@ -41,6 +44,8 @@ class Ennemy(Caracter):
         if self.get_HP() <= 0:
             self.kill()
             self.save_data.save_mob_dead(self.name)
+            self.piecemob = Item('Piece', self.get_pos(), [sprites.camera_group, sprites.items_sprites, sprites.items_drop])
+            self.items.append(self.piecemob)
     
     def random_spawn(self):
         width, height = sprites.camera_group.carte.get_size_map()

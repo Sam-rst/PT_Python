@@ -222,8 +222,8 @@
   <object id="4" name="OverworldExit" x="351.75" y="500">
    <point/>
   </object>
-  <object id="6" name="EntranceWaterfall" x="148.5" y="3" width="24.5" height="24"/>
-  <object id="5" name="WaterfallExit" x="158.75" y="19">
+  <object id="6" name="EntranceWaterfall" x="145.045" y="-0.0909091" width="24.5" height="24"/>
+  <object id="5" name="WaterfallExit" x="146.932" y="13.3636">
    <point/>
   </object>
   <object id="7" name="DungeonEntrance" x="458.75" y="42.75" width="41" height="41.5"/>
