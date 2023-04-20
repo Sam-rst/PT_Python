@@ -73,11 +73,11 @@ class Caracter(pygame.sprite.Sprite):
     
     def set_HP(self, new_value):
         """Changer la valeur du nombre d'HP du carcatère"""
-        self.max_HP = new_value
+        self.HP = new_value
 
     def get_HP(self):
         """Permet de récupérer la vie du caractère"""
-        return self.max_HP
+        return self.HP
     
     def set_range(self, new_value):
         """Changer la range avec la nouvelle valeur new_value"""
@@ -163,6 +163,7 @@ class Caracter(pygame.sprite.Sprite):
         self.regenerate()
     
     def decrease_health(self, amount):
+        print(self.get_HP())
         self.set_HP(self.get_HP() - amount)
         if self.get_HP() < 0:
             self.set_HP(0)

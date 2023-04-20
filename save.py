@@ -117,7 +117,33 @@ class SaveData:
                     return  []
         except FileNotFoundError:
             return []
-    
+        
+    def save_player_life(self, player_life):
+        try:
+            with open(self.filename, "r") as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            data = {}
+
+        data["player_life"] = player_life
+
+        try:
+            with open(self.filename, "w") as file:
+                json.dump(data, file)
+        except IOError:
+            print("Erreur lors de l'écriture du fichier de sauvegarde.")
+
+    def load_player_life(self):
+        try:
+            with open(self.filename, "r") as file:
+                data = json.load(file)
+                if "player_life" in data:
+                    return data["player_life"]
+                else:
+                    return  []
+        except FileNotFoundError:
+            return []
+        
     def save_mob_dead(self, mob_name):
         try:
             with open(self.filename, "r") as file:

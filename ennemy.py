@@ -42,6 +42,10 @@ class Ennemy(Caracter):
             self.kill()
             self.save_data.save_mob_dead(self.name)
     
+    def random_spawn(self):
+        width, height = sprites.camera_group.carte.get_size_map()
+        self.set_pos((randint(100, width-100), randint(100, height-100)))
+    
     def shoot(self):
         EnnemiProjectile(self, [sprites.ennemi_projectiles] + list(sprites.camera_groups.values()))
     
@@ -89,6 +93,8 @@ class Demon(Ennemy):
         self.image = self.transform_scale()
         self.cooldown_attack = 2000
         self.set_max_HP(20)
+        
+        self.random_spawn()
 
 class Goblin(Ennemy):
     type = 'Goblin'
@@ -109,6 +115,8 @@ class Goblin(Ennemy):
         self.frames['Right Attack'] = goblin_right_attack
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
+        
+        self.random_spawn()
 
 class Zombie(Ennemy):
     type = 'Zombie'
@@ -130,6 +138,8 @@ class Zombie(Ennemy):
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
 
+        self.random_spawn()
+        
 class Skeleton(Ennemy):
     type = 'Skeleton'
     
@@ -149,3 +159,5 @@ class Skeleton(Ennemy):
         self.frames['Right Attack'] = skeleton_right_attack
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
+        
+        self.random_spawn()

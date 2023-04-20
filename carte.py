@@ -22,12 +22,16 @@ class Carte:
         
         self.size_map_width = self.width * self.tilewidth
         self.size_map_height = self.height * self.tileheight
+        self.size_map = (self.size_map_width, self.size_map_height)
         
         self.layers = self.get_layers()
 
         self.collision_layers = []
         self.collision_tiles = []
 
+    def get_size_map(self):
+        return self.size_map
+    
     def get_width(self):
         return self.width
     
@@ -121,11 +125,11 @@ class Carte:
                         pygame.quit()
                         sys.exit()
                     if event.key == pygame.K_e or event.key == pygame.K_SPACE:
-                        print(('Respawn'))
-                        sprites.player.regenerate()
+                        # sprites.player.regenerate()
                         sprites.camera_group = sprites.camera_groups['Overworld']
                         sprites.player.set_pos(sprites.camera_group.carte.get_waypoint('Spawn'))
-                        os.remove('save.json')
+                        if os.path.exists('save.json'):
+                            os.remove('save.json')
                         # pygame.quit()
                         is_respawn = True
                         # sys.exit()

@@ -11,6 +11,7 @@ class Menu:
         self.save_data = SaveData('save.json')
         self.class_joueur = self.save_data.load_player_class()
         self.player_data = self.save_data.load_player_data()
+        self.player_HP = self.save_data.load_player_life()
         self.map_name = self.save_data.load_player_map()
         
     def run(self):
@@ -112,6 +113,7 @@ class Menu:
 
             name = self.class_joueur['Name']
             player.set_name(name)
+            player.set_HP(self.player_HP)
             max_HP = self.class_joueur['Max HP']
             player.set_max_HP(max_HP)
             attack_value = self.class_joueur['Attack value']

@@ -17,8 +17,10 @@ class Player(Caracter):
         self.image = self.transform_scale()
     
     def is_alive(self):
-        if self.HP <= 0:
-            sprites.camera_group.carte.game_over()
+        if self.HP == 0:
+            self.kill()
+            return False
+        return True
     
     def input(self):
         keys = pygame.key.get_pressed()
