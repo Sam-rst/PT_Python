@@ -83,6 +83,7 @@ class Carte:
 
     def get_obj(self, name_group, obj_name):
         obj_layer = self.get_group_object(name_group)
+        print(obj_layer)
         for obj in obj_layer:
             if obj.name == obj_name:
                 return obj

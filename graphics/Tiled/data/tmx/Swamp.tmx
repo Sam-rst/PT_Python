@@ -218,12 +218,12 @@
 </data>
  </layer>
  <objectgroup id="8" name="Waypoints">
-  <object id="3" name="OverworldEntrance" x="342.75" y="490.75" width="18" height="21"/>
+  <object id="3" name="OverworldEntrance" x="338.75" y="490.75" width="27.5" height="21"/>
   <object id="4" name="OverworldExit" x="351.75" y="500">
    <point/>
   </object>
-  <object id="6" name="WaterfallEntrance" x="146.75" y="-0.25" width="24.5" height="24"/>
-  <object id="5" name="WaterfallExit" x="160" y="8">
+  <object id="6" name="EntranceWaterfall" x="148.5" y="3" width="24.5" height="24"/>
+  <object id="5" name="WaterfallExit" x="158.75" y="19">
    <point/>
   </object>
   <object id="7" name="DungeonEntrance" x="458.75" y="42.75" width="41" height="41.5"/>
