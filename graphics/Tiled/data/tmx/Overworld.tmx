@@ -536,11 +536,11 @@
 </data>
  </layer>
  <objectgroup id="10" name="Waypoints">
-  <object id="3" name="DungeonEntrance" x="249" y="296.667" width="44.6667" height="39.3333"/>
-  <object id="4" name="DungeonExit" x="271.917" y="359.333">
+  <object id="3" name="DungeonEntrance" x="249" y="296.667" width="44.6667" height="45.3333"/>
+  <object id="4" name="DungeonExit" x="260.417" y="341.833">
    <point/>
   </object>
-  <object id="1" name="HouseEntrance" x="208.625" y="198" width="15" height="20.625"/>
+  <object id="1" name="HouseEntrance" x="203.375" y="198" width="25.25" height="30.125"/>
   <object id="5" name="HouseExit" x="215" y="233.5">
    <point/>
   </object>
@@ -548,7 +548,7 @@
   <object id="54" name="SwampExit" x="207.818" y="18.9091">
    <point/>
   </object>
-  <object id="19" name="Spawn" x="613.166" y="489.666">
+  <object id="19" name="Spawn" x="424.833" y="254.666">
    <point/>
   </object>
   <object id="56" name="SpawnItems" x="96.6667" y="120.667">

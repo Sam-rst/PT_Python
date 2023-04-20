@@ -89,22 +89,13 @@ class Warrior(Player):
         self.frames['Right Attack'] = warrior_right_attack
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
-        self.set_range(10)
-        self.set_max_HP(150)
-        self.HP = self.max_HP
-        self.attack_value = 700
-        self.defense_value = 20
-        self.range = 2 * scale  # rayon d'attaque du caractère
-        self.cooldown_attack = 200 #temps de recharge en millisecondes
-
-    # def update(self, dt):
-    #     self.old_rect = self.rect.copy()
-    #     self.input()
-    #     self.apply_collisions(dt)
-    #     self.animation_state()
-    #     if self.direction.magnitude() != 0:
-    #         self.direction = self.direction.normalize()
-
+        self.set_range(3)
+        self.set_max_HP(100)
+        self.set_HP(self.get_max_HP())
+        self.set_attack_value(20)
+        self.set_defense_value(10)
+        self.set_cooldown_attack(800)
+        self.set_speed(250)
 
 class Mage(Player):
     type = "Mage"
@@ -125,22 +116,13 @@ class Mage(Player):
         self.frames['Right Attack'] = mage_right_attack
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
-        self.set_range(10)
-        # Aspects of the caracter
-        self.max_HP = 150
-        self.HP = self.max_HP
-        self.attack_value = 70
-        self.defense_value = 20
-        self.range = 2 * scale  # rayon d'attaque du caractère
-        self.cooldown_attack = 1000 #temps de recharge en millisecondes
-        
-    # def update(self, dt):
-    #     self.old_rect = self.rect.copy()
-    #     self.input()
-    #     self.apply_collisions(dt)
-    #     self.animation_state()
-    #     if self.direction.magnitude() != 0:
-    #         self.direction = self.direction.normalize()
+        self.set_range(20)
+        self.set_max_HP(80)
+        self.set_HP(self.get_max_HP())
+        self.set_attack_value(15)
+        self.set_defense_value(5)
+        self.set_cooldown_attack(800)
+        self.set_speed(275)
 
 class Assassin(Player):
     type = "Assassin"
@@ -161,22 +143,13 @@ class Assassin(Player):
         self.frames['Right Attack'] = assassin_right_attack
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
-        self.set_range(10)
-        # Aspects of the caracter
-        self.max_HP = 150
-        self.HP = self.max_HP
-        self.attack_value = 70
-        self.defense_value = 20
-        self.range = 2 * scale  # rayon d'attaque du caractère
-        self.cooldown_attack = 1000 #temps de recharge en millisecondes
-        
-    # def update(self, dt):
-    #     self.old_rect = self.rect.copy()
-    #     self.input()
-    #     self.apply_collisions(dt)
-    #     self.animation_state()
-    #     if self.direction.magnitude() != 0:
-    #         self.direction = self.direction.normalize()
+        self.set_range(3)
+        self.set_max_HP(75)
+        self.set_HP(self.get_max_HP())
+        self.set_attack_value(12)
+        self.set_defense_value(2)
+        self.set_cooldown_attack(400)
+        self.set_speed(600)
 
 class Guard(Player):
     type = "Guard"
@@ -197,22 +170,13 @@ class Guard(Player):
         self.frames['Right Attack'] = guard_right_attack
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
-        self.set_range(10)
-        # Aspects of the caracter
-        self.max_HP = 150
-        self.HP = self.max_HP
-        self.attack_value = 70
-        self.defense_value = 20
-        self.range = 2 * scale  # rayon d'attaque du caractère
-        self.cooldown_attack = 1000 #temps de recharge en millisecondes
-        
-    # def update(self, dt):
-    #     self.old_rect = self.rect.copy()
-    #     self.input()
-    #     self.apply_collisions(dt)
-    #     self.animation_state()
-    #     if self.direction.magnitude() != 0:
-    #         self.direction = self.direction.normalize()
+        self.set_range(2)
+        self.set_max_HP(150)
+        self.set_HP(self.get_max_HP())
+        self.set_attack_value(10)
+        self.set_defense_value(15)
+        self.set_cooldown_attack(1200)
+        self.set_speed(250)
 
 class Archer(Player):
     type = "Archer"
@@ -233,22 +197,13 @@ class Archer(Player):
         self.frames['Right Attack'] = archer_right_attack
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
-        self.set_range(10)
-        # Aspects of the caracter
-        self.max_HP = 150
-        self.HP = self.max_HP
-        self.attack_value = 70
-        self.defense_value = 20
-        self.range = 2 * scale  # rayon d'attaque du caractère
-        self.cooldown_attack = 1000 #temps de recharge en millisecondes
-        
-    # def update(self, dt):
-    #     self.old_rect = self.rect.copy()
-    #     self.input()
-    #     self.apply_collisions(dt)
-    #     self.animation_state()
-    #     if self.direction.magnitude() != 0:
-    #         self.direction = self.direction.normalize()
+        self.set_range(75)
+        self.set_max_HP(95)
+        self.set_HP(self.get_max_HP())
+        self.set_attack_value(18)
+        self.set_defense_value(2)
+        self.set_cooldown_attack(850)
+        self.set_speed(450)
 
 class Tank(Player):
     type = "Tank"
@@ -269,19 +224,10 @@ class Tank(Player):
         self.frames['Right Attack'] = tank_right_attack
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
-        self.set_range(10)
-        # Aspects of the caracter
-        self.max_HP = 150
-        self.HP = self.max_HP
-        self.attack_value = 70
-        self.defense_value = 20
-        self.range = 2 * scale  # rayon d'attaque du caractère
-        self.cooldown_attack = 1000 #temps de recharge en millisecondes
-        
-    # def update(self, dt):
-    #     self.old_rect = self.rect.copy()
-    #     self.input()
-    #     self.apply_collisions(dt)
-    #     self.animation_state()
-    #     if self.direction.magnitude() != 0:
-    #         self.direction = self.direction.normalize()
+        self.set_range(2)
+        self.set_max_HP(300)
+        self.set_HP(self.get_max_HP())
+        self.set_attack_value(10)
+        self.set_defense_value(20)
+        self.set_cooldown_attack(1000)
+        self.set_speed(150)
