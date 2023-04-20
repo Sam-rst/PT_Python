@@ -120,7 +120,7 @@ while True:
                 items_old = sprites.save_data.load_inventory()
                 num_potion = items_old.count("potion")
                 if num_potion >= 1:
-                    sprites.player.set_HP((int(sprites.player.get_HP() * 1.3)))
+                    sprites.player.set_HP((int(sprites.player.get_HP() * 1.6)))
                     sprites.save_data.remove_item_from_inventory("potion")
                     items = sprites.save_data.load_inventory()
                     sprites.save_data.save_inventory(items)

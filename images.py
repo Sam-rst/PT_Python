@@ -1429,3 +1429,9 @@ farmer2_right_walking = [
     pygame.image.load('graphics/caracters/pnj/farmer2/walking/right/anim_9.png').convert_alpha()
 
     ]
+
+# ~~~~~~~~~~===> Golden Guard's standing image <===~~~~~~~~~~
+
+# goldenGuard_standing = [
+#     pygame.image.load('graphics/caracters/pnj/goldenGuard/standing/anim_1.png').convert_alpha()
+# ]

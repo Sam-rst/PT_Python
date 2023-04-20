@@ -36,7 +36,7 @@ class Caracter(pygame.sprite.Sprite):
         self.animation_direction = "Bottom Walk"
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
-        self.animation_speed = 0.2
+        self.animation_speed = 0.5
         self.is_moving = False
         self.is_attack = False
 
@@ -55,6 +55,7 @@ class Caracter(pygame.sprite.Sprite):
         self.last_move = 0
         
         self.is_teleporting = False
+        self.is_animating = False
 
 
     def set_name(self, new_name):
@@ -233,21 +234,34 @@ class Caracter(pygame.sprite.Sprite):
 
     def animation_state(self):
         if self.is_attack:
-            self.animation_index += self.animation_speed
-            if self.animation_index >= len(self.frames[self.animation_direction]):
+            if not self.is_animating:
+                self.is_animating = True
                 self.animation_index = 0
-                self.is_attack = False
-            else:
+
+            while self.animation_index < len(self.frames[self.animation_direction]):
                 self.image = self.frames[self.animation_direction][int(self.animation_index)]
                 self.image = self.transform_scale()
-                
+                self.animation_index += self.animation_speed
+
+            self.animation_index = 0
+            self.is_attack = False
+            self.is_animating = False
+
         elif self.is_moving:
+            if not self.is_animating:
+                self.is_animating = True
+                self.animation_index = 0
+
             self.animation_index += self.animation_speed
             if self.animation_index >= len(self.frames[self.animation_direction]):
                 self.animation_index = 0
             else:
                 self.image = self.frames[self.animation_direction][int(self.animation_index)]
                 self.image = self.transform_scale()
+        else:
+            self.is_animating = False
+
+
             
     def debug(self):
         pygame.draw.rect(self.screen, '#ff0000', self.rect, 5)

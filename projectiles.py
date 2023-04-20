@@ -47,18 +47,22 @@ class Projectile(pygame.sprite.Sprite):
             player_pos = self.caracter.pos - sprites.camera_group.offset
             self.direction = pygame.Vector2(mouse_pos - player_pos).normalize()
 
-        self.caracter.is_attack = True
-        if (-1 < self.direction.x < 1) and (0 < self.direction.y < 1):
-            self.caracter.animation_direction = "Bottom Attack"
+        if not self.caracter.is_animating:
+            self.caracter.is_attack = True
+            if (-1 < self.direction.x < 1) and (0 < self.direction.y < 1):
+                self.caracter.animation_direction = "Bottom Attack"
 
-        elif (-1 < self.direction.x < 0) and (-1 < self.direction.y < 1):
-            self.caracter.animation_direction = "Left Attack"
+            elif (-1 < self.direction.x < 0) and (-1 < self.direction.y < 1):
+                self.caracter.animation_direction = "Left Attack"
 
-        elif (-1 < self.direction.x < 1) and (-1 < self.direction.y < 0):
-            self.caracter.animation_direction = 'Top Attack'
+            elif (-1 < self.direction.x < 1) and (-1 < self.direction.y < 0):
+                self.caracter.animation_direction = 'Top Attack'
 
-        elif (0 < self.direction.x < 1) and (-1 < self.direction.y < 1):
-            self.caracter.animation_direction = "Right Attack"
+            elif (0 < self.direction.x < 1) and (-1 < self.direction.y < 1):
+                self.caracter.animation_direction = "Right Attack"
+
+        self.caracter.is_animating = True
+
     
     def update(self, dt):
         self.old_rect = self.rect.copy()
