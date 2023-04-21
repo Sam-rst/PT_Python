@@ -85,7 +85,7 @@ class Projectile(pygame.sprite.Sprite):
 
         
 class EnnemiProjectile(Projectile):
-
+    type = 'EnnemiProjectile'
     def __init__(self, caracter_sprite, groups):
         super().__init__(caracter_sprite, groups)
         self.image = pygame.image.load('graphics/weapons/orbs/orb_yellow.png').convert_alpha()
@@ -137,3 +137,6 @@ class EnnemiProjectile(Projectile):
             self.player.decrease_health(self.caracter.get_attack_value())
             self.player.is_alive()
             self.kill()
+            
+    def get_type(self):
+        return type(self).type

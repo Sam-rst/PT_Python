@@ -19,14 +19,15 @@ class Menu_Marchand:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if bouton_potion.collidepoint(pygame.mouse.get_pos()):
-                        # print('click')
                         items_old = self.save_data.load_inventory()
                         num_pieces = items_old.count("Piece")
-                        # print(num_pieces)
                         if num_pieces >= 1:
-                            # print('click2')
                             self.save_data.remove_item_from_inventory("Piece")
                             items = self.save_data.load_inventory()
                             items.append("potion")

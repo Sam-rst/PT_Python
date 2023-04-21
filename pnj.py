@@ -7,14 +7,17 @@ class Pnj(Caracter):
     def __init__(self, name, pos, groups):
         super().__init__(name, pos, groups)
         self.transform_to_pnj()
-        # self.items = []
         
     def transform_to_pnj(self):
-        # self.frames["Bottom Walk"] = demon_bottom_walks
+        self.frames["Bottom Walk"] = farmer_bottom_walking
+        self.frames["Left Walk"] = farmer_left_walking
+        self.frames["Top Walk"] = farmer_top_walking
+        self.frames["Right Walk"] = farmer_right_walking
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
         self.rect = self.image.get_rect(center = self.get_pos())
         self.set_speed(100)
+        self.animation_speed = 0.2
 
     def change_direction(self):
         if randint(0,1):
@@ -45,7 +48,7 @@ class Pnj(Caracter):
             
     def random_spawn(self):
         width, height = sprites.camera_group.carte.get_size_map()
-        self.set_pos((randint(100, width-100), randint(100, height-100)))
+        self.set_pos((randint(500, width-500), randint(500, height-500)))
 
 
     def display_life(self, screen, offset):
@@ -60,7 +63,6 @@ class Pnj(Caracter):
         # Collisions and moving setup
         self.apply_collisions(dt)
         if (self.get_ticks() - self.last_move) > self.cooldown_move:
-            # print('Moving !!')
             self.change_direction()
             self.last_move = self.get_ticks()
         if self.direction.magnitude() != 0:
@@ -69,34 +71,39 @@ class Pnj(Caracter):
         self.animation_state()
         self.rect = self.image.get_rect(topleft = self.get_pos())
 
-    
-        
-class Marchand(Pnj):
-    type = 'Marchand'
-    
-    def __init__(self, name, pos, groups):
-        super().__init__(name, pos, groups)
-        self.transform_to_marchand()
-        
-    def transform_to_marchand(self):
-        """Transformer le player en demon"""
-        self.frames['Bottom Walk'] = demon_bottom_walks
-        self.frames['Left Walk'] = demon_left_walks
-        self.frames['Top Walk'] = demon_top_walks
-        self.frames['Right Walk'] = demon_right_walks
-        self.frames['Bottom Attack'] = demon_bottom_attack
-        self.frames['Left Attack'] = demon_left_attack
-        self.frames['Top Attack'] = demon_top_attack
-        self.frames['Right Attack'] = demon_right_attack
-        self.image = self.frames[self.animation_direction][self.animation_index]
-        self.image = self.transform_scale()
-        self.cooldown_attack = 2000
-        self.set_max_HP(8000)
-        
-        self.random_spawn()
+class Merchant(Pnj):
+    type = 'Merchant'
 
-class Pretre(Pnj):
-    type = 'Pretre'
+    def __init__(self, name, pos, groups):
+        super().__init__(name, pos, groups)
+        self.transform_to_marchand()
+
+    def transform_to_marchand(self):
+        """Transformer le pnj en marchand"""
+        self.frames['Bottom Walk'] = merchant_bottom_walking
+        self.frames['Left Walk'] = merchant_left_walking
+        self.frames['Top Walk'] = merchant_top_walking
+        self.frames['Right Walk'] = merchant_right_walking
+        self.image = self.frames[self.animation_direction][self.animation_index]
+        self.image = self.transform_scale()
+        self.set_range(0)
+        self.set_max_HP(10000)
+        self.set_HP(self.get_max_HP())
+        self.set_attack_value(0)
+        self.set_defense_value(100000)
+        self.set_cooldown_attack(8000000)
+        self.set_speed(0)
+        self.set_pos(sprites.camera_group.carte.get_waypoint('SpawnMerchant'))
+        
+    def update(self, dt):
+        self.old_rect = self.rect.copy()
+        # Collisions and moving setup
+        self.apply_collisions(dt)
+        self.animation_state()
+        self.rect = self.image.get_rect(topleft = self.get_pos())
+
+class Farmer(Pnj):
+    type = 'Farmer'
     
     def __init__(self, name, pos, groups):
         super().__init__(name, pos, groups)
@@ -104,17 +111,33 @@ class Pretre(Pnj):
         
     def transform_to_marchand(self):
         """Transformer le player en demon"""
-        self.frames['Bottom Walk'] = demon_bottom_walks
-        self.frames['Left Walk'] = demon_left_walks
-        self.frames['Top Walk'] = demon_top_walks
-        self.frames['Right Walk'] = demon_right_walks
-        self.frames['Bottom Attack'] = demon_bottom_attack
-        self.frames['Left Attack'] = demon_left_attack
-        self.frames['Top Attack'] = demon_top_attack
-        self.frames['Right Attack'] = demon_right_attack
+        self.frames['Bottom Walk'] = farmer_bottom_walking
+        self.frames['Left Walk'] = farmer_left_walking
+        self.frames['Top Walk'] = farmer_top_walking
+        self.frames['Right Walk'] = farmer_right_walking
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
-        self.cooldown_attack = 2000
-        self.set_max_HP(8000)
+        self.set_range(0)
+        self.set_max_HP(10000)
+        self.set_HP(self.get_max_HP())
+        self.set_attack_value(0)
+        self.set_defense_value(100000)
+        self.set_cooldown_attack(8000000)
+        self.set_speed(100)
+        self.animation_speed = 0.1
+        # self.set_pos(sprites.camera_groups['Overworld'].carte.get_waypoint('SpawnFarmer'))
         
         self.random_spawn()
+        
+    def update(self, dt):
+        self.old_rect = self.rect.copy()
+        # Collisions and moving setup
+        self.apply_collisions(dt)
+        if (self.get_ticks() - self.last_move) > self.cooldown_move:
+            self.change_direction()
+            self.last_move = self.get_ticks()
+        if self.direction.magnitude() != 0:
+            self.direction = self.direction.normalize()
+
+        self.animation_state()
+        self.rect = self.image.get_rect(topleft = self.get_pos())

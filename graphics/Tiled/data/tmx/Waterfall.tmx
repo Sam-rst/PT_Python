@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="32" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="25" nextobjectid="20">
+<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="32" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="25" nextobjectid="21">
  <editorsettings>
   <export target="Water Fall ;)..tmx" format="tmx"/>
  </editorsettings>
@@ -422,6 +422,9 @@
   </object>
   <object id="16" name="CastleEntrance" x="479.667" y="116" width="32.6061" height="38.3333"/>
   <object id="17" name="CastleExit" x="490.583" y="130.053">
+   <point/>
+  </object>
+  <object id="20" name="SpawnMerchant" x="56.25" y="171.5">
    <point/>
   </object>
  </objectgroup>

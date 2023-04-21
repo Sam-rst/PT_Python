@@ -166,7 +166,6 @@ class Caracter(pygame.sprite.Sprite):
         self.regenerate()
     
     def decrease_health(self, amount):
-        print(self.get_HP())
         self.set_HP(self.get_HP() - amount)
         if self.get_HP() < 0:
             self.set_HP(0)

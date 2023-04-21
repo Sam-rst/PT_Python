@@ -29,35 +29,58 @@ class Menu:
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_ESCAPE:
+                            pygame.quit()
+                            sys.exit()
                     elif event.type == pygame.MOUSEBUTTONDOWN:
                         if bouton_guerrier.collidepoint(pygame.mouse.get_pos()):
                             player = Warrior("Ray Sist", camera_group.carte.get_waypoint('Spawn'), [player_sprite] + list(camera_groups.values()))
-                            self.save_data.save_player_class(player)
+                            player_position = {"x": player.pos.x, "y": player.pos.y}
+                            self.save_data.save_player_position(player_position)
+                            self.save_data.save_player_map(camera_group.carte.map_name)
+                            self.save_data.save_player_life(player.get_HP())
                             return player
                         
                         elif bouton_mage.collidepoint(pygame.mouse.get_pos()):
                             player = Mage("Ray Sist", camera_group.carte.get_waypoint('Spawn'), [player_sprite] + list(camera_groups.values()))
-                            self.save_data.save_player_class(player)
+                            player_position = {"x": player.pos.x, "y": player.pos.y}
+                            self.save_data.save_player_position(player_position)
+                            self.save_data.save_player_map(camera_group.carte.map_name)
+                            self.save_data.save_player_life(player.get_HP())
                             return player
                         
                         elif bouton_assassin.collidepoint(pygame.mouse.get_pos()):
                             player = Assassin("Ray Sist", camera_group.carte.get_waypoint('Spawn'), [player_sprite] + list(camera_groups.values()))
                             self.save_data.save_player_class(player)
+                            player_position = {"x": player.pos.x, "y": player.pos.y}
+                            self.save_data.save_player_position(player_position)
+                            self.save_data.save_player_map(camera_group.carte.map_name)
+                            self.save_data.save_player_life(player.get_HP())
                             return player
                         
                         elif bouton_guard.collidepoint(pygame.mouse.get_pos()):
                             player = Guard("Ray Sist", camera_group.carte.get_waypoint('Spawn'), [player_sprite] + list(camera_groups.values()))
-                            self.save_data.save_player_class(player)
+                            player_position = {"x": player.pos.x, "y": player.pos.y}
+                            self.save_data.save_player_position(player_position)
+                            self.save_data.save_player_map(camera_group.carte.map_name)
+                            self.save_data.save_player_life(player.get_HP())
                             return player
 
                         elif bouton_archer.collidepoint(pygame.mouse.get_pos()):
                             player = Archer("Ray Sist", camera_group.carte.get_waypoint('Spawn'), [player_sprite] + list(camera_groups.values()))
-                            self.save_data.save_player_class(player)
+                            player_position = {"x": player.pos.x, "y": player.pos.y}
+                            self.save_data.save_player_position(player_position)
+                            self.save_data.save_player_map(camera_group.carte.map_name)
+                            self.save_data.save_player_life(player.get_HP())
                             return player
                         
                         elif bouton_tank.collidepoint(pygame.mouse.get_pos()):
                             player = Tank("Ray Sist", camera_group.carte.get_waypoint('Spawn'), [player_sprite] + list(camera_groups.values()))
-                            self.save_data.save_player_class(player)
+                            player_position = {"x": player.pos.x, "y": player.pos.y}
+                            self.save_data.save_player_position(player_position)
+                            self.save_data.save_player_map(camera_group.carte.map_name)
+                            self.save_data.save_player_life(player.get_HP())
                             return player
                 
                 self.screen.fill((0, 0, 0))
@@ -84,7 +107,7 @@ class Menu:
                 texte_guerrier = font.render("Guerrier", True, (0, 0, 0))
                 texte_mage = font.render("Mage", True, (0, 0, 0))
                 texte_assassin = font.render("Assassin", True, (0, 0, 0))
-                texte_guard = font.render("Guard", True, (0, 0, 0))
+                texte_guard = font.render("Garde", True, (0, 0, 0))
                 texte_archer = font.render("Archer", True, (0, 0, 0))
                 texte_tank = font.render("Tank", True, (0, 0, 0))
                 self.screen.blit(texte_guerrier, (bouton_guerrier.x + 10, bouton_guerrier.y + 10))

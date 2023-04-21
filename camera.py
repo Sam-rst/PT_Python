@@ -96,7 +96,7 @@ class CameraGroup(pygame.sprite.Group):
 
         # Active elements
         for sprite in sorted(self.sprites(), key = lambda sprite: sprite.rect.centery):
-            not_display = ['Teleportation', 'CollisionTile']
+            not_display = ['Teleportation', 'CollisionTile', 'EnnemiProjectile']
             if not sprite.get_type() in not_display:
                 self.screen.blit(sprite.image, sprite.rect.topleft - self.offset)
                 if isinstance(sprite, Ennemy):

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="64" height="32" tilewidth="8" tileheight="8" infinite="0" nextlayerid="10" nextobjectid="9">
+<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="64" height="32" tilewidth="8" tileheight="8" infinite="0" nextlayerid="10" nextobjectid="10">
  <tileset firstgid="1" source="../tsx/dungeon_tiles2.tsx"/>
  <layer id="1" name="Ground" width="64" height="32">
   <data encoding="csv">
@@ -227,6 +227,9 @@
    <point/>
   </object>
   <object id="8" name="SpawnItems" x="117.667" y="40.6666">
+   <point/>
+  </object>
+  <object id="9" name="SpawnMerchant" x="94.75" y="23.5">
    <point/>
   </object>
  </objectgroup>

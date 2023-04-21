@@ -4,14 +4,9 @@ class Inventaire:
     
     def ajouter_objet(self, objet):
         self.objets.append(objet)
-        # print(objet)
     
     def supprimer_objet(self, objet):
         self.objets.remove(objet)
-    
-    # def afficher(self):
-    #     for objet in self.objets:
-    #         # print(objet)
             
     def get_items(self):
         return self.objets

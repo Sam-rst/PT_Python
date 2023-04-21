@@ -11,6 +11,7 @@ class Ennemy(Caracter):
         self.transform_to_ennemy()
         self.range_can_attack = 5
         self.items = []
+        
     def transform_to_ennemy(self):
         # self.frames["Bottom Walk"] = demon_bottom_walks
         self.image = self.frames[self.animation_direction][self.animation_index]
@@ -61,7 +62,6 @@ class Ennemy(Caracter):
         # Collisions and moving setup
         self.apply_collisions(dt)
         if (self.get_ticks() - self.last_move) > self.cooldown_move:
-            # print('Moving !!')
             self.change_direction()
             self.last_move = self.get_ticks()
         if self.direction.magnitude() != 0:
@@ -70,7 +70,6 @@ class Ennemy(Caracter):
         if self.get_ticks() - self.last_shot > self.cooldown_attack:
             self.shoot()
             self.is_attack = True
-            # print('Shooting !!')
             self.last_shot = self.get_ticks()
         else:
             self.is_attack = False
@@ -97,8 +96,13 @@ class Demon(Ennemy):
         self.frames['Right Attack'] = demon_right_attack
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
-        self.cooldown_attack = 2000
-        self.set_max_HP(8000)
+        self.set_range(5)
+        self.set_max_HP(50)
+        self.set_HP(self.get_max_HP())
+        self.set_attack_value(5)
+        self.set_defense_value(5)
+        self.set_cooldown_attack(1500)
+        self.set_speed(150)
         
         self.random_spawn()
 
@@ -121,6 +125,13 @@ class Goblin(Ennemy):
         self.frames['Right Attack'] = goblin_right_attack
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
+        self.set_range(5)
+        self.set_max_HP(50)
+        self.set_HP(self.get_max_HP())
+        self.set_attack_value(5)
+        self.set_defense_value(5)
+        self.set_cooldown_attack(1500)
+        self.set_speed(150)
         
         self.random_spawn()
 
@@ -143,7 +154,14 @@ class Zombie(Ennemy):
         self.frames['Right Attack'] = zombie_right_attack
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
-
+        self.set_range(5)
+        self.set_max_HP(50)
+        self.set_HP(self.get_max_HP())
+        self.set_attack_value(5)
+        self.set_defense_value(5)
+        self.set_cooldown_attack(1500)
+        self.set_speed(150)
+        
         self.random_spawn()
         
 class Skeleton(Ennemy):
@@ -165,5 +183,12 @@ class Skeleton(Ennemy):
         self.frames['Right Attack'] = skeleton_right_attack
         self.image = self.frames[self.animation_direction][self.animation_index]
         self.image = self.transform_scale()
+        self.set_range(5)
+        self.set_max_HP(50)
+        self.set_HP(self.get_max_HP())
+        self.set_attack_value(5)
+        self.set_defense_value(5)
+        self.set_cooldown_attack(1500)
+        self.set_speed(150)
         
         self.random_spawn()

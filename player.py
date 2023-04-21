@@ -230,4 +230,4 @@ class Tank(Player):
         self.set_attack_value(10)
         self.set_defense_value(20)
         self.set_cooldown_attack(1000)
-        self.set_speed(150)
+        self.set_speed(200)
