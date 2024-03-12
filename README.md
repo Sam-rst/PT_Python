@@ -1,4 +1,4 @@
-<h1 align="center">Ray Sist: The Quest-ionable Heroe</h1>
+<h1 align="center">The Quest-ionable Heroe</h1>
 
 *Réalisé par:*
 
